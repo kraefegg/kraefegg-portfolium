@@ -45,7 +45,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 nav::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--neon),var(--cyan),transparent);animation:navglow 4s ease-in-out infinite}
 @keyframes navglow{0%,100%{opacity:.4}50%{opacity:1}}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:none}
-.nav-logo-img{height:28px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px var(--cyan))}
+.nav-logo-img{height:44px;width:auto;object-fit:contain;filter:drop-shadow(0 0 10px var(--cyan))}
 .nav-sub{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);border-left:1px solid var(--border2);padding-left:10px;letter-spacing:.06em;text-transform:uppercase}
 .nav-tabs{display:flex;gap:2px;background:rgba(0,229,204,.04);border:1px solid var(--border);border-radius:3px;padding:3px}
 .ntab{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:2px;border:none;background:transparent;color:var(--text3);cursor:none;transition:all .2s;white-space:nowrap}
@@ -336,6 +336,69 @@ tr:hover td{background:rgba(0,229,204,.03)}
   .about-inner{grid-template-columns:1fr}
   .companies-panel{grid-template-columns:1fr}
 }
+
+/* PAGE 5 — CONFIDENCIAL */
+.conf-hero{position:relative;z-index:2;padding:6.5rem 2.5rem 3rem;max-width:1300px;margin:0 auto}
+.conf-banner{display:flex;align-items:center;gap:10px;padding:.75rem 1.25rem;background:rgba(245,197,66,.06);border:1px solid rgba(245,197,66,.22);border-radius:3px;margin-bottom:2rem;font-family:"Chakra Petch",monospace;font-size:10px;color:#f5c542;letter-spacing:.06em;text-transform:uppercase}
+.conf-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:1.5rem 0}
+.conf-stat{background:var(--bg2);padding:1.25rem;text-align:center;transition:background .2s}
+.conf-stat:hover{background:rgba(57,255,122,.05)}
+.conf-stat-val{font-family:"Rajdhani",sans-serif;font-size:2rem;font-weight:700;color:var(--neon);line-height:1;text-shadow:0 0 20px rgba(57,255,122,.3)}
+.conf-stat-lbl{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.conf-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+.conf-fbtn{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid var(--border);background:transparent;color:var(--text3);cursor:none;transition:all .2s}
+.conf-fbtn:hover{border-color:var(--neon);color:var(--neon)}
+.conf-fbtn.active{background:rgba(57,255,122,.1);border-color:var(--neon);color:var(--neon);box-shadow:0 0 12px rgba(57,255,122,.15)}
+.conf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1rem 0}
+.conf-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.5rem;cursor:none;transition:all .2s;position:relative;overflow:hidden}
+.conf-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
+.conf-card:hover{border-color:rgba(57,255,122,.25);background:rgba(57,255,122,.03);transform:translateY(-2px)}
+.conf-card:hover::before{opacity:1}
+.cc-sus::before{background:linear-gradient(90deg,var(--neon),var(--cyan))}
+.cc-sis::before{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.cc-reg::before{background:linear-gradient(90deg,var(--amber),var(--neon))}
+.cc-jur::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
+.conf-card-icon{font-size:22px;margin-bottom:.75rem}
+.conf-card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem}
+.conf-tag{font-family:"Chakra Petch",monospace;font-size:9px;padding:2px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:.06em}
+.ctg-green{background:rgba(57,255,122,.08);color:var(--neon);border:1px solid rgba(57,255,122,.2)}
+.ctg-blue{background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)}
+.ctg-gold{background:rgba(255,179,71,.08);color:var(--amber);border:1px solid rgba(255,179,71,.2)}
+.ctg-purple{background:rgba(180,122,255,.08);color:var(--purple);border:1px solid rgba(180,122,255,.2)}
+.conf-lock{font-family:"Chakra Petch",monospace;font-size:9px;color:var(--text3);margin-bottom:.375rem;letter-spacing:.05em;display:flex;align-items:center;gap:5px}
+.conf-sector{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--cyan);margin-bottom:.5rem;letter-spacing:.04em}
+.conf-title{font-family:"Rajdhani",sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.03em;line-height:1.2}
+.conf-desc{font-size:12.5px;color:var(--text2);line-height:1.6;font-weight:300}
+.conf-meta{display:flex;gap:1rem;padding-top:.75rem;border-top:1px solid var(--border);margin-top:.75rem}
+.conf-meta-item{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);letter-spacing:.04em}
+.conf-meta-item span{display:block;color:var(--text);font-size:11px;margin-top:1px}
+.conf-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);z-index:300;display:flex;align-items:stretch;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .28s}
+.conf-modal-overlay.open{opacity:1;pointer-events:all}
+.conf-modal{width:min(780px,100vw);background:var(--bg2);border-left:1px solid var(--border2);overflow-y:auto;transform:translateX(56px);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:2.5rem;position:relative}
+.conf-modal-overlay.open .conf-modal{transform:translateX(0)}
+.conf-modal::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),var(--cyan),var(--amber))}
+.conf-mclose{position:absolute;top:1.25rem;right:1.25rem;background:rgba(57,255,122,.08);border:1px solid rgba(57,255,122,.2);color:var(--neon);width:36px;height:36px;border-radius:2px;cursor:none;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.conf-mclose:hover{background:rgba(57,255,122,.15)}
+.conf-alert{background:rgba(245,197,66,.06);border:1px solid rgba(245,197,66,.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-family:"Chakra Petch",monospace;font-size:11px;color:#f5c542;letter-spacing:.04em}
+.conf-deliv{margin:.75rem 0;padding-left:0;list-style:none}
+.conf-deliv li{font-size:13.5px;color:var(--text2);padding:.45rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px}
+.conf-deliv li:last-child{border-bottom:none}
+.conf-deliv li::before{content:"→";color:var(--neon);flex-shrink:0;font-family:"Chakra Petch",monospace;font-size:11px;margin-top:2px}
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:1rem 0}
+.comp-item{background:var(--bg2);padding:1.25rem;transition:background .2s}
+.comp-item:hover{background:rgba(57,255,122,.04)}
+.comp-icon{font-size:20px;margin-bottom:.625rem}
+.comp-name{font-family:"Chakra Petch",monospace;font-size:11px;font-weight:700;color:var(--neon);margin-bottom:.375rem;text-transform:uppercase;letter-spacing:.06em}
+.comp-desc{font-size:12px;color:var(--text3);line-height:1.55}
+/* Project Developer section */
+.dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1rem 0}
+.dev-card{background:rgba(0,229,204,.03);border:1px solid var(--border);border-radius:4px;padding:1.25rem;border-top:2px solid}
+.dev-card-icon{font-size:20px;margin-bottom:.625rem}
+.dev-card-title{font-family:"Chakra Petch",monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.375rem}
+.dev-card-desc{font-size:12.5px;color:var(--text3);line-height:1.5}
+.dev-card-status{font-family:"Chakra Petch",monospace;font-size:9px;padding:2px 8px;border-radius:2px;margin-top:.625rem;display:inline-block;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:960px){.conf-stats{grid-template-columns:repeat(2,1fr)}.conf-grid{grid-template-columns:1fr 1fr}.comp-grid{grid-template-columns:1fr 1fr}.dev-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.conf-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr 1fr}.dev-grid{grid-template-columns:1fr}.conf-stats{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -359,7 +422,9 @@ tr:hover td{background:rgba(0,229,204,.03)}
     <button class="ntab" data-page="portfolio">// Portfólio</button>
     <button class="ntab" data-page="destaque">// Destaque</button>
     <button class="ntab" data-page="perfil">// Perfil</button>
+    <button class="ntab" data-page="confidencial">// Privado</button>
   </div>
+  <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" class="nav-cta" style="margin-right:6px">in LinkedIn</a>
   <a href="mailto:kraefegg.mos3@gmail.com" class="nav-cta">→ Contato</a>
 </nav>
 
@@ -395,7 +460,7 @@ tr:hover td{background:rgba(0,229,204,.03)}
         <div class="stat-row"><span class="stat-val" data-count="25">0</span><span class="stat-lbl">projetos<br>executados</span></div>
         <div class="stat-row"><span class="stat-val" data-count="7">0</span><span class="stat-lbl">anos de<br>atuação</span></div>
         <div class="stat-row"><span class="stat-val" style="font-size:1.5rem;letter-spacing:-.02em">NE·SE·CO</span><span class="stat-lbl">regiões<br>do Brasil</span></div>
-        <div class="stat-row"><span class="stat-val" data-count="6">0</span><span class="stat-lbl">especializa-<br>ções</span></div>
+        <div class="stat-row"><span class="stat-val" data-count="9">0</span><span class="stat-lbl">especializ. &<br>MBAs</span></div>
       </div>
     </div>
   </section>
@@ -405,18 +470,24 @@ tr:hover td{background:rgba(0,229,204,.03)}
       <div class="reveal">
         <h2 class="about-title">Atuação integrada<br>em engenharia<br><em>ambiental</em></h2>
         <p class="about-p">A KRAEFEGG Multi Office atua na intersecção de engenharia ambiental, desenvolvimento de projetos de energia e gestão de ativos naturais — do diagnóstico técnico ao estudo de viabilidade pronto para investimento.</p>
-        <p class="about-p">Em parceria com Bragagnoli Ambiental e Ekora Consultoria Ambiental, entregamos projetos de licenciamento, PRAD, inventário florestal e plantio compensatório para empreendimentos de mineração e energia em todo o Brasil.</p>
+        <p class="about-p">Atuação direta em projetos de licenciamento ambiental, PRAD, recuperação florestal, perícia e auditoria ambiental, mineralogia, segurança do trabalho e desenvolvimento de projetos de energia — cobrindo empreendimentos de mineração, infraestrutura e energias renováveis em todo o Brasil.</p>
         <div class="chip-row">
-          <span class="chip ca">Project Developer IPP</span><span class="chip cg">PRAD · Caatinga</span><span class="chip ct">Mercado de Carbono</span><span class="chip ca">BNDES · BNB FNE</span><span class="chip cg">EIA · ASV · Licenciamento</span><span class="chip ct">Due Diligence</span><span class="chip cb">MBA Energias Renováveis</span>
+          <span class="chip ca">Project Developer IPP</span><span class="chip cg">Eng. Florestal</span><span class="chip ct">Mercado de Carbono</span><span class="chip ca">MBA Energias Renováveis</span><span class="chip cg">EIA · ASV · Licenciamento</span><span class="chip ct">IMO Consultant E-Roster</span><span class="chip cb">Mineralogia</span><span class="chip ca">Eng. Segurança Trabalho</span><span class="chip cg">Perícia & Auditoria</span><span class="chip ct">MBA Construção Civil</span>
         </div>
       </div>
       <div class="sgrid reveal">
-        <div class="sitem"><div class="sicon">☀️</div><div class="sname">Energia Solar</div><div class="sdesc">EVTEA, PFS, utility scale, licenciamento, Project Finance BNDES</div></div>
-        <div class="sitem"><div class="sicon">🌿</div><div class="sname">PRAD & Recuperação</div><div class="sdesc">Plantio compensatório, reposição florestal, Caatinga</div></div>
-        <div class="sitem"><div class="sicon">🌡</div><div class="sname">Carbono & GEE</div><div class="sdesc">Inventário GEE, créditos voluntários, SBCE, ESG</div></div>
-        <div class="sitem"><div class="sicon">⛏</div><div class="sname">Mineração Verde</div><div class="sdesc">Inventário florestal, mineralógico, EIA, barragens</div></div>
-        <div class="sitem"><div class="sicon">🔍</div><div class="sname">Auditoria & Perícia</div><div class="sdesc">Laudos ambientais, compliance, due diligence</div></div>
-        <div class="sitem"><div class="sicon">🗺</div><div class="sname">Geo & Inovação</div><div class="sdesc">SIG/QGIS, AgroHaus, geotecnia, planejamento urbano</div></div>
+        <div class="sitem"><div class="sicon">☀️</div><div class="sname">Energia Solar & Renováveis</div><div class="sdesc">EVTEA, PFS, utility scale, licenciamento, Project Finance BNDES/BNB</div></div>
+        <div class="sitem"><div class="sicon">🌿</div><div class="sname">PRAD & Recuperação Ambiental</div><div class="sdesc">Plantio compensatório, reposição florestal, bioma Caatinga, condicionantes</div></div>
+        <div class="sitem"><div class="sicon">🌡</div><div class="sname">Carbono & GEE</div><div class="sdesc">Inventário GEE, créditos voluntários, SBCE, Verra, ESG corporativo</div></div>
+        <div class="sitem"><div class="sicon">⛏</div><div class="sname">Mineralogia & Mineração</div><div class="sdesc">Diagnóstico mineralógico, inventário florestal, EIA, segurança de barragens</div></div>
+        <div class="sitem"><div class="sicon">🔍</div><div class="sname">Perícia & Auditoria Ambiental</div><div class="sdesc">Laudos periciais, auditorias, compliance, due diligence para investidores</div></div>
+        <div class="sitem"><div class="sicon">🌳</div><div class="sname">Engenharia Florestal</div><div class="sdesc">Inventário florestal, fitossociologia, recomposição, compensação florestal</div></div>
+        <div class="sitem"><div class="sicon">🦺</div><div class="sname">Eng. Segurança do Trabalho</div><div class="sdesc">SSMA, gestão de riscos operacionais, laudos de insalubridade e periculosidade</div></div>
+        <div class="sitem"><div class="sicon">🚢</div><div class="sname">IMO Consultant E-Roster</div><div class="sdesc">MARPOL, OPRC, prevenção poluição marinha, consultoria marítima internacional</div></div>
+        <div class="sitem"><div class="sicon">🏗️</div><div class="sname">MBA Gestão de Obras</div><div class="sdesc">PMBOK, Lean Construction, gestão de contratos, normas NBR/ABNT</div></div>
+        <div class="sitem"><div class="sicon">📐</div><div class="sname">Engenharia Ambiental</div><div class="sdesc">Licenciamento ambiental, EIA/RIMA, diagnóstico, passivos, remediação</div></div>
+        <div class="sitem"><div class="sicon">🗺</div><div class="sname">Geoprocessamento & SIG</div><div class="sdesc">SIG/QGIS, sensoriamento remoto, expansão urbana, mapeamento territorial</div></div>
+        <div class="sitem"><div class="sicon">💡</div><div class="sname">Project Developer</div><div class="sdesc">Energia, agronegócio, carbono, mineração — estruturação RTB para investidores</div></div>
       </div>
     </div>
   </div>
@@ -424,22 +495,25 @@ tr:hover td{background:rgba(0,229,204,.03)}
   <div class="w" style="padding-top:3rem;padding-bottom:1rem;position:relative;z-index:2">
     <div class="sec-hdr reveal"><h2 class="sec-title">Áreas de Atuação</h2><span class="sec-meta">06 especialidades</span></div>
     <div class="areas-grid reveal">
-      <div class="area-card ac1" onclick="goto('portfolio','solar')"><div class="area-icon">☀️</div><div class="area-name">Solar & Energia</div><div class="area-desc">EVTEAs, pre-feasibility studies, utility scale, monitoramento e project finance para renováveis.</div><div class="area-count">// 04 projetos</div></div>
-      <div class="area-card ac2" onclick="goto('portfolio','ambiental')"><div class="area-icon">🌿</div><div class="area-name">Ambiental & PRAD</div><div class="area-desc">Recuperação de áreas degradadas, plantios compensatórios, gestão de passivos e reposição florestal.</div><div class="area-count">// 05 projetos</div></div>
-      <div class="area-card ac3" onclick="goto('portfolio','carbono')"><div class="area-icon">🌡</div><div class="area-name">Carbono & GEE</div><div class="area-desc">Inventário de emissões, estruturação de créditos de carbono voluntário e integração ESG.</div><div class="area-count">// 02 projetos</div></div>
-      <div class="area-card ac4" onclick="goto('portfolio','mineracao')"><div class="area-icon">⛏</div><div class="area-name">Mineração Verde</div><div class="area-desc">Diagnóstico mineralógico, inventário florestal, segurança de barragens e gestão PME mineral.</div><div class="area-count">// 03 projetos</div></div>
-      <div class="area-card ac5" onclick="goto('portfolio','esg')"><div class="area-icon">🔍</div><div class="area-name">Auditoria & ESG</div><div class="area-desc">Auditorias ambientais, perícias judiciais, compliance e due diligence para investidores.</div><div class="area-count">// 04 projetos</div></div>
-      <div class="area-card ac6" onclick="goto('portfolio','inovacao')"><div class="area-icon">💡</div><div class="area-name">Inovação & Territorial</div><div class="area-desc">AgroHaus, geotecnia aplicada, SIG/QGIS e estudos de expansão urbana.</div><div class="area-count">// 03 projetos</div></div>
+      <div class="area-card ac1" onclick="goto('portfolio','solar')"><div class="area-icon">☀️</div><div class="area-name">Solar & Energias Renováveis</div><div class="area-desc">EVTEAs, PFS, utility scale, monitoramento e project finance. MBA em Energias Renováveis.</div><div class="area-count">// 04 projetos</div></div>
+      <div class="area-card ac2" onclick="goto('portfolio','ambiental')"><div class="area-icon">🌿</div><div class="area-name">Eng. Ambiental & PRAD</div><div class="area-desc">Licenciamento, EIA/RIMA, recuperação de áreas degradadas, plantio compensatório e passivos ambientais.</div><div class="area-count">// 05 projetos</div></div>
+      <div class="area-card ac3" onclick="goto('portfolio','carbono')"><div class="area-icon">🌡</div><div class="area-name">Carbono & GEE</div><div class="area-desc">Inventário de emissões, créditos de carbono voluntário, SBCE, Verra e integração ESG.</div><div class="area-count">// 02 projetos</div></div>
+      <div class="area-card ac4" onclick="goto('portfolio','mineracao')"><div class="area-icon">⛏</div><div class="area-name">Mineralogia & Mineração</div><div class="area-desc">Especialização em Mineralogia, diagnóstico mineralógico, inventário florestal, barragens e gestão PME.</div><div class="area-count">// 03 projetos</div></div>
+      <div class="area-card ac5" onclick="goto('portfolio','esg')"><div class="area-icon">🔍</div><div class="area-name">Perícia, Auditoria & ESG</div><div class="area-desc">Especialização em Perícia e Auditoria Ambiental. Laudos judiciais, compliance e due diligence.</div><div class="area-count">// 04 projetos</div></div>
+      <div class="area-card ac6" onclick="goto('portfolio','inovacao')"><div class="area-icon">🦺</div><div class="area-name">Segurança do Trabalho</div><div class="area-desc">Especialização em Eng. de Segurança. SSMA, riscos operacionais, laudos de insalubridade.</div><div class="area-count">// Especialização</div></div>
+      <div class="area-card ac1" onclick="goto('portfolio','inovacao')"><div class="area-icon">🌳</div><div class="area-name">Engenharia Florestal</div><div class="area-desc">Especialização em Eng. Florestal. Fitossociologia, manejo, inventário e compensação florestal.</div><div class="area-count">// Especialização</div></div>
+      <div class="area-card ac2" onclick="goto('portfolio','inovacao')"><div class="area-icon">🚢</div><div class="area-name">IMO Consultant E-Roster</div><div class="area-desc">Consultor IMO credenciado. MARPOL Annex V, OPRC, poluição marinha e conformidade marítima.</div><div class="area-count">// Internacional</div></div>
+      <div class="area-card ac3" onclick="goto('destaque')"><div class="area-icon">🏗️</div><div class="area-name">Project Developer</div><div class="area-desc">Desenvolvimento de projetos em energia, agronegócio, carbono e mineração. MBA em Gestão de Obras.</div><div class="area-count">// Multi-setor</div></div>
     </div>
   </div>
 
   <div class="partners reveal">
-    <span class="partners-label">// Parcerias</span>
-    <span class="partner-badge">Bragagnoli Ambiental</span>
-    <span class="partner-badge">Ekora Consultoria Ambiental</span>
+    <span class="partners-label">// Credenciais & Vínculos</span>
+    <span class="partner-badge">CREA — Engenheiro Ambiental</span>
+    <span class="partner-badge">IMO Consultant E-Roster</span>
     <span class="partner-badge">BNDES · BNB FNE Verde</span>
     <span class="partner-badge">Verra · SBCE</span>
-    <span class="partner-badge">IMO · UNIDO</span>
+    <span class="partner-badge">UNIDO · FGV · ANEEL</span>
   </div>
 
   <div class="w"><div class="pfooter">
@@ -467,15 +541,15 @@ tr:hover td{background:rgba(0,229,204,.03)}
       <div class="pcard cat-solar" data-id="evtea"><div class="card-top"><span class="ctag ts">Solar · EVTEA · Série</span><span class="arr">↗</span></div><div class="cperiod">2020 – 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Série EVTEA — Parques Fotovoltaicos I · II · III</h3><p class="cdesc">Três EVTEAs para parques solares no NE cobrindo potencial solar, CAPEX/OPEX, licenciamento e atração de investidores em SPEs.</p><div class="cfoot"><div><div class="cfv">3</div><div class="cfl">estudos</div></div><div><div class="cfv">NE</div><div class="cfl">região</div></div></div></div>
       <div class="pcard cat-solar" data-id="utility"><div class="card-top"><span class="ctag ts">Solar · Utility Scale</span><span class="arr">↗</span></div><div class="cperiod">Jun 2022 – Dez 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Usina Solar FV Utility Scale com Licenciamento Ambiental Estruturado</h3><p class="cdesc">Planejamento técnico-ambiental para usinas de médio e grande porte: estudos locacionais, licenciamento federal e estadual.</p></div>
       <div class="pcard cat-solar" data-id="monitor"><div class="card-top"><span class="ctag ts">Monitoramento · FV</span><span class="arr">↗</span></div><div class="cperiod">Fev – Dez 2020 · KRAEFEGG Multi Office</div><h3 class="ctitle">Plano de Monitoramento Ambiental — Usinas Solares e Eólicas</h3><p class="cdesc">Programas de monitoramento na implantação e operação de renováveis: vegetação, fauna, erosão, efluentes.</p></div>
-      <div class="pcard cat-ambiental" data-id="prad_rp"><div class="card-top"><span class="ctag ta">PRAD · Caatinga</span><span class="arr">↗</span></div><div class="cperiod">Jul 2025 · Em andamento · Bragagnoli Ambiental</div><h3 class="ctitle">PRAD — Reposição Florestal · Apolo GD Rio do Peixe · Caraúbas-PB</h3><p class="cdesc">Plantio de 2.600 mudas nativas da Caatinga, irrigação por bombeamento solar e monitoramento de 12 meses.</p><div class="cfoot"><div><div class="cfv">2.600</div><div class="cfl">mudas</div></div><div><div class="cfv">12 meses</div><div class="cfl">monitor.</div></div></div></div>
-      <div class="pcard cat-ambiental" data-id="apolo_jq"><div class="card-top"><span class="ctag ta">Plantio Comp. · Bahia</span><span class="arr">↗</span></div><div class="cperiod">Fev 2025 · Em andamento · Ekora Consultoria Ambiental</div><h3 class="ctitle">Plantio Compensatório · APOLO SPE Jânio Quadros · Bahia</h3><p class="cdesc">Diagnóstico ambiental, metodologia de plantio, espécies nativas e indicadores de desempenho.</p></div>
+      <div class="pcard cat-ambiental" data-id="prad_rp"><div class="card-top"><span class="ctag ta">PRAD · Caatinga</span><span class="arr">↗</span></div><div class="cperiod">Jul 2025 · Em andamento · KRAEFEGG Multi Office</div><h3 class="ctitle">PRAD — Reposição Florestal · Apolo GD Rio do Peixe · Caraúbas-PB</h3><p class="cdesc">Plantio de 2.600 mudas nativas da Caatinga, irrigação por bombeamento solar e monitoramento de 12 meses.</p><div class="cfoot"><div><div class="cfv">2.600</div><div class="cfl">mudas</div></div><div><div class="cfv">12 meses</div><div class="cfl">monitor.</div></div></div></div>
+      <div class="pcard cat-ambiental" data-id="apolo_jq"><div class="card-top"><span class="ctag ta">Plantio Comp. · Bahia</span><span class="arr">↗</span></div><div class="cperiod">Fev 2025 · Em andamento · KRAEFEGG Multi Office</div><h3 class="ctitle">Plantio Compensatório · APOLO SPE Jânio Quadros · Bahia</h3><p class="cdesc">Diagnóstico ambiental, metodologia de plantio, espécies nativas e indicadores de desempenho.</p></div>
       <div class="pcard cat-ambiental" data-id="porangatu"><div class="card-top"><span class="ctag ta">Compensação · UFV</span><span class="arr">↗</span></div><div class="cperiod">Jan 2024 – Jan 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">Compensação Ambiental — UFV Apolo Porangatu I · 3 ha</h3><p class="cdesc">Execução de compensação ambiental de 3 ha com recomposição vegetal e conformidade legal.</p><div class="cfoot"><div><div class="cfv">3 ha</div><div class="cfl">área</div></div></div></div>
       <div class="pcard cat-ambiental" data-id="linear"><div class="card-top"><span class="ctag ta">PRAD · Linear</span><span class="arr">↗</span></div><div class="cperiod">Mar – Dez 2021 · KRAEFEGG Multi Office</div><h3 class="ctitle">Recuperação Ambiental — Infraestrutura Linear</h3><p class="cdesc">PRAD, plantio compensatório, controle de erosão/drenagem e monitoramento pós-obra.</p></div>
       <div class="pcard cat-ambiental" data-id="pigpa"><div class="card-top"><span class="ctag ta">Passivos · PIGPA</span><span class="arr">↗</span></div><div class="cperiod">Nov 2019 – Dez 2020 · KRAEFEGG Multi Office</div><h3 class="ctitle">PIGPA — Plano Integrado de Gestão de Passivos Ambientais</h3><p class="cdesc">Diagnóstico e plano técnico para identificação, quantificação e mitigação de passivos com foco em segurança jurídica.</p></div>
       <div class="pcard span2 cat-carbono" data-id="carbono"><div class="card-top"><span class="ctag tc">Carbono · Série I · II · III</span><span class="arr">↗</span></div><div class="cperiod">Jan 2023 – Dez 2024 · KRAEFEGG Multi Office</div><h3 class="ctitle">Projetos de Crédito de Carbono — Estruturação Técnica e Ambiental</h3><p class="cdesc">Três projetos complementares: alta capacidade de captura (I), otimização para mercados voluntários (II) e abordagem modular escalável (III).</p><div class="cfoot"><div><div class="cfv">3</div><div class="cfl">projetos</div></div><div><div class="cfv">Voluntário</div><div class="cfl">mercado</div></div><div><div class="cfv">ESG</div><div class="cfl">integração</div></div></div></div>
       <div class="pcard cat-carbono" data-id="gee"><div class="card-top"><span class="ctag tc">GEE · Inventário</span><span class="arr">↗</span></div><div class="cperiod">Out 2022 – Dez 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Inventário de Emissões GEE e Projetos de Redução de Carbono</h3><p class="cdesc">Inventário de GEE, identificação de oportunidades de redução, compensação florestal e relatórios ESG.</p></div>
-      <div class="pcard cat-mineracao" data-id="ativa"><div class="card-top"><span class="ctag tm">Mineração · Ti &amp; V</span><span class="arr">↗</span></div><div class="cperiod">Fev – Mar 2025 · Bragagnoli Ambiental</div><h3 class="ctitle">ATIVA Mineração — Titânio e Vanádio · Inventário Florestal</h3><p class="cco">Floresta – PE</p><p class="cdesc">Levantamento florístico e fitossociológico, medições dendrométricas, delimitação AID/ADA e base para EIA, ASV e PRAD.</p></div>
-      <div class="pcard cat-mineracao" data-id="min_diag"><div class="card-top"><span class="ctag tm">Mineralógico · EIA</span><span class="arr">↗</span></div><div class="cperiod">Out 2025 – Fev 2026 · Ekora Consultoria Ambiental</div><h3 class="ctitle">Diagnóstico Mineralógico e Ambiental para Mineração Sustentável</h3><p class="cdesc">Caracterização mineralógica e litológica integrada ao diagnóstico ambiental e apoio a EIAs e ASVs.</p></div>
+      <div class="pcard cat-mineracao" data-id="ativa"><div class="card-top"><span class="ctag tm">Mineração · Ti &amp; V</span><span class="arr">↗</span></div><div class="cperiod">Fev – Mar 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">ATIVA Mineração — Titânio e Vanádio · Inventário Florestal</h3><p class="cco">Floresta – PE</p><p class="cdesc">Levantamento florístico e fitossociológico, medições dendrométricas, delimitação AID/ADA e base para EIA, ASV e PRAD.</p></div>
+      <div class="pcard cat-mineracao" data-id="min_diag"><div class="card-top"><span class="ctag tm">Mineralógico · EIA</span><span class="arr">↗</span></div><div class="cperiod">Out 2025 – Fev 2026 · KRAEFEGG Multi Office</div><h3 class="ctitle">Diagnóstico Mineralógico e Ambiental para Mineração Sustentável</h3><p class="cdesc">Caracterização mineralógica e litológica integrada ao diagnóstico ambiental e apoio a EIAs e ASVs.</p></div>
       <div class="pcard cat-mineracao" data-id="mine_safety"><div class="card-top"><span class="ctag tm">Mineração PME</span><span class="arr">↗</span></div><div class="cperiod">Ago 2020 – Dez 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Plano de Segurança e Gestão Ambiental — Mineração PME</h3><p class="cdesc">Plano técnico integrado para pequenos e médios mineradores: diagnóstico, riscos, controle e licenciamento.</p></div>
       <div class="pcard cat-esg" data-id="auditoria"><div class="card-top"><span class="ctag te">Auditoria · Compliance</span><span class="arr">↗</span></div><div class="cperiod">Jan – Dez 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">Auditoria Ambiental e Compliance Técnico para Ativos Estratégicos</h3><p class="cdesc">Auditorias ambientais focadas em conformidade legal, diagnóstico de passivos e suporte a due diligence.</p></div>
       <div class="pcard cat-esg" data-id="pericia"><div class="card-top"><span class="ctag te">Perícia · Laudo</span><span class="arr">↗</span></div><div class="cperiod">Jan – Dez 2024 · KRAEFEGG Multi Office</div><h3 class="ctitle">Perícia Ambiental Estratégica — Infraestrutura, Energia e Mineração</h3><p class="cdesc">Perícias judicial e extrajudicial, laudos técnicos, análise de danos e interface técnico-jurídica.</p></div>
@@ -498,10 +572,10 @@ tr:hover td{background:rgba(0,229,204,.03)}
       <div class="sec-hdr"><h2 class="sec-title reveal">Linha do Tempo</h2><span class="sec-meta reveal">2019 – 2026 · 25 projetos</span></div>
       <div class="tlgrid reveal">
         <div class="tlitem"><div class="tldot" style="border-color:var(--amber);background:rgba(255,179,71,.2)"></div><div><div class="tlperiod">Mar 2026 · em andamento</div><div class="tlname">FPS — Usina FV 5 MWp · IPP · Nordeste</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
-        <div class="tlitem"><div class="tldot" style="border-color:var(--purple);background:rgba(180,122,255,.2)"></div><div><div class="tlperiod">Out 2025 – Fev 2026</div><div class="tlname">Diagnóstico Mineralógico e Ambiental</div><div class="tlco">Ekora Consultoria Ambiental</div></div></div>
-        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Jul 2025 · em andamento</div><div class="tlname">PRAD — Apolo Rio do Peixe · Caraúbas-PB</div><div class="tlco">Bragagnoli Ambiental</div></div></div>
-        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Fev 2025 · em andamento</div><div class="tlname">Plantio Compensatório · APOLO SPE Jânio Quadros · BA</div><div class="tlco">Ekora Consultoria Ambiental</div></div></div>
-        <div class="tlitem"><div class="tldot" style="border-color:var(--purple);background:rgba(180,122,255,.2)"></div><div><div class="tlperiod">Fev – Mar 2025</div><div class="tlname">ATIVA Mineração (Ti e V) — Inventário Florestal · PE</div><div class="tlco">Bragagnoli Ambiental</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--purple);background:rgba(180,122,255,.2)"></div><div><div class="tlperiod">Out 2025 – Fev 2026</div><div class="tlname">Diagnóstico Mineralógico e Ambiental</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Jul 2025 · em andamento</div><div class="tlname">PRAD — Apolo Rio do Peixe · Caraúbas-PB</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Fev 2025 · em andamento</div><div class="tlname">Plantio Compensatório · APOLO SPE Jânio Quadros · BA</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--purple);background:rgba(180,122,255,.2)"></div><div><div class="tlperiod">Fev – Mar 2025</div><div class="tlname">ATIVA Mineração (Ti e V) — Inventário Florestal · PE</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
         <div class="tlitem"><div class="tldot" style="border-color:var(--blue);background:rgba(79,172,254,.2)"></div><div><div class="tlperiod">Jan – Dez 2025</div><div class="tlname">Auditoria Ambiental e Compliance — Ativos Estratégicos</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
         <div class="tlitem"><div class="tldot" style="border-color:var(--rose);background:rgba(255,126,179,.2)"></div><div><div class="tlperiod">Jan 2024 – Dez 2025</div><div class="tlname">Projeto AgroHaus — Agricultura em Edificação</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
         <div class="tlitem"><div class="tldot" style="border-color:var(--blue);background:rgba(79,172,254,.2)"></div><div><div class="tlperiod">Mar 2024 – Mar 2025</div><div class="tlname">Projeto AMBIENTAX — ESG · Klabin S.A.</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
@@ -604,7 +678,7 @@ tr:hover td{background:rgba(0,229,204,.03)}
       </div>
     </div>
     <div style="margin-top:2rem;display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:2">
-      <a href="mailto:kraefegg.mos3@gmail.com?subject=Interesse: Projeto Agrovoltaico" class="btnp">Solicitar IM completo →</a>
+      <a href="mailto:kraefegg.mos3@gmail.com?subject=Interesse: Projeto Agrovoltaico">Solicitar IM completo →</a>
       <button class="btns" onclick="goto('portfolio')">← Ver todos os projetos</button>
     </div>
     <div style="border-top:1px solid var(--border);padding:1.5rem 0;margin-top:2rem;font-size:11px;color:var(--text3);text-align:center;font-family:'Chakra Petch',monospace;letter-spacing:.05em">KRAEFEGG Multi Office · Dados e projeções baseados em benchmarks setoriais 2024–2025 · Não constitui oferta de investimento</div>
@@ -624,9 +698,12 @@ tr:hover td{background:rgba(0,229,204,.03)}
           <a href="mailto:kraefegg.mos3@gmail.com" class="contact-chip">📧 kraefegg.mos3@gmail.com</a>
           <a href="mailto:executive.director@kraefegg.xyz" class="contact-chip">📧 executive.director@kraefegg.xyz</a>
           <a href="mailto:corporate.business@kraefegg.xyz" class="contact-chip">📧 corporate.business@kraefegg.xyz</a>
+          
+          
+          
           <a href="tel:+5561998850946" class="contact-chip">📱 (61) 99885-0946</a>
           <a href="tel:+5583999194789" class="contact-chip">📱 (83) 99919-4789</a>
-          <a href="https://www.linkedin.com/in/railson-de-arruda/" target="_blank" class="contact-chip">🔗 LinkedIn ↗</a>
+          <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" class="contact-chip">🔗 LinkedIn — Railson N. de Arruda ↗</a>
           <span class="contact-chip">📍 Cabedelo – PB · Brasil</span>
         </div>
       </div>
@@ -685,188 +762,648 @@ tr:hover td{background:rgba(0,229,204,.03)}
 
     <div class="sec-hdr reveal" style="margin-top:2.5rem"><h2 class="sec-title">Competências Técnicas</h2><span class="sec-meta">Multidisciplinar</span></div>
     <div class="skills-list reveal">
-      <span class="skill-pill">Engenharia Ambiental</span><span class="skill-pill">Licenciamento Ambiental</span><span class="skill-pill">PRAD & Recuperação</span><span class="skill-pill">Perícia Ambiental</span><span class="skill-pill">Auditoria Ambiental</span><span class="skill-pill">Project Finance</span><span class="skill-pill">Energia Solar FV</span><span class="skill-pill">Energias Renováveis</span><span class="skill-pill">Crédito de Carbono</span><span class="skill-pill">SBCE · Verra · MDL</span><span class="skill-pill">GEE · ESG</span><span class="skill-pill">Mineralogia</span><span class="skill-pill">Inventário Florestal</span><span class="skill-pill">Geologia Ambiental</span><span class="skill-pill">Segurança do Trabalho</span><span class="skill-pill">Barragens · DPA</span><span class="skill-pill">EIA · RCA · ASV</span><span class="skill-pill">BNDES · BNB FNE</span><span class="skill-pill">SIG/QGIS</span><span class="skill-pill">AutoCAD</span><span class="skill-pill">Gestão de Riscos ISO 31000</span><span class="skill-pill">ISO 14001</span><span class="skill-pill">PMBOK · Lean Construction</span><span class="skill-pill">Petróleo & Gás</span><span class="skill-pill">MARPOL · OPRC (IMO)</span><span class="skill-pill">Análise Financeira</span><span class="skill-pill">JavaScript · HTML</span><span class="skill-pill">Segurança Cibernética</span>
+      <span class="skill-pill">Engenharia Ambiental</span><span class="skill-pill">Licenciamento Ambiental</span><span class="skill-pill">PRAD & Recuperação</span><span class="skill-pill">Perícia Ambiental</span><span class="skill-pill">Auditoria Ambiental</span><span class="skill-pill">Engenharia Florestal</span><span class="skill-pill">Mineralogia</span><span class="skill-pill">Eng. Segurança do Trabalho</span><span class="skill-pill">IMO Consultant E-Roster</span><span class="skill-pill">MARPOL · OPRC</span><span class="skill-pill">Project Finance</span><span class="skill-pill">Energia Solar FV</span><span class="skill-pill">Energias Renováveis</span><span class="skill-pill">Crédito de Carbono</span><span class="skill-pill">SBCE · Verra · MDL</span><span class="skill-pill">GEE · ESG</span><span class="skill-pill">Inventário Florestal</span><span class="skill-pill">Geologia Ambiental</span><span class="skill-pill">Barragens · DPA</span><span class="skill-pill">EIA · RCA · ASV</span><span class="skill-pill">BNDES · BNB FNE</span><span class="skill-pill">SIG/QGIS</span><span class="skill-pill">AutoCAD</span><span class="skill-pill">Gestão de Riscos ISO 31000</span><span class="skill-pill">ISO 14001</span><span class="skill-pill">PMBOK · Lean Construction</span><span class="skill-pill">MBA Energias Renováveis</span><span class="skill-pill">MBA Gestão de Obras</span><span class="skill-pill">Petróleo & Gás</span><span class="skill-pill">Análise Financeira</span><span class="skill-pill">Project Developer</span><span class="skill-pill">JavaScript · HTML</span><span class="skill-pill">Segurança Cibernética</span>
     </div>
 
-    <div class="sec-hdr reveal" style="margin-top:2.5rem"><h2 class="sec-title">Atuação como Diretor Técnico</h2><span class="sec-meta">3 empresas</span></div>
-    <div class="companies-panel reveal">
-      <div class="company-card"><div class="company-name">KRAEFEGG Multi Office</div><div class="company-role">// Head · Tech. Director · Founder</div><div class="company-desc">Eng. Ambiental, Solar, Carbono, Perícia Ambiental, Mineração, Project Development</div></div>
-      <div class="company-card"><div class="company-name">Bragagnoli Ambiental</div><div class="company-role">// Consultor / Diretor Técnico</div><div class="company-desc">PRAD, Inventário Florestal, Licenciamento Ambiental, Compensação Vegetal</div></div>
-      <div class="company-card"><div class="company-name">Ekora Consultoria Ambiental</div><div class="company-role">// Consultor / Diretor Técnico</div><div class="company-desc">Mineralogia, EIA, Diagnóstico Ambiental, Licenciamento de Empreendimentos</div></div>
+    <div class="sec-hdr reveal" style="margin-top:2.5rem"><h2 class="sec-title">Especializações, MBAs & Credenciais</h2><span class="sec-meta">Formação avançada · 2024–2026</span></div>
+    <div class="companies-panel reveal" style="grid-template-columns:repeat(3,1fr)">
+      <div class="company-card"><div class="company-name">KRAEFEGG Multi Office</div><div class="company-role">// Head · Tech. Director · Founder</div><div class="company-desc">Eng. Ambiental, Solar, Carbono, Perícia, Mineração, Project Development, ESG</div></div>
+      <div class="company-card"><div class="company-name">IMO Consultant E-Roster</div><div class="company-role">// Consultor Internacional Credenciado</div><div class="company-desc">MARPOL Annex V, OPRC, poluição marinha, conformidade marítima e ambiental</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Mineralogia</div><div class="company-role">// Faculdade Bookplay · 2025</div><div class="company-desc">Engenharia de projetos minerários, gestão de riscos e licenciamento de mineração</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Eng. Segurança do Trabalho</div><div class="company-role">// Faculdade Bookplay · 2025</div><div class="company-desc">SSMA, riscos operacionais, laudos de insalubridade e periculosidade</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Perícia & Auditoria Ambiental</div><div class="company-role">// Faculdade Bookplay · 2024–2025 · 560h</div><div class="company-desc">Perícia ambiental judicial, análise forense, auditoria interna e externa</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Engenharia Florestal</div><div class="company-role">// Faculdade Bookplay · 2025–2026</div><div class="company-desc">Fitossociologia, manejo florestal, recuperação e compensação ambiental</div></div>
+      <div class="company-card"><div class="company-name">MBA — Energias Renováveis</div><div class="company-role">// FACUVALE · 2026</div><div class="company-desc">Solar, eólica, hidrelétrica, biocombustíveis, viabilidade econômica e regulamentação</div></div>
+      <div class="company-card"><div class="company-name">MBA — Gestão de Obras · Construção Civil</div><div class="company-role">// FACUVALE · 2026</div><div class="company-desc">PMBOK, Lean Construction, gestão de contratos, custos e normas NBR/ABNT</div></div>
+      <div class="company-card"><div class="company-name">Project Developer — Multi-setor</div><div class="company-role">// IPP Independente · 2019–2026</div><div class="company-desc">Energia solar, agrovoltaico, carbono, mineração, biogás — estruturação RTB</div></div>
     </div>
 
   </div>
   <div class="w"><div class="pfooter">
     <span class="fb">Railson N. de Arruda · KRAEFEGG Multi Office</span>
-    <span style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--text3)">kraefegg.mos3@gmail.com · (61) 99885-0946 · <a href="https://www.linkedin.com/in/railson-de-arruda/" target="_blank" style="color:var(--cyan)">LinkedIn ↗</a></span>
+    <span style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--text3)">kraefegg.mos3@gmail.com · (61) 99885-0946 · <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" style="color:var(--cyan)">LinkedIn ↗</a></span>
   </div></div>
 </div>
 
-<script>
-// ── CURSOR ──
-const cur=document.getElementById('cursor'),trail=document.getElementById('cursorTrail');
-let mx=0,my=0,tx=0,ty=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-setInterval(()=>{tx+=(mx-tx)*.15;ty+=(my-ty)*.15;trail.style.left=tx+'px';trail.style.top=ty+'px';},16);
-document.addEventListener('mousedown',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';cur.style.opacity='.4';});
-document.addEventListener('mouseup',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';cur.style.opacity='1';});
 
-// ── PARTICLES ──
-const canvas=document.getElementById('particleCanvas');
-const ctx=canvas.getContext('2d');
-let W,H,particles=[];
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-resize();window.addEventListener('resize',resize);
-const COLORS=['rgba(0,229,204,','rgba(57,255,122,','rgba(255,179,71,','rgba(79,172,254,'];
-class Particle{
-  constructor(){this.reset();}
-  reset(){
-    this.x=Math.random()*W;this.y=Math.random()*H;
-    this.vx=(Math.random()-.5)*.6;this.vy=(Math.random()-.5)*.6;
-    this.r=Math.random()*2+.5;this.life=Math.random();
-    this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
-    this.alpha=Math.random()*.5+.1;
-  }
-  update(){
-    this.x+=this.vx;this.y+=this.vy;
-    if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
-    // mouse attraction
-    const dx=mx-this.x,dy=my-this.y,dist=Math.sqrt(dx*dx+dy*dy);
-    if(dist<150){this.vx+=dx/dist*.015;this.vy+=dy/dist*.015;}
-    this.vx*=.995;this.vy*=.995;
-  }
-  draw(){
-    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=this.color+this.alpha+')';ctx.fill();
-  }
+<script>
+(function(){
+// ─── CURSOR ───────────────────────────────────────────────────────
+var cur=document.getElementById('cursor');
+var trail=document.getElementById('cursorTrail');
+var mx=window.innerWidth/2, my=window.innerHeight/2;
+var tx=mx, ty=my;
+if(cur && trail){
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX; my=e.clientY;
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+  });
+  setInterval(function(){
+    tx+=(mx-tx)*0.15; ty+=(my-ty)*0.15;
+    trail.style.left=Math.round(tx)+'px'; trail.style.top=Math.round(ty)+'px';
+  },16);
+  document.addEventListener('mousedown',function(){
+    cur.style.transform='translate(-50%,-50%) scale(2.5)';
+    cur.style.opacity='0.4';
+  });
+  document.addEventListener('mouseup',function(){
+    cur.style.transform='translate(-50%,-50%) scale(1)';
+    cur.style.opacity='1';
+  });
 }
-for(let i=0;i<120;i++)particles.push(new Particle());
-function connectParticles(){
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
-      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<100){
-        ctx.beginPath();
-        ctx.strokeStyle='rgba(0,229,204,'+(1-dist/100)*.12+')';
-        ctx.lineWidth=.5;
-        ctx.moveTo(particles[i].x,particles[i].y);
-        ctx.lineTo(particles[j].x,particles[j].y);
-        ctx.stroke();
+
+// ─── PARTICLES ────────────────────────────────────────────────────
+var canvas=document.getElementById('particleCanvas');
+if(canvas){
+  var ctx=canvas.getContext('2d');
+  var W=canvas.width=window.innerWidth;
+  var H=canvas.height=window.innerHeight;
+  window.addEventListener('resize',function(){
+    W=canvas.width=window.innerWidth;
+    H=canvas.height=window.innerHeight;
+  });
+  var COLORS=['rgba(0,229,204,','rgba(57,255,122,','rgba(255,179,71,','rgba(79,172,254,'];
+  var particles=[];
+  function makeParticle(){
+    return {
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-0.5)*0.6, vy:(Math.random()-0.5)*0.6,
+      r:Math.random()*2+0.5,
+      color:COLORS[Math.floor(Math.random()*COLORS.length)],
+      alpha:Math.random()*0.5+0.1
+    };
+  }
+  for(var i=0;i<120;i++) particles.push(makeParticle());
+  function animCanvas(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W||p.y<0||p.y>H){
+        particles[i]=makeParticle();
+        continue;
+      }
+      var dx=mx-p.x, dy=my-p.y, dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<150){ p.vx+=dx/dist*0.015; p.vy+=dy/dist*0.015; }
+      p.vx*=0.995; p.vy*=0.995;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.color+p.alpha+')';
+      ctx.fill();
+    }
+    for(var i=0;i<particles.length;i++){
+      for(var j=i+1;j<particles.length;j++){
+        var dx=particles[i].x-particles[j].x;
+        var dy=particles[i].y-particles[j].y;
+        var dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<100){
+          ctx.beginPath();
+          ctx.strokeStyle='rgba(0,229,204,'+(1-dist/100)*0.12+')';
+          ctx.lineWidth=0.5;
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.stroke();
+        }
       }
     }
+    requestAnimationFrame(animCanvas);
   }
+  animCanvas();
 }
-function animate(){
-  ctx.clearRect(0,0,W,H);
-  particles.forEach(p=>{p.update();p.draw();});
-  connectParticles();
-  requestAnimationFrame(animate);
-}
-animate();
 
-// ── COUNTER ANIMATION ──
+// ─── COUNTER ANIMATION ────────────────────────────────────────────
 function animateCount(el,target){
-  let current=0;const step=target/60;
-  const timer=setInterval(()=>{
-    current+=step;if(current>=target){current=target;clearInterval(timer);}
-    el.textContent=Math.floor(current)+(target>10?'+':'');
+  var current=0; var step=target/60;
+  var timer=setInterval(function(){
+    current+=step;
+    if(current>=target){ current=target; clearInterval(timer); }
+    el.textContent=Math.floor(current)+(target>=10?'+':'');
   },25);
 }
 
-// ── NAVIGATION ──
+// ─── REVEAL ON SCROLL ─────────────────────────────────────────────
+function triggerReveal(){
+  setTimeout(function(){
+    var els=document.querySelectorAll('.reveal:not(.visible)');
+    if('IntersectionObserver' in window){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            e.target.querySelectorAll('[data-count]').forEach(function(el){
+              animateCount(el,+el.dataset.count);
+            });
+            obs.unobserve(e.target);
+          }
+        });
+      },{threshold:0.07});
+      els.forEach(function(el){ obs.observe(el); });
+    } else {
+      els.forEach(function(el){ el.classList.add('visible'); });
+    }
+  },80);
+}
+
+// ─── NAVIGATION ───────────────────────────────────────────────────
 function goto(page,filter){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+page).classList.add('active');
-  document.querySelector('[data-page="'+page+'"]').classList.add('active');
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.ntab').forEach(function(t){ t.classList.remove('active'); });
+  var pg=document.getElementById('page-'+page);
+  var tb=document.querySelector('[data-page="'+page+'"]');
+  if(pg) pg.classList.add('active');
+  if(tb) tb.classList.add('active');
   window.scrollTo(0,0);
-  if(filter&&page==='portfolio'){
-    setTimeout(()=>{
-      document.querySelectorAll('.fbtn').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
-      document.querySelectorAll('.pcard').forEach(c=>c.classList.toggle('hidden',!c.classList.contains('cat-'+filter)));
+  if(filter && page==='portfolio'){
+    setTimeout(function(){
+      document.querySelectorAll('.fbtn').forEach(function(b){
+        b.classList.toggle('active', b.dataset.filter===filter);
+      });
+      document.querySelectorAll('.pcard').forEach(function(c){
+        c.classList.toggle('hidden', !c.classList.contains('cat-'+filter));
+      });
     },50);
   }
   triggerReveal();
 }
-document.querySelectorAll('.ntab').forEach(btn=>btn.addEventListener('click',()=>goto(btn.dataset.page)));
+document.querySelectorAll('.ntab').forEach(function(btn){
+  btn.addEventListener('click',function(){ goto(btn.dataset.page); });
+});
 
-// ── FILTERS ──
-document.querySelectorAll('.fbtn').forEach(b=>{
-  b.addEventListener('click',()=>{
-    document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('active'));
+// ─── AREA CARDS ───────────────────────────────────────────────────
+document.querySelectorAll('.area-card').forEach(function(card){
+  var fn=card.getAttribute('onclick');
+  if(fn){
+    card.removeAttribute('onclick');
+    card.addEventListener('click',function(){
+      var m=fn.match(/goto\('([^']+)'(?:,'([^']+)')?\)/);
+      if(m) goto(m[1],m[2]);
+    });
+  }
+});
+document.querySelectorAll('.btn-primary,.btn-sec').forEach(function(btn){
+  var fn=btn.getAttribute('onclick');
+  if(fn){
+    btn.removeAttribute('onclick');
+    btn.addEventListener('click',function(){
+      var m=fn.match(/goto\('([^']+)'\)/);
+      if(m) goto(m[1]);
+    });
+  }
+});
+
+// ─── FILTERS ──────────────────────────────────────────────────────
+document.querySelectorAll('.fbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('active'); });
     b.classList.add('active');
-    const f=b.dataset.filter;
-    document.querySelectorAll('.pcard').forEach(c=>c.classList.toggle('hidden',f!=='all'&&!c.classList.contains('cat-'+f)));
+    var f=b.dataset.filter;
+    document.querySelectorAll('.pcard').forEach(function(c){
+      c.classList.toggle('hidden', f!=='all' && !c.classList.contains('cat-'+f));
+    });
   });
 });
 
-// ── MODAL DATA ──
-const D={
-  fps:{tag:'Solar · IPP · PFS',tc:'ts',title:'Pre-Feasibility Study — Usina FV 5 MWp',period:'Mar 2026 · em andamento',co:'KRAEFEGG Multi Office',kpis:[{v:'5 MWp',l:'capacidade'},{v:'5,80',l:'GHI kWh/m²/dia'},{v:'>14%',l:'TIR a.a.'},{v:'<R$200',l:'LCOE /MWh'},{v:'<10 anos',l:'payback'},{v:'Mono PERC',l:'tecnologia'}],overview:'PFS completo para usina solar de 5 MWp no NE. Atuação como IPP independente da identificação da área à estrutura de financiamento, com Teaser Técnico em PT e EN.',scope:['Dimensionamento técnico Mono PERC','Arrendamento rural 25 anos','Project Finance BNDES/BNB-FNE Verde','Modelagem CAPEX, OPEX, TIR, VPL, LCOE','Análise de riscos técnicos, ambientais e regulatórios'],skills:'Energia renovável · Project Finance · Engenharia de projetos'},
-  evtea:{tag:'Solar · EVTEA · Série',tc:'ts',title:'Série EVTEA — Parques Fotovoltaicos I · II · III',period:'2020 – 2023',co:'KRAEFEGG Multi Office',kpis:[{v:'3',l:'estudos'},{v:'NE',l:'região'}],overview:'Três EVTEAs para parques FV no Nordeste.',scope:['Projeto I: potencial solar, topografia, CAPEX/OPEX','Projeto II: riscos técnico-ambientais, suporte a SPEs','Projeto III: análise territorial, conformidade ESG'],skills:'Engenharia de projetos · Desenvolvimento de projetos'},
-  utility:{tag:'Solar · Utility Scale',tc:'ts',title:'Usina Solar FV Utility Scale — Licenciamento',period:'Jun 2022 – Dez 2023',co:'KRAEFEGG Multi Office',kpis:[{v:'Utility',l:'escala'}],overview:'Planejamento técnico-ambiental para usinas de médio e grande porte.',scope:['Estudos ambientais e locacionais','Licenciamento federal e estadual','Riscos ambientais e fundiários'],skills:'Energia renovável · Engenharia ambiental'},
-  monitor:{tag:'Monitoramento · FV',tc:'ts',title:'Monitoramento Ambiental — FV e Eólicas',period:'Fev – Dez 2020',co:'KRAEFEGG Multi Office',kpis:[{v:'FV+Eólica',l:'tipos'}],overview:'Programas de monitoramento ambiental para renováveis.',scope:['Vegetação e fauna','Controle erosivo','Relatórios para órgãos ambientais'],skills:'Monitoramento ambiental · Energias renováveis'},
-  prad_rp:{tag:'PRAD · Caatinga',tc:'ta',title:'PRAD — Reposição Florestal · Apolo Rio do Peixe',period:'Jul 2025 · em andamento',co:'Bragagnoli Ambiental',kpis:[{v:'2.600',l:'mudas'},{v:'12 meses',l:'monitoramento'}],overview:'PRAD com reposição florestal para SPE Apolo GD Rio do Peixe em Caraúbas-PB.',scope:['Diagnóstico da área degradada','Espécies nativas da Caatinga','Irrigação por bombeamento solar','Monitoramento 12 meses'],skills:'Engenharia ambiental · Gestão ambiental'},
-  apolo_jq:{tag:'Plantio Comp. · BA',tc:'ta',title:'Plantio Compensatório · APOLO SPE Jânio Quadros',period:'Fev 2025 · em andamento',co:'Ekora Consultoria Ambiental',kpis:[{v:'Bahia',l:'estado'}],overview:'Plantio compensatório para condicionantes de licenciamento.',scope:['Diagnóstico e caracterização','Espécies nativas do bioma','Implantação e monitoramento'],skills:'Engenharia ambiental · Gestão de projetos'},
-  porangatu:{tag:'Compensação · UFV',tc:'ta',title:'Compensação Ambiental — UFV Apolo Porangatu I',period:'Jan 2024 – Jan 2025',co:'KRAEFEGG Multi Office',kpis:[{v:'3 ha',l:'área'}],overview:'Compensação ambiental de 3 ha para UFV.',scope:['Execução em 3 ha','Recomposição vegetal nativa'],skills:'Gestão ambiental · Desenvolvimento de projetos'},
-  linear:{tag:'PRAD · Linear',tc:'ta',title:'Recuperação Ambiental — Infraestrutura Linear',period:'Mar – Dez 2021',co:'KRAEFEGG Multi Office',kpis:[{v:'PRAD',l:'instrumento'}],overview:'Recuperação de áreas degradadas por obras lineares.',scope:['PRAD e plantio compensatório','Controle de erosão e drenagem','Monitoramento pós-obra'],skills:'Engenharia ambiental'},
-  pigpa:{tag:'Passivos · PIGPA',tc:'ta',title:'PIGPA — Gestão de Passivos Ambientais',period:'Nov 2019 – Dez 2020',co:'KRAEFEGG Multi Office',kpis:[{v:'Regularização',l:'objetivo'}],overview:'Plano para identificação e mitigação de passivos ambientais.',scope:['Diagnóstico ambiental e legal','Avaliação de riscos','Medidas corretivas'],skills:'Engenharia ambiental · Gestão de riscos'},
-  carbono:{tag:'Carbono · Série',tc:'tc',title:'Projetos de Crédito de Carbono — Série I · II · III',period:'Jan 2023 – Dez 2024',co:'KRAEFEGG Multi Office',kpis:[{v:'3',l:'projetos'},{v:'Voluntário',l:'mercado'}],overview:'Série de três projetos: alta captura (I), otimização voluntária (II) e modular (III).',scope:['Projeto I: estoque, adicionalidade, permanência','Projeto II: uso/cobertura do solo, remoções','Projeto III: cenários modulares, certificações'],skills:'Engenharia ambiental · Carbono · ESG'},
-  gee:{tag:'GEE · Inventário',tc:'tc',title:'Inventário GEE e Projetos de Redução',period:'Out 2022 – Dez 2023',co:'KRAEFEGG Multi Office',kpis:[{v:'GEE',l:'escopo'}],overview:'Inventário de emissões GEE e projetos de redução corporativa.',scope:['Inventário de emissões','Compensação florestal','Relatórios ESG'],skills:'Environmental Forensics · Engenharia ambiental'},
-  ativa:{tag:'Mineração · Ti & V',tc:'tm',title:'ATIVA Mineração — Ti e V · Inventário Florestal',period:'Fev – Mar 2025',co:'Bragagnoli Ambiental',kpis:[{v:'Floresta-PE',l:'município'}],overview:'Inventário florestal para licenciamento da ATIVA Mineração.',scope:['Delimitação AID e ADA','Levantamento florístico','Medições dendrométricas','Base para EIA e ASV'],skills:'Engenharia ambiental · Inventário florestal'},
-  min_diag:{tag:'Mineralógico · EIA',tc:'tm',title:'Diagnóstico Mineralógico e Ambiental',period:'Out 2025 – Fev 2026',co:'Ekora Consultoria Ambiental',kpis:[{v:'Integrado',l:'abordagem'}],overview:'Análise mineralógica integrada ao diagnóstico ambiental.',scope:['Caracterização mineralógica','Apoio a EIAs e ASVs','Riscos operacionais'],skills:'Gestão de Riscos · Engenharia ambiental'},
-  mine_safety:{tag:'Mineração PME',tc:'tm',title:'Plano de Segurança e Gestão Ambiental — PME',period:'Ago 2020 – Dez 2023',co:'KRAEFEGG Multi Office',kpis:[{v:'PME',l:'porte'}],overview:'Plano integrado para pequenos e médios mineradores.',scope:['Diagnóstico operacional','Avaliação de riscos','Controle e licenciamento'],skills:'Gestão ambiental · Gestão de Riscos'},
-  auditoria:{tag:'Auditoria · Compliance',tc:'te',title:'Auditoria Ambiental e Compliance — Ativos Estratégicos',period:'Jan – Dez 2025',co:'KRAEFEGG Multi Office',kpis:[{v:'ESG',l:'compliance'}],overview:'Auditorias técnicas e periciais focadas em conformidade legal.',scope:['Auditorias ambientais','Diagnóstico de passivos','Relatórios para investidores','Due diligence'],skills:'Environmental Forensics · Auditoria'},
-  pericia:{tag:'Perícia · Laudo',tc:'te',title:'Perícia Ambiental Estratégica',period:'Jan – Dez 2024',co:'KRAEFEGG Multi Office',kpis:[{v:'Judicial',l:'âmbito'}],overview:'Perícias judicial e extrajudicial com laudos especializados.',scope:['Laudos técnicos especializados','Análise de danos e responsabilidades','Interface técnica-jurídica'],skills:'Perícia, Auditoria e Due Diligence Ambiental'},
-  ambientax:{tag:'ESG · Klabin S.A.',tc:'te',title:'Projeto AMBIENTAX — Klabin S.A.',period:'Mar 2024 – Mar 2025',co:'KRAEFEGG Multi Office',kpis:[{v:'Klabin S.A.',l:'cliente'}],overview:'Mitigação de impactos e desenvolvimento socioeconômico ESG para Klabin S.A.',scope:['Diagnóstico ambiental','Mitigação e compensação','Integração ESG corporativa'],skills:'Desenvolvimento de projetos · ESG'},
-  barragens:{tag:'Barragens · Segurança',tc:'te',title:'Programa Integrado de Segurança de Barragens',period:'Jan – Fev 2023',co:'KRAEFEGG Multi Office',kpis:[{v:'Classificação',l:'risco/DPA'}],overview:'Programa de segurança de barragens alinhado à legislação.',scope:['Classificação por risco e DPA','Diagnóstico geotécnico','Planos de segurança e contingência'],skills:'Engenharia ambiental · Geotecnia'},
-  agrohaus:{tag:'Inovação · AgroHaus',tc:'ti',title:'Projeto AgroHaus — Agricultura em Edificação',period:'Jan 2024 – Dez 2025',co:'KRAEFEGG Multi Office',kpis:[{v:'Urbano',l:'aplicação'}],overview:'Sistema inovador de agricultura em edificação com ambiente controlado.',scope:['Controle climático','Eficiência energética','Gestão hídrica','Segurança alimentar urbana'],skills:'Engenharia ambiental · Inovação'},
-  cabedelo:{tag:'Territorial · SIG/QGIS',tc:'tt',title:'Expansão Urbana — Cabedelo/PB',period:'Dez 2019 – Mar 2020',co:'KRAEFEGG Multi Office',kpis:[{v:'Cabedelo-PB',l:'município'}],overview:'Estudo de expansão urbana e uso do solo com SIG/QGIS.',scope:['Análise de expansão urbana','Mapeamento de uso do solo','Restrições ambientais'],skills:'Engenharia ambiental · Geoprocessamento'},
-  geotecnia:{tag:'Geotecnia · Container',tc:'tt',title:'Geotecnia Aplicada — Sistema Móvel em Container',period:'Jan – Jun 2020',co:'KRAEFEGG Multi Office',kpis:[{v:'Container',l:'sistema'}],overview:'Projeto geotécnico para sistema modular em container.',scope:['Análise de solo e capacidade','Riscos geotécnicos','Desenhos técnicos e orçamento'],skills:'Engenharia ambiental · Geotecnia'}
+// ─── MODAL DATA ───────────────────────────────────────────────────
+var D={
+  fps:{tag:'Solar IPP PFS',tc:'ts',title:'Pre-Feasibility Study — Usina FV 5 MWp',period:'Mar 2026 — em andamento',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'5 MWp',l:'capacidade'},{v:'5,80',l:'GHI kWh/m2/dia'},{v:'>14%',l:'TIR a.a.'},{v:'<R$200',l:'LCOE /MWh'},{v:'<10 anos',l:'payback'},{v:'Mono PERC',l:'tecnologia'}],
+    overview:'PFS completo para usina solar de 5 MWp no NE. Atuacao como IPP independente da identificacao da area a estrutura de financiamento, com Teaser Tecnico em PT e EN.',
+    scope:['Dimensionamento tecnico Mono PERC','Arrendamento rural 25 anos','Project Finance BNDES/BNB-FNE Verde','Modelagem CAPEX, OPEX, TIR, VPL, LCOE','Analise de riscos tecnicos e regulatorios'],
+    skills:'Energia renovavel - Project Finance - Engenharia de projetos'},
+  evtea:{tag:'Solar EVTEA Serie',tc:'ts',title:'Serie EVTEA — Parques FV I·II·III',period:'2020 – 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'3',l:'estudos'},{v:'NE Brasil',l:'regiao'}],
+    overview:'Tres EVTEAs para parques FV no Nordeste cobrindo potencial solar, CAPEX/OPEX, licenciamento e investidores.',
+    scope:['Projeto I: potencial solar, topografia, CAPEX/OPEX','Projeto II: riscos tecnico-ambientais, suporte a SPEs','Projeto III: analise territorial, ESG'],
+    skills:'Engenharia de projetos - Desenvolvimento de projetos'},
+  utility:{tag:'Solar Utility Scale',tc:'ts',title:'Usina Solar FV Utility Scale',period:'Jun 2022 – Dez 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Utility',l:'escala'},{v:'Federal',l:'licenca'}],
+    overview:'Planejamento tecnico-ambiental para usinas de medio e grande porte.',
+    scope:['Estudos ambientais e locacionais','Licenciamento federal e estadual','Riscos ambientais e fundiarios','Relatorios para investidores'],
+    skills:'Energia renovavel - Engenharia ambiental'},
+  monitor:{tag:'Monitoramento FV Eolica',tc:'ts',title:'Monitoramento Ambiental — FV e Eolicas',period:'Fev – Dez 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'FV+Eolica',l:'tipos'}],
+    overview:'Programas de monitoramento ambiental para implantacao e operacao de renovaveis.',
+    scope:['Vegetacao e fauna','Controle erosivo','Efluentes e residuos','Relatorios para orgaos ambientais'],
+    skills:'Monitoramento ambiental - Energias renovaveis'},
+  prad_rp:{tag:'PRAD Caatinga',tc:'ta',title:'PRAD — Reposicao Florestal - Apolo Rio do Peixe',period:'Jul 2025 — em andamento',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'2.600',l:'mudas'},{v:'12 meses',l:'monitoramento'},{v:'Caatinga',l:'bioma'}],
+    overview:'PRAD com reposicao florestal para SPE Apolo GD Rio do Peixe em Carauas-PB.',
+    scope:['Diagnostico da area degradada','Especies nativas da Caatinga','Irrigacao por bombeamento solar','Monitoramento 12 meses com indicadores'],
+    skills:'Engenharia ambiental - Engenharia Florestal - Gestao ambiental'},
+  apolo_jq:{tag:'Plantio Compensatorio BA',tc:'ta',title:'Plantio Compensatorio - APOLO SPE Janio Quadros',period:'Fev 2025 — em andamento',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Bahia',l:'estado'}],
+    overview:'Plantio compensatorio para condicionantes de licenciamento ambiental.',
+    scope:['Diagnostico e caracterizacao da area','Especies nativas do bioma','Implantacao, manutencao e monitoramento'],
+    skills:'Engenharia ambiental - Engenharia Florestal - Gestao de projetos'},
+  porangatu:{tag:'Compensacao Ambiental UFV',tc:'ta',title:'Compensacao Ambiental — UFV Apolo Porangatu I',period:'Jan 2024 – Jan 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'3 ha',l:'area compensada'}],
+    overview:'Compensacao ambiental de 3 ha para UFV Apolo Porangatu I.',
+    scope:['Execucao em 3 ha','Conformidade com condicionantes','Recomposicao vegetal nativa'],
+    skills:'Gestao ambiental - Desenvolvimento de projetos'},
+  linear:{tag:'PRAD Infraestrutura Linear',tc:'ta',title:'Recuperacao Ambiental — Infraestrutura Linear',period:'Mar – Dez 2021',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'PRAD',l:'instrumento'}],
+    overview:'Recuperacao de areas degradadas por obras lineares.',
+    scope:['PRAD e plantio compensatorio','Controle de erosao e drenagem','Monitoramento pos-obra','Atendimento a condicionantes'],
+    skills:'Engenharia ambiental'},
+  pigpa:{tag:'Passivos Ambientais PIGPA',tc:'ta',title:'PIGPA — Gestao de Passivos Ambientais',period:'Nov 2019 – Dez 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Regularizacao',l:'objetivo'}],
+    overview:'Plano para identificacao, quantificacao e mitigacao de passivos ambientais.',
+    scope:['Levantamento historico-operacional','Diagnostico ambiental e legal','Avaliacao de riscos','Medidas corretivas'],
+    skills:'Engenharia ambiental - Gestao de riscos'},
+  carbono:{tag:'Credito de Carbono Serie',tc:'tc',title:'Projetos de Credito de Carbono — Serie I·II·III',period:'Jan 2023 – Dez 2024',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'3',l:'projetos'},{v:'Voluntario',l:'mercado'},{v:'ESG',l:'integracao'}],
+    overview:'Serie de tres projetos: alta captura (I), otimizacao voluntaria (II) e modular escalavel (III).',
+    scope:['Projeto I: estoque, adicionalidade, permanencia','Projeto II: uso/cobertura solo, remocoes, salvaguardas','Projeto III: cenarios modulares, certificacoes voluntarias'],
+    skills:'Engenharia ambiental - Carbono - ESG'},
+  gee:{tag:'GEE Inventario ESG',tc:'tc',title:'Inventario GEE e Projetos de Reducao',period:'Out 2022 – Dez 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'GEE',l:'escopo'},{v:'ESG',l:'relatorios'}],
+    overview:'Inventario de emissoes GEE e projetos de reducao e compensacao corporativa.',
+    scope:['Inventario de emissoes GEE','Identificacao de oportunidades','Compensacao florestal','Relatorios ESG e certificacoes'],
+    skills:'Engenharia ambiental - Carbono - ESG'},
+  ativa:{tag:'Mineracao Ti V',tc:'tm',title:'ATIVA Mineracao — Ti e V - Inventario Florestal',period:'Fev – Mar 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Floresta-PE',l:'municipio'},{v:'Ti e V',l:'minerais'}],
+    overview:'Inventario florestal para licenciamento da ATIVA Mineracao (Titanio e Vanadio) em Floresta-PE.',
+    scope:['Delimitacao AID e ADA','Levantamento floristico e fitossociologico','Medicoes dendrometricas: DAP, altura, area basal','Base para EIA, ASV, PRAD e compensacao'],
+    skills:'Engenharia ambiental - Engenharia Florestal - Mineralogia'},
+  min_diag:{tag:'Mineralogico Ambiental EIA',tc:'tm',title:'Diagnostico Mineralogico e Ambiental',period:'Out 2025 – Fev 2026',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Integrado',l:'abordagem'},{v:'EIA/ASV',l:'aplicacao'}],
+    overview:'Analise mineralogica integrada ao diagnostico ambiental para viabilidade de empreendimentos minerarios.',
+    scope:['Caracterizacao mineralogica e litologica','Diagnostico ambiental da area de influencia','Apoio a EIAs e ASVs','Avaliacao de riscos operacionais'],
+    skills:'Especializacao Mineralogia - Gestao de Riscos - Engenharia ambiental'},
+  mine_safety:{tag:'Mineracao PME Seguranca',tc:'tm',title:'Plano de Seguranca e Gestao Ambiental — Mineracao PME',period:'Ago 2020 – Dez 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'PME',l:'porte'},{v:'3+ anos',l:'duracao'}],
+    overview:'Plano integrado de seguranca e gestao ambiental para pequenos e medios mineradores.',
+    scope:['Diagnostico ambiental e operacional','Avaliacao de riscos de seguranca','Planos de controle e mitigacao','Suporte ao licenciamento e auditorias'],
+    skills:'Gestao ambiental - Eng. Seguranca do Trabalho - Gestao de Riscos'},
+  auditoria:{tag:'Auditoria Compliance Due Diligence',tc:'te',title:'Auditoria Ambiental e Compliance — Ativos Estrategicos',period:'Jan – Dez 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Auditoria',l:'tecnica'},{v:'ESG',l:'compliance'}],
+    overview:'Auditorias ambientais tecnicas e periciais focadas em conformidade legal e valorizacao de ativos.',
+    scope:['Auditorias ambientais e regulatorias','Avaliacao de condicionantes','Diagnostico de passivos ambientais','Relatorios para investidores e conselhos','Due diligence ambiental'],
+    skills:'Pericia Ambiental - Auditoria - Gestao de Riscos'},
+  pericia:{tag:'Pericia Laudo Judicial',tc:'te',title:'Pericia Ambiental Estrategica',period:'Jan – Dez 2024',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Judicial',l:'ambito'},{v:'Laudos',l:'entregavel'}],
+    overview:'Pericia ambiental judicial e extrajudicial com laudos tecnicos especializados.',
+    scope:['Pericias ambientais e de engenharia','Laudos tecnicos especializados','Pareceres tecnicos fundamentados','Analise de danos e responsabilidades','Interface tecnica-juridica'],
+    skills:'Pericia e Auditoria Ambiental - Due Diligence'},
+  ambientax:{tag:'ESG Klabin PROSAS',tc:'te',title:'Projeto AMBIENTAX — Klabin S.A.',period:'Mar 2024 – Mar 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Klabin S.A.',l:'cliente'},{v:'PROSAS',l:'programa'}],
+    overview:'Mitigacao de impactos ambientais e desenvolvimento socioeconomico, alinhado as diretrizes ESG da Klabin S.A.',
+    scope:['Diagnostico ambiental das areas de influencia','Identificacao de passivos e oportunidades','Estruturacao de acoes de mitigacao e compensacao','Base tecnica para governanca ESG'],
+    skills:'Desenvolvimento de projetos - Engenharia ambiental - ESG'},
+  barragens:{tag:'Barragens Seguranca Risco',tc:'te',title:'Programa Integrado de Seguranca de Barragens',period:'Jan – Fev 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Classificacao',l:'risco e DPA'}],
+    overview:'Programa de seguranca de barragens alinhado a legislacao, gestao de riscos e controle ambiental.',
+    scope:['Classificacao por risco e DPA','Diagnostico ambiental e geotecnico','Auditorias tecnicas','Planos de seguranca, monitoramento e contingencia'],
+    skills:'Engenharia ambiental - Gestao de Riscos - Geotecnia'},
+  agrohaus:{tag:'Inovacao AgroHaus',tc:'ti',title:'Projeto AgroHaus — Agricultura em Edificacao',period:'Jan 2024 – Dez 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Urbano',l:'aplicacao'},{v:'Inovacao',l:'perfil'}],
+    overview:'Sistema inovador de agricultura em edificacao com ambiente controlado para aplicacao urbana.',
+    scope:['Controle climatico e eficiencia energetica','Gestao hidrica e reaproveitamento','Integracao com renovaveis','Seguranca alimentar e sustentabilidade urbana'],
+    skills:'Engenharia ambiental - Engenharia de projetos - Inovacao'},
+  cabedelo:{tag:'Territorial SIG QGIS',tc:'tt',title:'Expansao Urbana — Uso e Ocupacao do Solo - Cabedelo/PB',period:'Dez 2019 – Mar 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Cabedelo-PB',l:'municipio'},{v:'SIG/QGIS',l:'ferramenta'}],
+    overview:'Estudo tecnico de expansao urbana e uso do solo de Cabedelo/PB com analises espaciais e ambientais.',
+    scope:['Analise da dinamica de expansao urbana','Mapeamento de uso e ocupacao do solo','Identificacao de areas sensiveis','Mapas tematicos georreferenciados (SIG/QGIS)'],
+    skills:'Engenharia ambiental - Geoprocessamento - Planejamento territorial'},
+  geotecnia:{tag:'Geotecnia Container Modular',tc:'tt',title:'Geotecnia Aplicada — Sistema Movel em Container',period:'Jan – Jun 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Container',l:'sistema'},{v:'Modular',l:'tipo'}],
+    overview:'Projeto de geotecnia para implantacao segura de sistema modular em container.',
+    scope:['Analise geotecnica de solo e capacidade de suporte','Avaliacao de riscos geotecnicos','Desenhos tecnicos para implantacao','Orcamento tecnico detalhado'],
+    skills:'Engenharia ambiental - Geotecnia'}
 };
 
+// ─── BUILD MODAL ──────────────────────────────────────────────────
 function buildModal(id){
-  const p=D[id];if(!p)return;
-  const kh=p.kpis.map(k=>`<div class="mkpi"><div class="mkpiv">${k.v}</div><div class="mkpil">${k.l}</div></div>`).join('');
-  const sh=p.scope.map(s=>`<li>${s}</li>`).join('');
-  document.getElementById('mcontent').innerHTML=`
-    <div class="mkicker"><span class="ctag ${p.tc}">${p.tag}</span></div>
-    <h2 class="mtitle">${p.title}</h2>
-    <div class="mmeta"><span>📅 ${p.period}</span><span>🏢 ${p.co}</span></div>
-    <div class="mkpis">${kh}</div>
-    <div class="msec"><h3>Visão geral</h3><p>${p.overview}</p></div>
-    <div class="msec"><h3>Escopo técnico</h3><ul>${sh}</ul></div>
-    <div class="msec"><h3>Competências</h3><p style="color:var(--text3);font-size:12px;font-family:'Chakra Petch',monospace;letter-spacing:.04em">${p.skills}</p></div>
-    <div class="mbottom">
-      <a href="mailto:kraefegg.mos3@gmail.com?subject=Interesse: ${p.title}" class="btnp">Solicitar mais informações →</a>
-      <button class="btns" onclick="closeM()">Fechar</button>
-    </div>`;
+  var p=D[id]; if(!p) return;
+  var kh=p.kpis.map(function(k){
+    return '<div class="mkpi"><div class="mkpiv">'+k.v+'</div><div class="mkpil">'+k.l+'</div></div>';
+  }).join('');
+  var sh=p.scope.map(function(s){ return '<li>'+s+'</li>'; }).join('');
+  document.getElementById('mcontent').innerHTML=
+    '<div class="mkicker"><span class="ctag '+p.tc+'">'+p.tag+'</span></div>'+
+    '<h2 class="mtitle">'+p.title+'</h2>'+
+    '<div class="mmeta"><span>&#128197; '+p.period+'</span><span>&#127970; '+p.co+'</span></div>'+
+    '<div class="mkpis">'+kh+'</div>'+
+    '<div class="msec"><h3>Visao geral</h3><p>'+p.overview+'</p></div>'+
+    '<div class="msec"><h3>Escopo tecnico</h3><ul>'+sh+'</ul></div>'+
+    '<div class="msec"><h3>Competencias</h3><p style="color:var(--text3);font-size:12px;font-family:Chakra Petch,monospace">'+p.skills+'</p></div>'+
+    '<div class="mbottom">'+
+    '<a href="mailto:kraefegg.mos3@gmail.com?subject=Interesse: '+p.title+'" class="btnp">Solicitar informacoes &rarr;</a>'+
+    '<button class="btns" onclick="closeM()">Fechar</button>'+
+    '</div>';
 }
-document.querySelectorAll('.pcard').forEach(c=>{
-  c.addEventListener('click',()=>{buildModal(c.dataset.id);document.getElementById('moverlay').classList.add('open');document.body.style.overflow='hidden';});
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.addEventListener('click',function(){ buildModal(card.dataset.id); openModal(); });
 });
-function closeM(){document.getElementById('moverlay').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('mclose').addEventListener('click',closeM);
-document.getElementById('moverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeM();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
-
-// ── REVEAL + COUNTER ──
-function triggerReveal(){
-  setTimeout(()=>{
-    const obs=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('visible');
-          e.target.querySelectorAll('[data-count]').forEach(el=>animateCount(el,+el.dataset.count));
-          obs.unobserve(e.target);
-        }
-      });
-    },{threshold:.07});
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
-  },50);
+function openModal(){
+  var ov=document.getElementById('moverlay');
+  if(ov){ ov.classList.add('open'); document.body.style.overflow='hidden'; }
 }
+function closeM(){
+  var ov=document.getElementById('moverlay');
+  if(ov){ ov.classList.remove('open'); document.body.style.overflow=''; }
+}
+var mc=document.getElementById('mclose');
+if(mc) mc.addEventListener('click',closeM);
+var ov=document.getElementById('moverlay');
+if(ov) ov.addEventListener('click',function(e){ if(e.target===ov) closeM(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeM(); });
+
+// ─── INIT ─────────────────────────────────────────────────────────
 triggerReveal();
+
+})();
+
+// ── CONFIDENCIAL PAGE ──────────────────────────────────────────────
+var CONF_PROJECTS = [{"id": "1", "title": "Inventário de Emissões GEE e Plano de Descarbonização", "category": "sustentabilidade", "sector": "Concessão Rodoviária — Região Sul do Brasil", "confLabel": "Cliente Confidencial — Setor de Concessões", "confDetail": "Empresa concessionária privada de rodovias com corredor de alto fluxo de cargas. Dados protegidos por NDA.", "year": "2023", "duration": "7 meses", "desc": "Levantamento e quantificação de emissões GEE em trechos de concessão rodoviária privada, com modelagem de cenários de redução e elaboração de Plano de Descarbonização alinhado ao Acordo de Paris e aos requisitos ESG de financiadores internacionais.", "full": "O projeto abrangeu mais de 3.800 km de rodovias concedidas, com coleta de dados operacionais, modelagem de emissões por escopo (1, 2 e 3) e metas progressivas de redução. Foram desenvolvidos KPIs ambientais para monitoramento contínuo e relatório executivo para captação de recursos junto a banco multilateral.", "icon": "🌿", "tags": [], "deliverables": ["Inventário GEE conforme ISO 14064", "Modelagem de cenários de redução por escopo", "Plano de Descarbonização com metas progressivas", "Dashboard de monitoramento de emissões", "Relatório ESG para reporte a stakeholders e financiadores"]}, {"id": "2", "title": "Plataforma Digital de Monitoramento de Indicadores de Sustentabilidade", "category": "sistemas", "sector": "Holding Privada — Infraestrutura Ferroviária", "confLabel": "Cliente Confidencial — Grupo de Infraestrutura", "confDetail": "Holding privada com operações ferroviárias e logísticas de longa distância. Informações sob contrato de sigilo.", "year": "2022", "duration": "10 meses", "desc": "Desenvolvimento de plataforma integrada para coleta, processamento e visualização de indicadores operacionais, ambientais e de segurança, com módulo BI, banco de dados rastreável e painel executivo de desempenho por corredor.", "full": "A solução centraliza dados de múltiplas unidades operacionais, integrando APIs de sistemas legados, gestão documental com rastreabilidade completa e painel executivo com ranking de desempenho. O sistema foi homologado pela equipe de TI interna do cliente e está em produção desde a entrega.", "icon": "💻", "tags": [], "deliverables": ["Levantamento e especificação de requisitos (UX/casos de uso)", "Arquitetura de banco de dados relacional", "Desenvolvimento de dashboards BI interativos", "Módulo de ranking e premiação por unidade operacional", "Transferência de código-fonte e documentação técnica", "Treinamento de usuários internos"]}, {"id": "3", "title": "Estruturação de Programa Interno de Sustentabilidade para Infraestrutura", "category": "regulacao", "sector": "Concessionária Privada — Corredor Logístico Centro-Oeste", "confLabel": "Cliente Confidencial — Concessão Rodoviária", "confDetail": "Empresa concessionária privada com contrato de longo prazo em corredor estratégico. Identidade preservada por cláusula contratual.", "year": "2024", "duration": "6 meses", "desc": "Apoio à empresa na criação de programa interno de sustentabilidade para infraestrutura, com definição de Parâmetros de Desempenho Sustentável, cálculo de Índice de Desenvolvimento Sustentável e modelo de fiscalização e reconhecimento interno.", "full": "O projeto modelou metodologia de cálculo do IDS adaptada à realidade operacional do cliente, definiu requisitos de evidências por nível de maturidade, desenvolveu fluxo de análise interna e elaborou programa de reconhecimento de boas práticas entre equipes. Os resultados foram integrados ao relatório de sustentabilidade corporativo.", "icon": "🚛", "tags": [], "deliverables": ["Metodologia de cálculo do IDS personalizada", "Matriz de Parâmetros de Desempenho Sustentável (PDS)", "Modelo de fiscalização e verificação interna", "Programa de reconhecimento de equipes por iniciativa", "Relatório de sustentabilidade corporativo (GRI)"]}, {"id": "4", "title": "Assessoria Jurídica em Ambiente Regulatório Experimental — Logística Sustentável", "category": "juridico", "sector": "Operador Logístico Multimodal — Região Sul/Sudeste", "confLabel": "Cliente Confidencial — Operador Privado", "confDetail": "Empresa privada com ativos rodoviários e portuários participante de processo regulatório experimental. Dados sob NDA.", "year": "2024", "duration": "8 meses", "desc": "Suporte técnico e jurídico na preparação, submissão e acompanhamento de proposta em ambiente regulatório experimental para corredor logístico sustentável multimodal, com análise de conformidade e estruturação de entregas contratuais trimestrais.", "full": "O escopo incluiu análise do arcabouço legal aplicável, elaboração da proposta técnica para o sandbox regulatório, verificação de conformidade das exigências editalícias e contratuais, e acompanhamento das entregas ao órgão regulador. A equipe atuou como interlocutora técnica e jurídica do cliente durante todo o ciclo.", "icon": "⚖️", "tags": [], "deliverables": ["Análise do arcabouço regulatório aplicável", "Proposta técnica completa para o sandbox", "Verificação de conformidade legal e editalícia", "Relatórios trimestrais de acompanhamento regulatório", "Pareceres jurídicos sobre entregas contratuais"]}, {"id": "5", "title": "Plano de Resiliência Climática para Infraestrutura Logística", "category": "sustentabilidade", "sector": "Terminal Portuário Privado — Litoral Paranaense", "confLabel": "Cliente Confidencial — Setor Portuário", "confDetail": "Terminal privado com operações de granéis sólidos e líquidos em porto de relevância estratégica. Informações sob acordo de confidencialidade.", "year": "2023", "duration": "5 meses", "desc": "Mapeamento de vulnerabilidades climáticas, classificação de risco por categoria e elaboração de Plano de Adaptação e Resiliência para infraestrutura de terminal portuário privado, com KPIs de acompanhamento e relatório para captação junto a financiadores.", "full": "O projeto envolveu análise de dados históricos climáticos, modelagem de cenários de risco, priorização georreferenciada de pontos críticos e Plano de Adaptação com cronograma e estimativa de investimentos. O relatório foi utilizado diretamente no processo de captação de recursos junto a banco de fomento internacional.", "icon": "🌱", "tags": [], "deliverables": ["Mapeamento de vulnerabilidades (SIG georreferenciado)", "Classificação de risco por categoria climática", "Plano de Adaptação e Resiliência com cronograma", "KPIs de acompanhamento climático por ativo", "Relatório executivo para financiadores internacionais"]}, {"id": "6", "title": "Modelagem de KPIs para Corredor Logístico Sustentável Multimodal", "category": "sistemas", "sector": "Concessionária Privada com Acesso Portuário — Paraná", "confLabel": "Cliente Confidencial — Corredor Estratégico", "confDetail": "Empresa privada com concessão de corredor logístico de alto valor estratégico conectando rodovia e porto. Identidade protegida por NDA.", "year": "2024", "duration": "4 meses", "desc": "Desenvolvimento de modelo de métricas e KPIs para corredor logístico sustentável multimodal privado, com banco de dados estruturado, painel BI de acompanhamento evolutivo, metas progressivas por dimensão e alertas de desvio.", "full": "Foram estruturados 42 KPIs em 5 dimensões (eficiência logística, emissões, segurança viária, qualidade de serviço e sustentabilidade social). Desenvolveu-se sistema de banco de dados integrado com alimentação automática via APIs e dashboard de acompanhamento histórico com alertas de desvio de metas.", "icon": "📊", "tags": [], "deliverables": ["Modelo de requisitos e métricas do corredor", "Dicionário de 42 KPIs com parâmetros e metas", "Banco de dados estruturado (PostgreSQL)", "Dashboard BI com evolução histórica e alertas", "Manual de governança e atualização dos dados"]}, {"id": "7", "title": "Programa de Fiscalização e Verificação de Obrigações Contratuais", "category": "regulacao", "sector": "Concessionária de Rodovias — Região Sudeste", "confLabel": "Cliente Confidencial — Múltiplas Concessões", "confDetail": "Empresa privada com portfólio de múltiplos contratos de concessão rodoviária. Informações comerciais preservadas por contrato.", "year": "2022", "duration": "6 meses", "desc": "Estruturação de programa interno de fiscalização e verificação do cumprimento de obrigações contratuais de concessões rodoviárias, com padronização de documentos comprobatórios, roteiros de auditoria e modelo de relatório consolidado.", "full": "O projeto revisou o arcabouço de controle interno vigente, propôs padronização de evidências por categoria de obrigação, desenvolveu fichas de verificação in loco e definiu critérios técnicos para requisitos complexos como resiliência climática e gestão ambiental. O cliente passou por auditoria externa com resultado positivo após a implementação.", "icon": "🛤️", "tags": [], "deliverables": ["Metodologia de fiscalização interna", "Fichas de verificação padronizadas por categoria", "Manual de verificadores independentes", "Modelo de relatório anual de conformidade", "Treinamento de equipes de auditoria interna"]}, {"id": "8", "title": "Revisão e Atualização de Contratos de Concessão com Cláusulas ESG", "category": "juridico", "sector": "Grupo Privado — Infraestrutura Ferroviária Nacional", "confLabel": "Cliente Confidencial — Holding Ferroviária", "confDetail": "Grupo privado com operações ferroviárias de longa distância e múltiplos contratos de concessão. Dados sob acordo de não divulgação.", "year": "2021", "duration": "9 meses", "desc": "Análise, atualização e adequação de contratos de concessão ferroviária privada, com inserção de cláusulas de sustentabilidade, obrigações ESG e requisitos ambientais decorrentes do novo marco regulatório e dos compromissos climáticos do Brasil.", "full": "O trabalho abrangeu revisão de 6 contratos de concessão ferroviária, mapeamento de cláusulas com impacto ESG, proposição de linguagem contratual para novos requisitos de sustentabilidade e elaboração de pareceres de conformidade. A equipe assessorou diretamente a diretoria jurídica do cliente nas negociações com o órgão regulador.", "icon": "📋", "tags": [], "deliverables": ["Mapeamento de cláusulas ESG nos contratos vigentes", "Minutas de termos aditivos com linguagem ESG", "Pareceres jurídicos de conformidade regulatória", "Nota técnica interna ao conselho e à diretoria", "Workshop com equipes jurídicas e operacionais"]}, {"id": "9", "title": "Plano de Gerenciamento de Resíduos Sólidos — Rede Operacional Rodoviária", "category": "sustentabilidade", "sector": "Operadora Privada de Infraestrutura — Região Sul", "confLabel": "Cliente Confidencial — Operação Rodoviária", "confDetail": "Empresa privada com rede de praças de pedágio e pátios de manutenção em região de alto fluxo. Identidade sob NDA.", "year": "2022", "duration": "5 meses", "desc": "Estruturação de Plano de Gerenciamento de Resíduos Sólidos para rede operacional rodoviária privada, em conformidade com a PNRS e requisitos de licenciamento, com sistema de rastreabilidade e indicadores de desempenho ambiental.", "full": "O escopo cobriu diagnóstico da geração de resíduos em 14 unidades operacionais, definição de rotas de destinação por categoria, implantação de sistema de controle com manifesto eletrônico e elaboração de indicadores para reporte ao órgão licenciador e ao conselho de sustentabilidade interno.", "icon": "🏭", "tags": [], "deliverables": ["Diagnóstico de geração de resíduos por unidade", "PGRS completo por ponto operacional", "Sistema de rastreabilidade com manifesto eletrônico", "Indicadores de desempenho ambiental para reporte", "Treinamento de equipes operacionais e gestores"]}];
+
+function openConfModal(id){
+  var p = CONF_PROJECTS.find(function(x){return x.id==id||x.id==String(id);});
+  if(!p) return;
+  var tags = p.tags.map(function(t){
+    var cls = t[1]==='tag-green'?'ctg-green':t[1]==='tag-blue'?'ctg-blue':t[1]==='tag-gold'?'ctg-gold':'ctg-purple';
+    return '<span class="conf-tag '+cls+'">'+t[0]+'</span>';
+  }).join('');
+  var delivs = p.deliverables.map(function(d){return '<li>'+d+'</li>';}).join('');
+  document.getElementById('confModalBody').innerHTML =
+    '<div style="margin-bottom:1rem">'+tags+'</div>'+
+    '<h2 class="mtitle" style="font-size:1.6rem;margin-bottom:.5rem">'+p.title+'</h2>'+
+    '<div class="mmeta"><span>&#128197; '+p.year+' · '+p.duration+'</span><span>&#127970; '+p.sector+'</span></div>'+
+    '<div class="conf-alert">🔒 '+p.confLabel+'<br><small style="opacity:.7">'+p.confDetail+'</small></div>'+
+    '<div class="msec"><h3>Visão geral</h3><p>'+p.full+'</p></div>'+
+    '<div class="msec"><h3>Principais Entregas</h3><ul class="conf-deliv">'+delivs+'</ul></div>'+
+    '<div class="mbottom">'+
+    '<a href="mailto:kraefegg.mos3@gmail.com?subject=Solicita%C3%A7%C3%A3o NDA - '+p.title+'" class="btnp">Solicitar NDA →</a>'+
+    '<button class="btns" onclick="closeConfModal()">Fechar</button>'+
+    '</div>';
+  document.getElementById('confModalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeConfModal(){
+  document.getElementById('confModalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.conf-fbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.conf-fbtn').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    var f = b.dataset.cfilter;
+    document.querySelectorAll('.conf-card').forEach(function(card){
+      card.style.display = (f==='all'||card.dataset.ccat===f)?'':'none';
+    });
+  });
+});
+
 </script>
+
+<!-- PAGE 5: CONFIDENCIAL -->
+<div id="page-confidencial" class="page">
+  <div class="conf-hero">
+
+    <div class="sec-hdr reveal">
+      <h2 class="sec-title">Portfólio Privado — Setor Corporativo</h2>
+      <span class="sec-meta">09 projetos · Sob NDA · 2019–2025</span>
+    </div>
+
+    <div class="conf-banner reveal">
+      🔒 &nbsp; Todos os dados de clientes são tratados com sigilo absoluto. Informações comerciais divulgadas apenas sob NDA firmado. &nbsp;·&nbsp; Preparado para BID Seleção RG-T4712-P001 · 2026
+    </div>
+
+    <div class="conf-stats reveal">
+      <div class="conf-stat"><div class="conf-stat-val">18+</div><div class="conf-stat-lbl">Projetos Concluídos</div></div>
+      <div class="conf-stat"><div class="conf-stat-val">100%</div><div class="conf-stat-lbl">Setor Privado</div></div>
+      <div class="conf-stat"><div class="conf-stat-val">USD 4.2M</div><div class="conf-stat-lbl">Volume Contratado</div></div>
+      <div class="conf-stat"><div class="conf-stat-val">6 Anos</div><div class="conf-stat-lbl">de Atuação</div></div>
+    </div>
+
+    <div class="conf-filters reveal">
+      <button class="conf-fbtn active" data-cfilter="all">// Todos</button>
+      <button class="conf-fbtn" data-cfilter="sustentabilidade">Sustentabilidade</button>
+      <button class="conf-fbtn" data-cfilter="sistemas">Sistemas / TI</button>
+      <button class="conf-fbtn" data-cfilter="regulacao">Regulação</button>
+      <button class="conf-fbtn" data-cfilter="juridico">Jurídico</button>
+    </div>
+
+    <div class="conf-grid reveal" id="conf-grid">
+<div class="conf-card cc-sus" data-ccat="sustentabilidade" data-cid="1" onclick="openConfModal(1)">
+  <div class="conf-card-icon">🌿</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessão Rodoviária</div>
+  <h3 class="conf-title">Inventário de Emissões GEE e Plano de Descarbonização</h3>
+  <p class="conf-desc">Levantamento e quantificação de emissões GEE em trechos de concessão rodoviária privada, com modelagem de cenários de redução e elaboração de Plano de Descarbon...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2023</span></div>
+    <div class="conf-meta-item">Duração<span>7 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sustentabilidade/ESG</span></div>
+  </div>
+</div><div class="conf-card cc-sis" data-ccat="sistemas" data-cid="2" onclick="openConfModal(2)">
+  <div class="conf-card-icon">💻</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Holding Privada</div>
+  <h3 class="conf-title">Plataforma Digital de Monitoramento de Indicadores de Sustentabilidade</h3>
+  <p class="conf-desc">Desenvolvimento de plataforma integrada para coleta, processamento e visualização de indicadores operacionais, ambientais e de segurança, com módulo BI, banco d...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2022</span></div>
+    <div class="conf-meta-item">Duração<span>10 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sistemas/TI</span></div>
+  </div>
+</div><div class="conf-card cc-reg" data-ccat="regulacao" data-cid="3" onclick="openConfModal(3)">
+  <div class="conf-card-icon">🚛</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessionária Privada</div>
+  <h3 class="conf-title">Estruturação de Programa Interno de Sustentabilidade para Infraestrutura</h3>
+  <p class="conf-desc">Apoio à empresa na criação de programa interno de sustentabilidade para infraestrutura, com definição de Parâmetros de Desempenho Sustentável, cálculo de Índice...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2024</span></div>
+    <div class="conf-meta-item">Duração<span>6 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Regulação</span></div>
+  </div>
+</div><div class="conf-card cc-jur" data-ccat="juridico" data-cid="4" onclick="openConfModal(4)">
+  <div class="conf-card-icon">⚖️</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Operador Logístico Multimodal</div>
+  <h3 class="conf-title">Assessoria Jurídica em Ambiente Regulatório Experimental — Logística Sustentável</h3>
+  <p class="conf-desc">Suporte técnico e jurídico na preparação, submissão e acompanhamento de proposta em ambiente regulatório experimental para corredor logístico sustentável multim...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2024</span></div>
+    <div class="conf-meta-item">Duração<span>8 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Jurídico</span></div>
+  </div>
+</div><div class="conf-card cc-sus" data-ccat="sustentabilidade" data-cid="5" onclick="openConfModal(5)">
+  <div class="conf-card-icon">🌱</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Terminal Portuário Privado</div>
+  <h3 class="conf-title">Plano de Resiliência Climática para Infraestrutura Logística</h3>
+  <p class="conf-desc">Mapeamento de vulnerabilidades climáticas, classificação de risco por categoria e elaboração de Plano de Adaptação e Resiliência para infraestrutura de terminal...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2023</span></div>
+    <div class="conf-meta-item">Duração<span>5 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sustentabilidade/ESG</span></div>
+  </div>
+</div><div class="conf-card cc-sis" data-ccat="sistemas" data-cid="6" onclick="openConfModal(6)">
+  <div class="conf-card-icon">📊</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessionária Privada com Acesso Portuário</div>
+  <h3 class="conf-title">Modelagem de KPIs para Corredor Logístico Sustentável Multimodal</h3>
+  <p class="conf-desc">Desenvolvimento de modelo de métricas e KPIs para corredor logístico sustentável multimodal privado, com banco de dados estruturado, painel BI de acompanhamento...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2024</span></div>
+    <div class="conf-meta-item">Duração<span>4 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sistemas/TI</span></div>
+  </div>
+</div><div class="conf-card cc-reg" data-ccat="regulacao" data-cid="7" onclick="openConfModal(7)">
+  <div class="conf-card-icon">🛤️</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessionária de Rodovias</div>
+  <h3 class="conf-title">Programa de Fiscalização e Verificação de Obrigações Contratuais</h3>
+  <p class="conf-desc">Estruturação de programa interno de fiscalização e verificação do cumprimento de obrigações contratuais de concessões rodoviárias, com padronização de documento...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2022</span></div>
+    <div class="conf-meta-item">Duração<span>6 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Regulação</span></div>
+  </div>
+</div><div class="conf-card cc-jur" data-ccat="juridico" data-cid="8" onclick="openConfModal(8)">
+  <div class="conf-card-icon">📋</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Grupo Privado</div>
+  <h3 class="conf-title">Revisão e Atualização de Contratos de Concessão com Cláusulas ESG</h3>
+  <p class="conf-desc">Análise, atualização e adequação de contratos de concessão ferroviária privada, com inserção de cláusulas de sustentabilidade, obrigações ESG e requisitos ambie...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2021</span></div>
+    <div class="conf-meta-item">Duração<span>9 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Jurídico</span></div>
+  </div>
+</div><div class="conf-card cc-sus" data-ccat="sustentabilidade" data-cid="9" onclick="openConfModal(9)">
+  <div class="conf-card-icon">🏭</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Operadora Privada de Infraestrutura</div>
+  <h3 class="conf-title">Plano de Gerenciamento de Resíduos Sólidos — Rede Operacional Rodoviária</h3>
+  <p class="conf-desc">Estruturação de Plano de Gerenciamento de Resíduos Sólidos para rede operacional rodoviária privada, em conformidade com a PNRS e requisitos de licenciamento, c...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2022</span></div>
+    <div class="conf-meta-item">Duração<span>5 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sustentabilidade/ESG</span></div>
+  </div>
+</div>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:3rem">
+      <h2 class="sec-title">Project Developer — Áreas de Desenvolvimento</h2>
+      <span class="sec-meta">Multi-setor · IPP Independente</span>
+    </div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:1.25rem;line-height:1.7;font-weight:300;max-width:720px" class="reveal">
+      Atuação como <strong style="color:var(--cyan)">Project Developer independente</strong> em múltiplos setores — estruturando projetos do zero até o estágio RTB (Ready-to-Build) ou operacional, com modelagem financeira, licenciamento ambiental e captação de investidores.
+    </div>
+    <div class="dev-grid reveal">
+<div class="dev-card" style="border-top-color:var(--amber)">
+  <div class="dev-card-icon">☀️</div>
+  <div class="dev-card-title" style="color:var(--amber)">Energia Solar</div>
+  <div class="dev-card-desc">Pre-feasibility studies, utility scale FV, project finance BNDES/BNB, IPP independente no mercado livre ACL.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--amber);color:var(--amber)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--neon)">
+  <div class="dev-card-icon">🌱</div>
+  <div class="dev-card-title" style="color:var(--neon)">Agrovoltaico</div>
+  <div class="dev-card-desc">Integração solar + agricultura + créditos de carbono. Modelo triple revenue para o Semiárido Nordestino.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--neon);color:var(--neon)">Destaque</span>
+</div><div class="dev-card" style="border-top-color:var(--cyan)">
+  <div class="dev-card-icon">🌡</div>
+  <div class="dev-card-title" style="color:var(--cyan)">Crédito de Carbono</div>
+  <div class="dev-card-desc">Estruturação de projetos para mercados voluntários (Verra) e regulado (SBCE). Adicionalidade e MRV.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--cyan);color:var(--cyan)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--purple)">
+  <div class="dev-card-icon">⛏</div>
+  <div class="dev-card-title" style="color:var(--purple)">Mineração Verde</div>
+  <div class="dev-card-desc">Diagnóstico mineralógico, inventário florestal e estruturação ESG para empreendimentos minerários.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--purple);color:var(--purple)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--blue)">
+  <div class="dev-card-icon">🏗️</div>
+  <div class="dev-card-title" style="color:var(--blue)">Infraestrutura & Logística</div>
+  <div class="dev-card-desc">KPIs sustentáveis, programas ESG, resiliência climática e sistemas de monitoramento para concessionárias.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--blue);color:var(--blue)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--teal)">
+  <div class="dev-card-icon">🌊</div>
+  <div class="dev-card-title" style="color:var(--teal)">Marítimo & Offshore</div>
+  <div class="dev-card-desc">Consultoria IMO E-Roster: MARPOL, OPRC, prevenção à poluição e conformidade ambiental em operações portuárias.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--teal);color:var(--teal)">IMO E-Roster</span>
+</div>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:3rem">
+      <h2 class="sec-title">Capacidades Técnicas</h2>
+      <span class="sec-meta">08 competências multidisciplinares</span>
+    </div>
+    <div class="comp-grid reveal">
+<div class="comp-item">
+  <div class="comp-icon">🌿</div>
+  <div class="comp-name">Sustentabilidade & ESG</div>
+  <div class="comp-desc">Inventários GEE, programas de sustentabilidade para infraestrutura, planos de resiliência climática e conformidade com critérios ESG e Acordo de Paris.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">💻</div>
+  <div class="comp-name">Desenvolvimento de Sistemas</div>
+  <div class="comp-desc">Plataformas de monitoramento, bancos de dados, Business Intelligence, dashboards e sistemas de ranqueamento para o setor privado de infraestrutura.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🚛</div>
+  <div class="comp-name">Regulação de Transportes</div>
+  <div class="comp-desc">Assessoria em concessões rodoviárias e ferroviárias, programas de fiscalização, KPIs e métricas para conformidade regulatória e boas práticas setoriais.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">⚖️</div>
+  <div class="comp-name">Jurídico Regulatório</div>
+  <div class="comp-desc">Análise de contratos de concessão, cláusulas ESG, conformidade com o arcabouço regulatório e apoio em ambientes regulatórios experimentais (sandbox).</div>
+</div><div class="comp-item">
+  <div class="comp-icon">📊</div>
+  <div class="comp-name">Modelagem de KPIs</div>
+  <div class="comp-desc">Modelos de métricas e indicadores de desempenho para corredores logísticos multimodais, com metas progressivas, painéis evolutivos e alertas de desvio.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🔬</div>
+  <div class="comp-name">Gestão Ambiental</div>
+  <div class="comp-desc">PGRS, planos de adaptação climática, mapeamento de vulnerabilidades, licenciamento ambiental e programas de reconhecimento de boas práticas.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🤝</div>
+  <div class="comp-name">Projetos com Financiamento Internacional</div>
+  <div class="comp-desc">Experiência em projetos financiados por BID, Banco Mundial e organismos multilaterais, com relatórios de conformidade e prestação de contas em padrão internacional.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🛤️</div>
+  <div class="comp-name">Logística Sustentável</div>
+  <div class="comp-desc">Corredores logísticos sustentáveis, modelos de avaliação multimodal, estratégias de eletromobilidade e descarbonização da cadeia de transporte.</div>
+</div>
+    </div>
+
+    <div style="margin:2.5rem 0;padding:1.5rem;background:rgba(57,255,122,.04);border:1px solid rgba(57,255,122,.2);border-radius:4px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;overflow:hidden" class="reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),var(--cyan))"></div>
+      <div>
+        <div style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--neon);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.375rem">// Portfólio Ampliado</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em">Referências detalhadas disponíveis sob NDA</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:.25rem;font-family:'Chakra Petch',monospace">Disponibilizamos portfólio ampliado e documentação completa mediante assinatura de acordo de confidencialidade</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="mailto:kraefegg.mos3@gmail.com?subject=Solicitacao de NDA - Portfolio" class="btnp">Solicitar NDA →</a>
+        <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" class="btns">LinkedIn ↗</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="w"><div class="pfooter">
+    <span class="fb">KRAEFEGG Multi Office · Portfólio Privado · Sob Confidencialidade</span>
+    <span style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--text3)">BID RG-T4712-P001 · 2026</span>
+  </div></div>
+
+  <!-- CONF MODAL -->
+  <div class="conf-modal-overlay" id="confModalOverlay" onclick="if(event.target===this)closeConfModal()">
+    <div class="conf-modal">
+      <button class="conf-mclose" onclick="closeConfModal()">×</button>
+      <div id="confModalBody"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

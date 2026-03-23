@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRAEFEGG Multi Office — Portfólio</title>
+<meta name="description" content="Portfólio de Engenharia Ambiental, Energia Solar, Carbono e Mineração — KRAEFEGG Multi Office · Railson N. de Arruda">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Jost:wght@300;400;500;600&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050c0f;--bg2:#081419;--bg3:#0c1c22;--bg4:#102029;
+  --cyan:#00e5cc;--cyan2:#00b8a0;--cyan3:rgba(0,229,204,.12);--cyan4:rgba(0,229,204,.06);
+  --neon:#39ff7a;--neon2:rgba(57,255,122,.1);
+  --amber:#ffb347;--amber2:rgba(255,179,71,.1);
+  --blue:#4facfe;--blue2:rgba(79,172,254,.1);
+  --purple:#b47aff;--purple2:rgba(180,122,255,.1);
+  --coral:#ff6b6b;--coral2:rgba(255,107,107,.1);
+  --rose:#ff7eb3;
+  --text:#d4f5ef;--text2:#7bb5ad;--text3:#3d7068;
+  --border:rgba(0,229,204,.12);--border2:rgba(0,229,204,.22);--border3:rgba(0,229,204,.35);
+  --glow:0 0 20px rgba(0,229,204,.25),0 0 60px rgba(0,229,204,.08);
+  --glow2:0 0 30px rgba(57,255,122,.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Jost",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;cursor:none}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:screen}
+.cursor-trail{position:fixed;width:32px;height:32px;border:1px solid rgba(0,229,204,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease}
+
+/* CANVAS BG */
+#particleCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.7}
+
+/* HEX GRID */
+.hex-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 2L58 17v18L30 50 2 35V17z' fill='none' stroke='rgba(0,229,204,0.04)' stroke-width='1'/%3E%3C/svg%3E");background-size:60px 52px;opacity:.8}
+
+/* SCAN LINE */
+body::after{content:"";position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,204,.015) 2px,rgba(0,229,204,.015) 4px);pointer-events:none;z-index:1;animation:scan 8s linear infinite}
+@keyframes scan{0%{background-position:0 0}100%{background-position:0 100px}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.875rem 2.5rem;background:rgba(5,12,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--neon),var(--cyan),transparent);animation:navglow 4s ease-in-out infinite}
+@keyframes navglow{0%,100%{opacity:.4}50%{opacity:1}}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:none}
+.nav-logo-img{height:44px;width:auto;object-fit:contain;filter:drop-shadow(0 0 10px var(--cyan))}
+.nav-sub{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);border-left:1px solid var(--border2);padding-left:10px;letter-spacing:.06em;text-transform:uppercase}
+.nav-tabs{display:flex;gap:2px;background:rgba(0,229,204,.04);border:1px solid var(--border);border-radius:3px;padding:3px}
+.ntab{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:2px;border:none;background:transparent;color:var(--text3);cursor:none;transition:all .2s;white-space:nowrap}
+.ntab:hover{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
+.ntab.active{background:rgba(0,229,204,.12);color:var(--cyan);box-shadow:inset 0 0 12px rgba(0,229,204,.1);border:1px solid var(--border2)}
+.nav-cta{font-family:"Chakra Petch",monospace;font-size:11px;color:var(--cyan);border:1px solid var(--border2);padding:7px 16px;border-radius:2px;text-decoration:none;transition:all .2s;letter-spacing:.06em;position:relative;overflow:hidden}
+.nav-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(0,229,204,.1));transition:opacity .2s;opacity:0}
+.nav-cta:hover{border-color:var(--cyan);box-shadow:var(--glow);color:var(--neon)}
+.nav-cta:hover::before{opacity:1}
+
+.page{display:none;animation:fadeIn .4s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* SHARED */
+.w{max-width:1300px;margin:0 auto;padding:0 2.5rem}.pt{padding-top:6rem}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.sec-hdr::before{content:"//";font-family:"Chakra Petch",monospace;font-size:13px;color:var(--cyan);margin-right:.5rem}
+.sec-title{font-family:"Rajdhani",sans-serif;font-size:1.6rem;font-weight:600;color:var(--text);letter-spacing:.04em;text-transform:uppercase}
+.sec-meta{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* GLASS CARD */
+.glass{background:rgba(0,229,204,.04);border:1px solid var(--border);backdrop-filter:blur(10px);border-radius:8px}
+.glass:hover{border-color:var(--border2);box-shadow:var(--glow)}
+
+/* ── PAGE 1 – HOME ── */
+.hero{position:relative;z-index:2;padding:10rem 2.5rem 5rem;max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{font-family:"Chakra Petch",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;gap:12px}
+.hero-tag::before{content:"";width:40px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--neon);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 8px var(--neon)}50%{opacity:.3;box-shadow:none}}
+.h1{font-family:"Rajdhani",sans-serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:700;line-height:1.05;color:var(--text);margin-bottom:1.25rem;letter-spacing:.02em;text-transform:uppercase}
+.h1 em{font-style:normal;color:var(--cyan);text-shadow:0 0 30px rgba(0,229,204,.5)}
+.hero-sub{font-size:.95rem;color:var(--text2);line-height:1.75;max-width:440px;font-weight:300;margin-bottom:2rem}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{font-family:"Chakra Petch",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 28px;background:linear-gradient(135deg,var(--cyan),var(--neon));color:var(--bg);border:none;border-radius:3px;cursor:none;transition:all .2s;font-weight:600;position:relative;overflow:hidden}
+.btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--neon),var(--cyan));opacity:0;transition:opacity .2s}
+.btn-primary:hover::after{opacity:1}
+.btn-primary:hover{box-shadow:0 0 30px rgba(0,229,204,.4),0 0 60px rgba(57,255,122,.2);transform:translateY(-2px)}
+.btn-sec{font-family:"Chakra Petch",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 28px;background:transparent;color:var(--cyan);border:1px solid var(--border2);border-radius:3px;cursor:none;transition:all .2s}
+.btn-sec:hover{border-color:var(--cyan);background:rgba(0,229,204,.07);box-shadow:var(--glow)}
+
+/* STATS PANEL */
+.hero-right{position:relative}
+.stats-panel{background:rgba(0,229,204,.04);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.stats-panel::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--neon),var(--amber),var(--cyan));animation:borderslide 3s linear infinite}
+@keyframes borderslide{0%{background-position:0% 0%}100%{background-position:200% 0%}}
+.stat-row{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);transition:background .2s}
+.stat-row:last-child{border-bottom:none}
+.stat-row:hover{background:rgba(0,229,204,.06)}
+.stat-val{font-family:"Rajdhani",sans-serif;font-size:2.2rem;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 20px rgba(0,229,204,.4)}
+.stat-lbl{font-family:"Chakra Petch",monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:right}
+
+/* ABOUT STRIP */
+.about-strip{position:relative;z-index:2;background:linear-gradient(135deg,rgba(0,229,204,.04),rgba(57,255,122,.02));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 0;margin-top:2rem}
+.about-inner{max-width:1300px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start}
+.about-title{font-family:"Rajdhani",sans-serif;font-size:2rem;font-weight:700;line-height:1.15;margin-bottom:1.25rem;text-transform:uppercase;letter-spacing:.04em}
+.about-title em{font-style:normal;color:var(--cyan)}
+.about-p{font-size:14px;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:.75rem}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.25rem}
+.chip{font-family:"Chakra Petch",monospace;font-size:10px;padding:4px 10px;border-radius:2px;display:inline-block;letter-spacing:.06em;text-transform:uppercase}
+.cg{background:rgba(57,255,122,.08);color:var(--neon);border:1px solid rgba(57,255,122,.2)}
+.ct{background:rgba(0,229,204,.08);color:var(--cyan);border:1px solid rgba(0,229,204,.2)}
+.ca{background:rgba(255,179,71,.08);color:var(--amber);border:1px solid rgba(255,179,71,.2)}
+.cb{background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.sitem{background:var(--bg2);padding:1.25rem;transition:background .2s}
+.sitem:hover{background:rgba(0,229,204,.06)}
+.sicon{font-size:20px;margin-bottom:.5rem;filter:drop-shadow(0 0 6px currentColor)}
+.sname{font-family:"Chakra Petch",monospace;font-size:12px;font-weight:600;margin-bottom:4px;color:var(--cyan);letter-spacing:.06em;text-transform:uppercase}
+.sdesc{font-size:12px;color:var(--text3);line-height:1.5}
+
+/* AREAS GRID */
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:2rem 0}
+.area-card{background:var(--bg2);padding:1.5rem;position:relative;overflow:hidden;cursor:none;transition:background .2s}
+.area-card::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;transition:width .35s}
+.area-card:hover{background:rgba(0,229,204,.05)}.area-card:hover::after{width:100%}
+.ac1::after{background:var(--amber)}.ac2::after{background:var(--neon)}.ac3::after{background:var(--cyan)}.ac4::after{background:var(--purple)}.ac5::after{background:var(--blue)}.ac6::after{background:var(--rose)}
+.area-icon{font-size:26px;margin-bottom:.75rem;filter:drop-shadow(0 0 8px currentColor)}
+.area-name{font-family:"Rajdhani",sans-serif;font-size:1rem;font-weight:600;margin-bottom:.375rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text)}
+.area-desc{font-size:12.5px;color:var(--text3);line-height:1.5;font-weight:300}
+.area-count{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--cyan);margin-top:.5rem;letter-spacing:.08em}
+.partners{max-width:1300px;margin:0 auto;padding:2.5rem 2.5rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;border-top:1px solid var(--border);position:relative;z-index:2}
+.partners-label{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);flex-shrink:0}
+.partner-badge{font-family:"Chakra Petch",monospace;font-size:11px;color:var(--text2);padding:6px 14px;border:1px solid var(--border);border-radius:2px;letter-spacing:.05em;transition:all .2s}
+.partner-badge:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(0,229,204,.15)}
+.pfooter{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;max-width:1300px;margin:0 auto;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:.5rem;position:relative;z-index:2}
+.fb{font-family:"Chakra Petch",monospace;color:var(--cyan);font-size:11px;letter-spacing:.06em}
+
+/* ── PAGE 2 – PORTFOLIO ── */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem}
+.fbtn{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid var(--border);background:transparent;color:var(--text3);cursor:none;transition:all .2s}
+.fbtn:hover{border-color:var(--cyan);color:var(--cyan)}
+.fbtn.active{background:rgba(0,229,204,.12);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(0,229,204,.15)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.pcard{background:var(--bg2);padding:1.75rem;cursor:none;display:flex;flex-direction:column;min-height:270px;position:relative;overflow:hidden;transition:background .2s,transform .2s}
+.pcard:hover{background:rgba(0,229,204,.05);transform:translateY(-2px)}
+.pcard.span2{grid-column:span 2;min-height:290px}.pcard.hidden{display:none!important}
+.pcard::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;transition:width .35s}.pcard:hover::after{width:100%}
+.cat-solar::after{background:var(--amber)}.cat-ambiental::after{background:var(--neon)}.cat-carbono::after{background:var(--cyan)}.cat-mineracao::after{background:var(--purple)}.cat-esg::after{background:var(--blue)}.cat-inovacao::after{background:var(--rose)}.cat-territorial::after{background:var(--coral)}
+.ctag{font-family:"Chakra Petch",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;display:inline-block}
+.ts{color:var(--amber);background:rgba(255,179,71,.08);border:1px solid rgba(255,179,71,.2)}
+.ta{color:var(--neon);background:rgba(57,255,122,.08);border:1px solid rgba(57,255,122,.2)}
+.tc{color:var(--cyan);background:rgba(0,229,204,.08);border:1px solid rgba(0,229,204,.2)}
+.tm{color:var(--purple);background:rgba(180,122,255,.08);border:1px solid rgba(180,122,255,.2)}
+.te{color:var(--blue);background:rgba(79,172,254,.08);border:1px solid rgba(79,172,254,.2)}
+.ti{color:var(--rose);background:rgba(255,126,179,.08);border:1px solid rgba(255,126,179,.2)}
+.tt{color:var(--coral);background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem}
+.arr{font-size:18px;color:var(--text3);transition:transform .2s,color .2s}.pcard:hover .arr{transform:translate(3px,-3px);color:var(--cyan)}
+.cperiod{font-family:"Chakra Petch",monospace;font-size:9px;color:var(--text3);letter-spacing:.06em;margin-bottom:.375rem;text-transform:uppercase}
+.ctitle{font-family:"Rajdhani",sans-serif;font-size:1.15rem;font-weight:600;line-height:1.2;color:var(--text);margin-bottom:.375rem;text-transform:uppercase;letter-spacing:.03em}.span2 .ctitle{font-size:1.4rem}
+.cco{font-size:11px;color:var(--text3);margin-bottom:.5rem;font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.05em}.cdesc{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;flex:1}
+.cfoot{display:flex;gap:1.5rem;flex-wrap:wrap;padding-top:.875rem;border-top:1px solid var(--border);margin-top:auto}
+.cfv{font-family:"Rajdhani",sans-serif;font-size:1.25rem;font-weight:700;line-height:1;color:var(--cyan)}.cfl{font-size:10px;color:var(--text3);margin-top:2px;font-family:"Chakra Petch",monospace;letter-spacing:.04em}
+
+/* TIMELINE */
+.tl-strip{background:linear-gradient(135deg,rgba(0,229,204,.03),rgba(57,255,122,.02));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 0;margin:3rem 0;position:relative;z-index:2}
+.tl-inner{max-width:1300px;margin:0 auto;padding:0 2.5rem}
+.tlgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 4rem;margin-top:1.5rem}
+.tlitem{display:flex;gap:.875rem;padding:.75rem 0;border-bottom:1px solid var(--border);transition:background .15s;padding-left:.5rem}
+.tlitem:hover{background:rgba(0,229,204,.04)}
+.tldot{width:8px;height:8px;border-radius:50%;border:1.5px solid;margin-top:.35rem;flex-shrink:0}
+.tlperiod{font-family:"Chakra Petch",monospace;font-size:9px;color:var(--text3);margin-bottom:2px;text-transform:uppercase;letter-spacing:.06em}
+.tlname{font-size:13px;color:var(--text);line-height:1.35;font-weight:400}.tlco{font-size:11px;color:var(--text3);margin-top:2px;font-family:"Chakra Petch",monospace;font-size:10px}
+
+/* MODAL */
+.m-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);z-index:200;display:flex;align-items:stretch;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .28s}
+.m-overlay.open{opacity:1;pointer-events:all}
+.modal{width:min(760px,100vw);background:var(--bg2);border-left:1px solid var(--border2);overflow-y:auto;transform:translateX(56px);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:2.5rem;position:relative}
+.m-overlay.open .modal{transform:translateX(0)}
+.modal::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--neon))}
+.mclose{position:absolute;top:1.25rem;right:1.25rem;background:rgba(0,229,204,.08);border:1px solid var(--border2);color:var(--cyan);width:36px;height:36px;border-radius:2px;cursor:none;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all .18s}.mclose:hover{background:rgba(0,229,204,.15);box-shadow:var(--glow)}
+.mkicker{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
+.mtitle{font-family:"Rajdhani",sans-serif;font-size:1.8rem;font-weight:700;line-height:1.15;color:var(--text);margin-bottom:.375rem;text-transform:uppercase;letter-spacing:.03em}
+.mmeta{font-size:12px;color:var(--text3);margin-bottom:1.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;font-family:"Chakra Petch",monospace;letter-spacing:.04em}
+.mkpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:1.25rem 0}
+.mkpi{background:var(--bg3);padding:.875rem 1rem}
+.mkpiv{font-family:"Rajdhani",sans-serif;font-size:1.5rem;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 15px rgba(0,229,204,.3)}
+.mkpil{font-size:10px;color:var(--text3);letter-spacing:.05em;margin-top:3px;font-family:"Chakra Petch",monospace;text-transform:uppercase}
+.msec{margin:1.5rem 0}
+.msec h3{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.msec h3::before{content:"//";color:var(--cyan)}.msec h3::after{content:"";flex:1;height:1px;background:var(--border)}
+.msec p{font-size:14px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:.5rem}.msec ul{padding-left:1rem}.msec li{font-size:13.5px;color:var(--text2);margin-bottom:5px;line-height:1.55}
+.mbottom{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap}
+.btnp{font-family:"Chakra Petch",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;background:linear-gradient(135deg,var(--cyan),var(--neon));color:var(--bg);border:none;border-radius:2px;cursor:none;text-decoration:none;display:inline-block;transition:all .2s;font-weight:600}.btnp:hover{box-shadow:0 0 25px rgba(0,229,204,.35);transform:translateY(-2px)}
+.btns{font-family:"Chakra Petch",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;background:transparent;color:var(--text3);border:1px solid var(--border);border-radius:2px;cursor:none;text-decoration:none;display:inline-block;transition:all .18s}.btns:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* ── PAGE 3 – DESTAQUE ── */
+.proj-cover{background:linear-gradient(135deg,rgba(0,229,204,.06),rgba(57,255,122,.03));border-bottom:1px solid var(--border);padding:6rem 2.5rem 2.5rem;position:relative;z-index:2}
+.proj-cover::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--neon),var(--amber),var(--cyan))}
+.proj-cover-inner{max-width:1300px;margin:0 auto}
+.proj-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,229,204,.08);color:var(--cyan);font-size:10px;font-weight:600;padding:5px 12px;border-radius:2px;border:1px solid rgba(0,229,204,.25);margin-bottom:1rem;letter-spacing:.1em;text-transform:uppercase;font-family:"Chakra Petch",monospace}
+.proj-h1{font-family:"Rajdhani",sans-serif;font-size:clamp(1.8rem,3.5vw,3.2rem);font-weight:700;line-height:1.1;color:var(--text);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.03em}
+.proj-subtitle{font-size:.95rem;color:var(--text2);margin-bottom:1.5rem;font-weight:300}
+.proj-meta-row{display:flex;flex-wrap:wrap;gap:2rem}
+.proj-meta-item{font-size:13px;color:var(--text3)}.proj-meta-item strong{color:var(--cyan);display:block;font-size:14px;font-weight:600;font-family:"Chakra Petch",monospace;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin:1.5rem 0}
+.kpi{background:var(--bg3);padding:1rem 1.25rem;position:relative;overflow:hidden;transition:background .2s}
+.kpi:hover{background:rgba(0,229,204,.06)}
+.kpi::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--cyan);opacity:.5}
+.kpi-label{font-size:10px;color:var(--text3);margin-bottom:4px;font-family:"Chakra Petch",monospace;text-transform:uppercase;letter-spacing:.08em}
+.kpi-value{font-family:"Rajdhani",sans-serif;font-size:1.6rem;font-weight:700;line-height:1.1;text-shadow:0 0 20px rgba(0,229,204,.25)}
+.kpi-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:"Chakra Petch",monospace}
+.psec{margin:2.5rem 0;position:relative;z-index:2}
+.psec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.psec-num{width:28px;height:28px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:"Chakra Petch",monospace;background:rgba(0,229,204,.12);color:var(--cyan);border:1px solid var(--border2)}
+.psec h2{font-family:"Rajdhani",sans-serif;font-size:1.15rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
+.pcard2{background:rgba(0,229,204,.03);border:1px solid var(--border);border-radius:4px;padding:1.25rem;margin:1rem 0;transition:border-color .2s}
+.pcard2:hover{border-color:var(--border2)}
+.pcard2 h3{font-size:.9rem;font-weight:600;margin-bottom:.5rem;font-family:"Chakra Petch",monospace;text-transform:uppercase;letter-spacing:.06em}
+.pcard2 p,.pcard2 li{font-size:13.5px;color:var(--text2);line-height:1.65;font-weight:300}.pcard2 ul{padding-left:1.2rem}.pcard2 li{margin-bottom:4px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.rev-bar{display:flex;align-items:stretch;border-radius:3px;overflow:hidden;margin:1rem 0;height:40px;border:1px solid var(--border)}
+.rev-seg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:"Chakra Petch",monospace;letter-spacing:.06em;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:.75rem 0}
+th{font-size:10px;font-weight:600;text-align:left;color:var(--text3);padding:8px 10px;border-bottom:1px solid var(--border);font-family:"Chakra Petch",monospace;text-transform:uppercase;letter-spacing:.08em}
+td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text2)}tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(0,229,204,.03)}
+.tl2{position:relative;padding-left:2rem}.tl2::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--cyan),transparent)}
+.tl2-item{position:relative;margin-bottom:1.5rem}.tl2-dot{position:absolute;left:-1.8rem;top:5px;width:10px;height:10px;border-radius:50%;border:2px solid var(--cyan);background:var(--bg);box-shadow:0 0 8px rgba(0,229,204,.4)}
+.tl2-title{font-size:14px;font-weight:600;margin-bottom:3px;font-family:"Chakra Petch",monospace;color:var(--text);letter-spacing:.04em;text-transform:uppercase;font-size:12px}
+.tl2-desc{font-size:13px;color:var(--text2)}
+.risk-row{display:flex;align-items:center;gap:12px;padding:.75rem 0;border-bottom:1px solid var(--border)}.risk-row:last-child{border-bottom:none}
+.rbadge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px;flex-shrink:0;font-family:"Chakra Petch",monospace;letter-spacing:.08em;text-transform:uppercase}
+.r-hi{background:rgba(255,107,107,.12);color:var(--coral);border:1px solid rgba(255,107,107,.25)}
+.r-mid{background:rgba(255,179,71,.12);color:var(--amber);border:1px solid rgba(255,179,71,.25)}
+.r-low{background:rgba(57,255,122,.1);color:var(--neon);border:1px solid rgba(57,255,122,.2)}
+.risk-name{font-size:13.5px;font-weight:500;flex:1;color:var(--text)}.risk-mit{font-size:12.5px;color:var(--text3)}
+.conclusion-box{background:linear-gradient(135deg,rgba(0,229,204,.06),rgba(57,255,122,.04));border:1px solid rgba(0,229,204,.25);border-radius:4px;padding:1.5rem;margin-top:2rem;position:relative;overflow:hidden}
+.conclusion-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--neon))}
+.conclusion-box h3{color:var(--cyan);font-size:.95rem;font-weight:700;margin-bottom:.75rem;font-family:"Chakra Petch",monospace;text-transform:uppercase;letter-spacing:.08em}
+.conclusion-box p{color:var(--text2);font-size:14px;line-height:1.75}
+
+/* ── PAGE 4 – PERFIL ── */
+.profile-hero{position:relative;z-index:2;padding:6.5rem 2.5rem 3rem;max-width:1300px;margin:0 auto}
+.profile-card{background:rgba(0,229,204,.04);border:1px solid var(--border2);border-radius:8px;padding:2.5rem;margin-bottom:2rem;display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:start;position:relative;overflow:hidden}
+.profile-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--neon),var(--amber))}
+.profile-avatar{width:88px;height:88px;border-radius:4px;background:linear-gradient(135deg,rgba(0,229,204,.15),rgba(57,255,122,.08));border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:"Rajdhani",sans-serif;font-size:2.5rem;font-weight:700;color:var(--cyan);flex-shrink:0;box-shadow:var(--glow)}
+.profile-name{font-family:"Rajdhani",sans-serif;font-size:2rem;font-weight:700;color:var(--text);margin-bottom:.25rem;text-transform:uppercase;letter-spacing:.04em}
+.profile-title{font-family:"Chakra Petch",monospace;font-size:12px;color:var(--cyan);font-weight:600;margin-bottom:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.profile-head{font-size:12.5px;color:var(--text2);line-height:1.65;margin-bottom:1rem;padding:.75rem 1rem;background:rgba(0,229,204,.04);border-radius:3px;border-left:2px solid var(--cyan);font-family:"Chakra Petch",monospace;letter-spacing:.03em}
+.profile-contacts{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+.contact-chip{font-family:"Chakra Petch",monospace;font-size:10px;padding:5px 12px;border-radius:2px;background:rgba(0,229,204,.05);border:1px solid var(--border);color:var(--text3);text-decoration:none;transition:all .18s;display:flex;align-items:center;gap:5px;letter-spacing:.04em}
+.contact-chip:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 10px rgba(0,229,204,.15)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1rem 0}
+.edu-card{background:rgba(0,229,204,.03);border:1px solid var(--border);border-radius:4px;padding:1.25rem;border-left:2px solid;transition:border-color .2s}
+.edu-card:hover{border-color:var(--border2)}
+.edu-deg{font-family:"Rajdhani",sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.25rem;text-transform:uppercase;letter-spacing:.03em}
+.edu-inst{font-family:"Chakra Petch",monospace;font-size:10px;font-weight:600;color:var(--text3);margin-bottom:.25rem;letter-spacing:.05em;text-transform:uppercase}
+.edu-period{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);margin-bottom:.5rem;letter-spacing:.04em}
+.edu-desc{font-size:12.5px;color:var(--text2);line-height:1.55}
+.edu-grade{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--neon);margin-top:.375rem;background:rgba(57,255,122,.08);padding:2px 8px;border-radius:2px;display:inline-block;border:1px solid rgba(57,255,122,.2)}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:1rem 0}
+.cert-card{background:var(--bg2);padding:1rem;transition:background .15s}.cert-card:hover{background:rgba(0,229,204,.05)}
+.cert-name{font-weight:600;color:var(--text);margin-bottom:.25rem;line-height:1.3;font-size:12.5px}
+.cert-inst{font-size:10px;color:var(--text3);margin-bottom:.25rem;font-family:"Chakra Petch",monospace;letter-spacing:.04em;text-transform:uppercase}
+.cert-date{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3)}
+.cert-tag{display:inline-block;font-family:"Chakra Petch",monospace;font-size:9px;padding:2px 7px;border-radius:2px;margin-top:.375rem;text-transform:uppercase;letter-spacing:.06em}
+.skills-list{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0}
+.skill-pill{font-family:"Chakra Petch",monospace;font-size:10px;padding:5px 12px;border-radius:2px;background:rgba(0,229,204,.05);border:1px solid var(--border);color:var(--text3);letter-spacing:.04em;text-transform:uppercase;transition:all .2s}
+.skill-pill:hover{border-color:var(--cyan);color:var(--cyan)}
+.lang-grid{display:flex;gap:12px;flex-wrap:wrap;margin:1rem 0}
+.lang-badge{background:rgba(0,229,204,.05);border:1px solid var(--border);border-radius:4px;padding:1rem 1.5rem;text-align:center;min-width:120px;transition:all .2s}
+.lang-badge:hover{border-color:var(--cyan);box-shadow:var(--glow)}
+.lang-name{font-family:"Rajdhani",sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
+.lang-level{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--cyan);margin-top:4px;letter-spacing:.06em}
+.lang-cert{font-size:11px;color:var(--text3);margin-top:3px;font-family:"Chakra Petch",monospace;font-size:9px}
+
+/* ORBIT ANIMATION */
+.orbit-container{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:320px;height:320px;opacity:.35;pointer-events:none}
+.orbit{position:absolute;border-radius:50%;border:1px solid;animation:rotate linear infinite}
+.orbit-1{width:100%;height:100%;border-color:rgba(0,229,204,.3);animation-duration:20s}
+.orbit-2{width:70%;height:70%;top:15%;left:15%;border-color:rgba(57,255,122,.25);animation-duration:14s;animation-direction:reverse}
+.orbit-3{width:40%;height:40%;top:30%;left:30%;border-color:rgba(255,179,71,.2);animation-duration:9s}
+.orbit-dot{position:absolute;width:6px;height:6px;border-radius:50%;top:-3px;left:50%;transform:translateX(-50%)}
+.od1{background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.od2{background:var(--neon);box-shadow:0 0 10px var(--neon)}
+.od3{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* SOLAR ICON */
+.solar-hero{display:flex;align-items:center;justify-content:center;position:relative}
+.solar-core{width:220px;height:220px;position:relative}
+.solar-ring{position:absolute;border-radius:50%;border:1px solid rgba(0,229,204,.2);animation:pulse-ring 3s ease-in-out infinite}
+.sr1{inset:0;animation-delay:0s}
+.sr2{inset:-20px;animation-delay:.5s;border-color:rgba(57,255,122,.15)}
+.sr3{inset:-40px;animation-delay:1s;border-color:rgba(255,179,71,.1)}
+@keyframes pulse-ring{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:.2;transform:scale(1.03)}}
+.solar-center{position:absolute;inset:30px;border-radius:50%;background:linear-gradient(135deg,rgba(0,229,204,.12),rgba(57,255,122,.08));border:1px solid rgba(0,229,204,.3);display:flex;align-items:center;justify-content:center;font-size:4rem;animation:glow-pulse 4s ease-in-out infinite}
+@keyframes glow-pulse{0%,100%{box-shadow:0 0 30px rgba(0,229,204,.2)}50%{box-shadow:0 0 60px rgba(0,229,204,.4),0 0 120px rgba(57,255,122,.1)}}
+.hex-grid-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:1.5rem}
+.hex-cell{height:32px;background:rgba(0,229,204,.06);border:1px solid rgba(0,229,204,.12);clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);transition:background .3s;animation:hex-fade 4s ease-in-out infinite}
+.hex-cell:nth-child(odd){animation-delay:.5s}
+.hex-cell:nth-child(3n){background:rgba(57,255,122,.08);border-color:rgba(57,255,122,.15);animation-delay:1s}
+@keyframes hex-fade{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* COMPANIES PANEL */
+.companies-panel{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1rem 0}
+.company-card{background:rgba(0,229,204,.03);border:1px solid var(--border);border-radius:4px;padding:1rem;transition:all .2s}
+.company-card:hover{border-color:var(--cyan);box-shadow:0 0 15px rgba(0,229,204,.1)}
+.company-name{font-family:"Rajdhani",sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text)}
+.company-role{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--cyan);margin-bottom:.375rem;letter-spacing:.06em;text-transform:uppercase}
+.company-desc{font-size:12px;color:var(--text3);line-height:1.5}
+
+@media(max-width:960px){
+  .hero,.about-inner{grid-template-columns:1fr;gap:2rem}
+  .pgrid{grid-template-columns:1fr 1fr}.pcard.span2{grid-column:span 2}
+  .tlgrid{grid-template-columns:1fr}
+  .two-col,.three-col,.areas-grid,.edu-grid,.companies-panel{grid-template-columns:1fr 1fr}
+  .cert-grid{grid-template-columns:1fr 1fr}
+  .nav-sub{display:none}
+  .profile-card{grid-template-columns:1fr}
+  .orbit-container{display:none}
+  .solar-hero{display:none}
+}
+@media(max-width:600px){
+  nav{padding:.6rem 1rem;gap:.5rem}
+  .pgrid{grid-template-columns:1fr}.pcard.span2{grid-column:span 1}
+  .modal{padding:1.5rem 1rem}.mkpis{grid-template-columns:1fr 1fr}
+  .hero{padding:7rem 1.25rem 3rem}.w{padding:0 1.25rem}
+  .nav-cta{display:none}.ntab{padding:4px 7px;font-size:9px}
+  .areas-grid{grid-template-columns:1fr 1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .edu-grid{grid-template-columns:1fr}.cert-grid{grid-template-columns:1fr}
+  .about-inner{grid-template-columns:1fr}
+  .companies-panel{grid-template-columns:1fr}
+}
+
+/* PAGE 5 — CONFIDENCIAL */
+.conf-hero{position:relative;z-index:2;padding:6.5rem 2.5rem 3rem;max-width:1300px;margin:0 auto}
+.conf-banner{display:flex;align-items:center;gap:10px;padding:.75rem 1.25rem;background:rgba(245,197,66,.06);border:1px solid rgba(245,197,66,.22);border-radius:3px;margin-bottom:2rem;font-family:"Chakra Petch",monospace;font-size:10px;color:#f5c542;letter-spacing:.06em;text-transform:uppercase}
+.conf-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:1.5rem 0}
+.conf-stat{background:var(--bg2);padding:1.25rem;text-align:center;transition:background .2s}
+.conf-stat:hover{background:rgba(57,255,122,.05)}
+.conf-stat-val{font-family:"Rajdhani",sans-serif;font-size:2rem;font-weight:700;color:var(--neon);line-height:1;text-shadow:0 0 20px rgba(57,255,122,.3)}
+.conf-stat-lbl{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.conf-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+.conf-fbtn{font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid var(--border);background:transparent;color:var(--text3);cursor:none;transition:all .2s}
+.conf-fbtn:hover{border-color:var(--neon);color:var(--neon)}
+.conf-fbtn.active{background:rgba(57,255,122,.1);border-color:var(--neon);color:var(--neon);box-shadow:0 0 12px rgba(57,255,122,.15)}
+.conf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1rem 0}
+.conf-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.5rem;cursor:none;transition:all .2s;position:relative;overflow:hidden}
+.conf-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
+.conf-card:hover{border-color:rgba(57,255,122,.25);background:rgba(57,255,122,.03);transform:translateY(-2px)}
+.conf-card:hover::before{opacity:1}
+.cc-sus::before{background:linear-gradient(90deg,var(--neon),var(--cyan))}
+.cc-sis::before{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.cc-reg::before{background:linear-gradient(90deg,var(--amber),var(--neon))}
+.cc-jur::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
+.conf-card-icon{font-size:22px;margin-bottom:.75rem}
+.conf-card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem}
+.conf-tag{font-family:"Chakra Petch",monospace;font-size:9px;padding:2px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:.06em}
+.ctg-green{background:rgba(57,255,122,.08);color:var(--neon);border:1px solid rgba(57,255,122,.2)}
+.ctg-blue{background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)}
+.ctg-gold{background:rgba(255,179,71,.08);color:var(--amber);border:1px solid rgba(255,179,71,.2)}
+.ctg-purple{background:rgba(180,122,255,.08);color:var(--purple);border:1px solid rgba(180,122,255,.2)}
+.conf-lock{font-family:"Chakra Petch",monospace;font-size:9px;color:var(--text3);margin-bottom:.375rem;letter-spacing:.05em;display:flex;align-items:center;gap:5px}
+.conf-sector{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--cyan);margin-bottom:.5rem;letter-spacing:.04em}
+.conf-title{font-family:"Rajdhani",sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.03em;line-height:1.2}
+.conf-desc{font-size:12.5px;color:var(--text2);line-height:1.6;font-weight:300}
+.conf-meta{display:flex;gap:1rem;padding-top:.75rem;border-top:1px solid var(--border);margin-top:.75rem}
+.conf-meta-item{font-family:"Chakra Petch",monospace;font-size:10px;color:var(--text3);letter-spacing:.04em}
+.conf-meta-item span{display:block;color:var(--text);font-size:11px;margin-top:1px}
+.conf-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);z-index:300;display:flex;align-items:stretch;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .28s}
+.conf-modal-overlay.open{opacity:1;pointer-events:all}
+.conf-modal{width:min(780px,100vw);background:var(--bg2);border-left:1px solid var(--border2);overflow-y:auto;transform:translateX(56px);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:2.5rem;position:relative}
+.conf-modal-overlay.open .conf-modal{transform:translateX(0)}
+.conf-modal::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),var(--cyan),var(--amber))}
+.conf-mclose{position:absolute;top:1.25rem;right:1.25rem;background:rgba(57,255,122,.08);border:1px solid rgba(57,255,122,.2);color:var(--neon);width:36px;height:36px;border-radius:2px;cursor:none;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.conf-mclose:hover{background:rgba(57,255,122,.15)}
+.conf-alert{background:rgba(245,197,66,.06);border:1px solid rgba(245,197,66,.2);border-radius:4px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-family:"Chakra Petch",monospace;font-size:11px;color:#f5c542;letter-spacing:.04em}
+.conf-deliv{margin:.75rem 0;padding-left:0;list-style:none}
+.conf-deliv li{font-size:13.5px;color:var(--text2);padding:.45rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px}
+.conf-deliv li:last-child{border-bottom:none}
+.conf-deliv li::before{content:"→";color:var(--neon);flex-shrink:0;font-family:"Chakra Petch",monospace;font-size:11px;margin-top:2px}
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:1rem 0}
+.comp-item{background:var(--bg2);padding:1.25rem;transition:background .2s}
+.comp-item:hover{background:rgba(57,255,122,.04)}
+.comp-icon{font-size:20px;margin-bottom:.625rem}
+.comp-name{font-family:"Chakra Petch",monospace;font-size:11px;font-weight:700;color:var(--neon);margin-bottom:.375rem;text-transform:uppercase;letter-spacing:.06em}
+.comp-desc{font-size:12px;color:var(--text3);line-height:1.55}
+/* Project Developer section */
+.dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1rem 0}
+.dev-card{background:rgba(0,229,204,.03);border:1px solid var(--border);border-radius:4px;padding:1.25rem;border-top:2px solid}
+.dev-card-icon{font-size:20px;margin-bottom:.625rem}
+.dev-card-title{font-family:"Chakra Petch",monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.375rem}
+.dev-card-desc{font-size:12.5px;color:var(--text3);line-height:1.5}
+.dev-card-status{font-family:"Chakra Petch",monospace;font-size:9px;padding:2px 8px;border-radius:2px;margin-top:.625rem;display:inline-block;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:960px){.conf-stats{grid-template-columns:repeat(2,1fr)}.conf-grid{grid-template-columns:1fr 1fr}.comp-grid{grid-template-columns:1fr 1fr}.dev-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.conf-grid{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr 1fr}.dev-grid{grid-template-columns:1fr}.conf-stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- CANVAS PARTICLES -->
+<canvas id="particleCanvas"></canvas>
+<div class="hex-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand" onclick="goto('home')">
+    <img src="data:image/jpeg;base64,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" alt="KRAEFEGG" class="nav-logo-img">
+    <span class="nav-sub">Multi Office · Eng. Ambiental</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="ntab active" data-page="home">// Início</button>
+    <button class="ntab" data-page="portfolio">// Portfólio</button>
+    <button class="ntab" data-page="destaque">// Destaque</button>
+    <button class="ntab" data-page="perfil">// Perfil</button>
+    <button class="ntab" data-page="confidencial">// Privado</button>
+  </div>
+  <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" class="nav-cta" style="margin-right:6px">in LinkedIn</a>
+  <a href="mailto:kraefegg.mos3@gmail.com" class="nav-cta">→ Contato</a>
+</nav>
+
+<!-- PAGE 1: HOME -->
+<div id="page-home" class="page active">
+  <section class="hero" style="position:relative;z-index:2">
+    <div>
+      <div class="hero-tag"><span class="dot"></span>Portfólio Técnico · 2019 – 2026</div>
+      <h1 class="h1">Engenharia<br>ambiental que<br><em>gera valor</em></h1>
+      <p class="hero-sub">Projetos integrados em energia solar, recuperação ambiental, créditos de carbono, mineração e gestão de passivos — do diagnóstico à viabilidade econômica e ao licenciamento.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="goto('portfolio')">Ver Portfólio →</button>
+        <button class="btn-sec" onclick="goto('perfil')">Sobre o Especialista</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div style="position:relative">
+        <div class="solar-hero" style="margin-bottom:1.5rem">
+          <div class="solar-core">
+            <div class="solar-ring sr1"></div>
+            <div class="solar-ring sr2"></div>
+            <div class="solar-ring sr3"></div>
+            <div class="solar-center">⚡</div>
+          </div>
+        </div>
+        <div class="hex-grid-mini">
+          <div class="hex-cell"></div><div class="hex-cell"></div><div class="hex-cell"></div><div class="hex-cell"></div>
+          <div class="hex-cell"></div><div class="hex-cell"></div><div class="hex-cell"></div><div class="hex-cell"></div>
+          <div class="hex-cell"></div><div class="hex-cell"></div><div class="hex-cell"></div><div class="hex-cell"></div>
+        </div>
+      </div>
+      <div class="stats-panel reveal" style="margin-top:1.5rem;position:relative">
+        <div class="stat-row"><span class="stat-val" data-count="25">0</span><span class="stat-lbl">projetos<br>executados</span></div>
+        <div class="stat-row"><span class="stat-val" data-count="7">0</span><span class="stat-lbl">anos de<br>atuação</span></div>
+        <div class="stat-row"><span class="stat-val" style="font-size:1.5rem;letter-spacing:-.02em">NE·SE·CO</span><span class="stat-lbl">regiões<br>do Brasil</span></div>
+        <div class="stat-row"><span class="stat-val" data-count="9">0</span><span class="stat-lbl">especializ. &<br>MBAs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="about-strip">
+    <div class="about-inner">
+      <div class="reveal">
+        <h2 class="about-title">Atuação integrada<br>em engenharia<br><em>ambiental</em></h2>
+        <p class="about-p">A KRAEFEGG Multi Office atua na intersecção de engenharia ambiental, desenvolvimento de projetos de energia e gestão de ativos naturais — do diagnóstico técnico ao estudo de viabilidade pronto para investimento.</p>
+        <p class="about-p">Atuação direta em projetos de licenciamento ambiental, PRAD, recuperação florestal, perícia e auditoria ambiental, mineralogia, segurança do trabalho e desenvolvimento de projetos de energia — cobrindo empreendimentos de mineração, infraestrutura e energias renováveis em todo o Brasil.</p>
+        <div class="chip-row">
+          <span class="chip ca">Project Developer IPP</span><span class="chip cg">Eng. Florestal</span><span class="chip ct">Mercado de Carbono</span><span class="chip ca">MBA Energias Renováveis</span><span class="chip cg">EIA · ASV · Licenciamento</span><span class="chip ct">IMO Consultant E-Roster</span><span class="chip cb">Mineralogia</span><span class="chip ca">Eng. Segurança Trabalho</span><span class="chip cg">Perícia & Auditoria</span><span class="chip ct">MBA Construção Civil</span>
+        </div>
+      </div>
+      <div class="sgrid reveal">
+        <div class="sitem"><div class="sicon">☀️</div><div class="sname">Energia Solar & Renováveis</div><div class="sdesc">EVTEA, PFS, utility scale, licenciamento, Project Finance BNDES/BNB</div></div>
+        <div class="sitem"><div class="sicon">🌿</div><div class="sname">PRAD & Recuperação Ambiental</div><div class="sdesc">Plantio compensatório, reposição florestal, bioma Caatinga, condicionantes</div></div>
+        <div class="sitem"><div class="sicon">🌡</div><div class="sname">Carbono & GEE</div><div class="sdesc">Inventário GEE, créditos voluntários, SBCE, Verra, ESG corporativo</div></div>
+        <div class="sitem"><div class="sicon">⛏</div><div class="sname">Mineralogia & Mineração</div><div class="sdesc">Diagnóstico mineralógico, inventário florestal, EIA, segurança de barragens</div></div>
+        <div class="sitem"><div class="sicon">🔍</div><div class="sname">Perícia & Auditoria Ambiental</div><div class="sdesc">Laudos periciais, auditorias, compliance, due diligence para investidores</div></div>
+        <div class="sitem"><div class="sicon">🌳</div><div class="sname">Engenharia Florestal</div><div class="sdesc">Inventário florestal, fitossociologia, recomposição, compensação florestal</div></div>
+        <div class="sitem"><div class="sicon">🦺</div><div class="sname">Eng. Segurança do Trabalho</div><div class="sdesc">SSMA, gestão de riscos operacionais, laudos de insalubridade e periculosidade</div></div>
+        <div class="sitem"><div class="sicon">🚢</div><div class="sname">IMO Consultant E-Roster</div><div class="sdesc">MARPOL, OPRC, prevenção poluição marinha, consultoria marítima internacional</div></div>
+        <div class="sitem"><div class="sicon">🏗️</div><div class="sname">MBA Gestão de Obras</div><div class="sdesc">PMBOK, Lean Construction, gestão de contratos, normas NBR/ABNT</div></div>
+        <div class="sitem"><div class="sicon">📐</div><div class="sname">Engenharia Ambiental</div><div class="sdesc">Licenciamento ambiental, EIA/RIMA, diagnóstico, passivos, remediação</div></div>
+        <div class="sitem"><div class="sicon">🗺</div><div class="sname">Geoprocessamento & SIG</div><div class="sdesc">SIG/QGIS, sensoriamento remoto, expansão urbana, mapeamento territorial</div></div>
+        <div class="sitem"><div class="sicon">💡</div><div class="sname">Project Developer</div><div class="sdesc">Energia, agronegócio, carbono, mineração — estruturação RTB para investidores</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w" style="padding-top:3rem;padding-bottom:1rem;position:relative;z-index:2">
+    <div class="sec-hdr reveal"><h2 class="sec-title">Áreas de Atuação</h2><span class="sec-meta">06 especialidades</span></div>
+    <div class="areas-grid reveal">
+      <div class="area-card ac1" onclick="goto('portfolio','solar')"><div class="area-icon">☀️</div><div class="area-name">Solar & Energias Renováveis</div><div class="area-desc">EVTEAs, PFS, utility scale, monitoramento e project finance. MBA em Energias Renováveis.</div><div class="area-count">// 04 projetos</div></div>
+      <div class="area-card ac2" onclick="goto('portfolio','ambiental')"><div class="area-icon">🌿</div><div class="area-name">Eng. Ambiental & PRAD</div><div class="area-desc">Licenciamento, EIA/RIMA, recuperação de áreas degradadas, plantio compensatório e passivos ambientais.</div><div class="area-count">// 05 projetos</div></div>
+      <div class="area-card ac3" onclick="goto('portfolio','carbono')"><div class="area-icon">🌡</div><div class="area-name">Carbono & GEE</div><div class="area-desc">Inventário de emissões, créditos de carbono voluntário, SBCE, Verra e integração ESG.</div><div class="area-count">// 02 projetos</div></div>
+      <div class="area-card ac4" onclick="goto('portfolio','mineracao')"><div class="area-icon">⛏</div><div class="area-name">Mineralogia & Mineração</div><div class="area-desc">Especialização em Mineralogia, diagnóstico mineralógico, inventário florestal, barragens e gestão PME.</div><div class="area-count">// 03 projetos</div></div>
+      <div class="area-card ac5" onclick="goto('portfolio','esg')"><div class="area-icon">🔍</div><div class="area-name">Perícia, Auditoria & ESG</div><div class="area-desc">Especialização em Perícia e Auditoria Ambiental. Laudos judiciais, compliance e due diligence.</div><div class="area-count">// 04 projetos</div></div>
+      <div class="area-card ac6" onclick="goto('portfolio','inovacao')"><div class="area-icon">🦺</div><div class="area-name">Segurança do Trabalho</div><div class="area-desc">Especialização em Eng. de Segurança. SSMA, riscos operacionais, laudos de insalubridade.</div><div class="area-count">// Especialização</div></div>
+      <div class="area-card ac1" onclick="goto('portfolio','inovacao')"><div class="area-icon">🌳</div><div class="area-name">Engenharia Florestal</div><div class="area-desc">Especialização em Eng. Florestal. Fitossociologia, manejo, inventário e compensação florestal.</div><div class="area-count">// Especialização</div></div>
+      <div class="area-card ac2" onclick="goto('portfolio','inovacao')"><div class="area-icon">🚢</div><div class="area-name">IMO Consultant E-Roster</div><div class="area-desc">Consultor IMO credenciado. MARPOL Annex V, OPRC, poluição marinha e conformidade marítima.</div><div class="area-count">// Internacional</div></div>
+      <div class="area-card ac3" onclick="goto('destaque')"><div class="area-icon">🏗️</div><div class="area-name">Project Developer</div><div class="area-desc">Desenvolvimento de projetos em energia, agronegócio, carbono e mineração. MBA em Gestão de Obras.</div><div class="area-count">// Multi-setor</div></div>
+    </div>
+  </div>
+
+  <div class="partners reveal">
+    <span class="partners-label">// Credenciais & Vínculos</span>
+    <span class="partner-badge">CREA — Engenheiro Ambiental</span>
+    <span class="partner-badge">IMO Consultant E-Roster</span>
+    <span class="partner-badge">BNDES · BNB FNE Verde</span>
+    <span class="partner-badge">Verra · SBCE</span>
+    <span class="partner-badge">UNIDO · FGV · ANEEL</span>
+  </div>
+
+  <div class="w"><div class="pfooter">
+    <span class="fb">KRAEFEGG Multi Office — Engenharia Ambiental</span>
+    <span style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--text3);letter-spacing:.05em">📍 Cabedelo–PB · (61) 99885-0946 · (83) 99919-4789</span>
+  </div></div>
+</div>
+
+<!-- PAGE 2: PORTFOLIO -->
+<div id="page-portfolio" class="page">
+  <div class="w pt" style="position:relative;z-index:2">
+    <div class="sec-hdr reveal"><h2 class="sec-title">Portfólio de Projetos</h2><span class="sec-meta">21 projetos · 2019–2026</span></div>
+    <div class="filters reveal">
+      <button class="fbtn active" data-filter="all">// Todos</button>
+      <button class="fbtn" data-filter="solar">Solar</button>
+      <button class="fbtn" data-filter="ambiental">Ambiental</button>
+      <button class="fbtn" data-filter="carbono">Carbono</button>
+      <button class="fbtn" data-filter="mineracao">Mineração</button>
+      <button class="fbtn" data-filter="esg">Auditoria</button>
+      <button class="fbtn" data-filter="inovacao">Inovação</button>
+      <button class="fbtn" data-filter="territorial">Territorial</button>
+    </div>
+    <div class="pgrid reveal">
+      <div class="pcard span2 cat-solar" data-id="fps"><div class="card-top"><span class="ctag ts">Solar · IPP · PFS</span><span class="arr">↗</span></div><div class="cperiod">Mar 2026 · Em andamento · KRAEFEGG Multi Office</div><h3 class="ctitle">Pre-Feasibility Study — Usina Fotovoltaica 5 MWp · Nordeste</h3><p class="cco">Project Developer (IPP) independente</p><p class="cdesc">PFS completo para usina FV de 5 MWp em município litorâneo do NE. GHI 5,80 kWh/m²/dia. Dimensionamento Mono PERC, arrendamento rural 25 anos, Project Finance BNDES/BNB-FNE Verde.</p><div class="cfoot"><div><div class="cfv">5 MWp</div><div class="cfl">capacidade</div></div><div><div class="cfv">&gt;14%</div><div class="cfl">TIR a.a.</div></div><div><div class="cfv">&lt;R$200</div><div class="cfl">LCOE /MWh</div></div></div></div>
+      <div class="pcard cat-solar" data-id="evtea"><div class="card-top"><span class="ctag ts">Solar · EVTEA · Série</span><span class="arr">↗</span></div><div class="cperiod">2020 – 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Série EVTEA — Parques Fotovoltaicos I · II · III</h3><p class="cdesc">Três EVTEAs para parques solares no NE cobrindo potencial solar, CAPEX/OPEX, licenciamento e atração de investidores em SPEs.</p><div class="cfoot"><div><div class="cfv">3</div><div class="cfl">estudos</div></div><div><div class="cfv">NE</div><div class="cfl">região</div></div></div></div>
+      <div class="pcard cat-solar" data-id="utility"><div class="card-top"><span class="ctag ts">Solar · Utility Scale</span><span class="arr">↗</span></div><div class="cperiod">Jun 2022 – Dez 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Usina Solar FV Utility Scale com Licenciamento Ambiental Estruturado</h3><p class="cdesc">Planejamento técnico-ambiental para usinas de médio e grande porte: estudos locacionais, licenciamento federal e estadual.</p></div>
+      <div class="pcard cat-solar" data-id="monitor"><div class="card-top"><span class="ctag ts">Monitoramento · FV</span><span class="arr">↗</span></div><div class="cperiod">Fev – Dez 2020 · KRAEFEGG Multi Office</div><h3 class="ctitle">Plano de Monitoramento Ambiental — Usinas Solares e Eólicas</h3><p class="cdesc">Programas de monitoramento na implantação e operação de renováveis: vegetação, fauna, erosão, efluentes.</p></div>
+      <div class="pcard cat-ambiental" data-id="prad_rp"><div class="card-top"><span class="ctag ta">PRAD · Caatinga</span><span class="arr">↗</span></div><div class="cperiod">Jul 2025 · Em andamento · KRAEFEGG Multi Office</div><h3 class="ctitle">PRAD — Reposição Florestal · Apolo GD Rio do Peixe · Caraúbas-PB</h3><p class="cdesc">Plantio de 2.600 mudas nativas da Caatinga, irrigação por bombeamento solar e monitoramento de 12 meses.</p><div class="cfoot"><div><div class="cfv">2.600</div><div class="cfl">mudas</div></div><div><div class="cfv">12 meses</div><div class="cfl">monitor.</div></div></div></div>
+      <div class="pcard cat-ambiental" data-id="apolo_jq"><div class="card-top"><span class="ctag ta">Plantio Comp. · Bahia</span><span class="arr">↗</span></div><div class="cperiod">Fev 2025 · Em andamento · KRAEFEGG Multi Office</div><h3 class="ctitle">Plantio Compensatório · APOLO SPE Jânio Quadros · Bahia</h3><p class="cdesc">Diagnóstico ambiental, metodologia de plantio, espécies nativas e indicadores de desempenho.</p></div>
+      <div class="pcard cat-ambiental" data-id="porangatu"><div class="card-top"><span class="ctag ta">Compensação · UFV</span><span class="arr">↗</span></div><div class="cperiod">Jan 2024 – Jan 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">Compensação Ambiental — UFV Apolo Porangatu I · 3 ha</h3><p class="cdesc">Execução de compensação ambiental de 3 ha com recomposição vegetal e conformidade legal.</p><div class="cfoot"><div><div class="cfv">3 ha</div><div class="cfl">área</div></div></div></div>
+      <div class="pcard cat-ambiental" data-id="linear"><div class="card-top"><span class="ctag ta">PRAD · Linear</span><span class="arr">↗</span></div><div class="cperiod">Mar – Dez 2021 · KRAEFEGG Multi Office</div><h3 class="ctitle">Recuperação Ambiental — Infraestrutura Linear</h3><p class="cdesc">PRAD, plantio compensatório, controle de erosão/drenagem e monitoramento pós-obra.</p></div>
+      <div class="pcard cat-ambiental" data-id="pigpa"><div class="card-top"><span class="ctag ta">Passivos · PIGPA</span><span class="arr">↗</span></div><div class="cperiod">Nov 2019 – Dez 2020 · KRAEFEGG Multi Office</div><h3 class="ctitle">PIGPA — Plano Integrado de Gestão de Passivos Ambientais</h3><p class="cdesc">Diagnóstico e plano técnico para identificação, quantificação e mitigação de passivos com foco em segurança jurídica.</p></div>
+      <div class="pcard span2 cat-carbono" data-id="carbono"><div class="card-top"><span class="ctag tc">Carbono · Série I · II · III</span><span class="arr">↗</span></div><div class="cperiod">Jan 2023 – Dez 2024 · KRAEFEGG Multi Office</div><h3 class="ctitle">Projetos de Crédito de Carbono — Estruturação Técnica e Ambiental</h3><p class="cdesc">Três projetos complementares: alta capacidade de captura (I), otimização para mercados voluntários (II) e abordagem modular escalável (III).</p><div class="cfoot"><div><div class="cfv">3</div><div class="cfl">projetos</div></div><div><div class="cfv">Voluntário</div><div class="cfl">mercado</div></div><div><div class="cfv">ESG</div><div class="cfl">integração</div></div></div></div>
+      <div class="pcard cat-carbono" data-id="gee"><div class="card-top"><span class="ctag tc">GEE · Inventário</span><span class="arr">↗</span></div><div class="cperiod">Out 2022 – Dez 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Inventário de Emissões GEE e Projetos de Redução de Carbono</h3><p class="cdesc">Inventário de GEE, identificação de oportunidades de redução, compensação florestal e relatórios ESG.</p></div>
+      <div class="pcard cat-mineracao" data-id="ativa"><div class="card-top"><span class="ctag tm">Mineração · Ti &amp; V</span><span class="arr">↗</span></div><div class="cperiod">Fev – Mar 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">ATIVA Mineração — Titânio e Vanádio · Inventário Florestal</h3><p class="cco">Floresta – PE</p><p class="cdesc">Levantamento florístico e fitossociológico, medições dendrométricas, delimitação AID/ADA e base para EIA, ASV e PRAD.</p></div>
+      <div class="pcard cat-mineracao" data-id="min_diag"><div class="card-top"><span class="ctag tm">Mineralógico · EIA</span><span class="arr">↗</span></div><div class="cperiod">Out 2025 – Fev 2026 · KRAEFEGG Multi Office</div><h3 class="ctitle">Diagnóstico Mineralógico e Ambiental para Mineração Sustentável</h3><p class="cdesc">Caracterização mineralógica e litológica integrada ao diagnóstico ambiental e apoio a EIAs e ASVs.</p></div>
+      <div class="pcard cat-mineracao" data-id="mine_safety"><div class="card-top"><span class="ctag tm">Mineração PME</span><span class="arr">↗</span></div><div class="cperiod">Ago 2020 – Dez 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Plano de Segurança e Gestão Ambiental — Mineração PME</h3><p class="cdesc">Plano técnico integrado para pequenos e médios mineradores: diagnóstico, riscos, controle e licenciamento.</p></div>
+      <div class="pcard cat-esg" data-id="auditoria"><div class="card-top"><span class="ctag te">Auditoria · Compliance</span><span class="arr">↗</span></div><div class="cperiod">Jan – Dez 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">Auditoria Ambiental e Compliance Técnico para Ativos Estratégicos</h3><p class="cdesc">Auditorias ambientais focadas em conformidade legal, diagnóstico de passivos e suporte a due diligence.</p></div>
+      <div class="pcard cat-esg" data-id="pericia"><div class="card-top"><span class="ctag te">Perícia · Laudo</span><span class="arr">↗</span></div><div class="cperiod">Jan – Dez 2024 · KRAEFEGG Multi Office</div><h3 class="ctitle">Perícia Ambiental Estratégica — Infraestrutura, Energia e Mineração</h3><p class="cdesc">Perícias judicial e extrajudicial, laudos técnicos, análise de danos e interface técnico-jurídica.</p></div>
+      <div class="pcard cat-esg" data-id="ambientax"><div class="card-top"><span class="ctag te">ESG · Klabin S.A.</span><span class="arr">↗</span></div><div class="cperiod">Mar 2024 – Mar 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">Projeto AMBIENTAX — Mitigação e Desenvolvimento Socioeconômico · Klabin</h3><p class="cdesc">Diagnóstico ambiental, mitigação e compensação de impactos, integração ESG e base técnica para governança.</p></div>
+      <div class="pcard cat-esg" data-id="barragens"><div class="card-top"><span class="ctag te">Barragens · Segurança</span><span class="arr">↗</span></div><div class="cperiod">Jan – Fev 2023 · KRAEFEGG Multi Office</div><h3 class="ctitle">Programa Integrado de Segurança de Barragens e Gestão de Risco</h3><p class="cdesc">Classificação por risco e DPA, diagnóstico geotécnico, auditorias e planos de segurança e contingência.</p></div>
+      <div class="pcard cat-inovacao" data-id="agrohaus"><div class="card-top"><span class="ctag ti">Inovação · AgroHaus</span><span class="arr">↗</span></div><div class="cperiod">Jan 2024 – Dez 2025 · KRAEFEGG Multi Office</div><h3 class="ctitle">Projeto AgroHaus — Agricultura em Edificação com Clima Controlado</h3><p class="cdesc">Sistema inovador de agricultura urbana em edificação: controle climático, eficiência energética e gestão hídrica.</p></div>
+      <div class="pcard cat-territorial" data-id="cabedelo"><div class="card-top"><span class="ctag tt">Territorial · SIG/QGIS</span><span class="arr">↗</span></div><div class="cperiod">Dez 2019 – Mar 2020 · KRAEFEGG Multi Office</div><h3 class="ctitle">Expansão Urbana — Uso e Ocupação do Solo · Cabedelo/PB</h3><p class="cdesc">Análise geoespacial (SIG/QGIS): uso do solo, restrições ambientais, conflitos de ocupação e planejamento.</p></div>
+      <div class="pcard cat-territorial" data-id="geotecnia"><div class="card-top"><span class="ctag tt">Geotecnia · Container</span><span class="arr">↗</span></div><div class="cperiod">Jan – Jun 2020 · KRAEFEGG Multi Office</div><h3 class="ctitle">Geotecnia Aplicada — Sistema Móvel em Container</h3><p class="cdesc">Análise geotécnica de solo, capacidade de suporte, riscos, desenhos técnicos e viabilidade modular.</p></div>
+    </div>
+
+    <div style="margin:2.5rem 0;padding:1.5rem;background:rgba(0,229,204,.05);border:1px solid rgba(0,229,204,.25);border-radius:4px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--neon))"></div>
+      <div><div style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.375rem">// Projeto em Destaque</div><div style="font-family:'Rajdhani',sans-serif;font-size:1.25rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em">Complexo Agrovoltaico — 10 MWp + Agricultura + Carbono</div><div style="font-size:12px;color:var(--text3);margin-top:.25rem;font-family:'Chakra Petch',monospace;letter-spacing:.04em">TIR 19,4% · CAPEX R$ 42M · Triple revenue · Semiárido Nordestino</div></div>
+      <button class="btn-primary" onclick="goto('destaque')">Ver estudo completo →</button>
+    </div>
+  </div>
+
+  <div class="tl-strip">
+    <div class="tl-inner">
+      <div class="sec-hdr"><h2 class="sec-title reveal">Linha do Tempo</h2><span class="sec-meta reveal">2019 – 2026 · 25 projetos</span></div>
+      <div class="tlgrid reveal">
+        <div class="tlitem"><div class="tldot" style="border-color:var(--amber);background:rgba(255,179,71,.2)"></div><div><div class="tlperiod">Mar 2026 · em andamento</div><div class="tlname">FPS — Usina FV 5 MWp · IPP · Nordeste</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--purple);background:rgba(180,122,255,.2)"></div><div><div class="tlperiod">Out 2025 – Fev 2026</div><div class="tlname">Diagnóstico Mineralógico e Ambiental</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Jul 2025 · em andamento</div><div class="tlname">PRAD — Apolo Rio do Peixe · Caraúbas-PB</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Fev 2025 · em andamento</div><div class="tlname">Plantio Compensatório · APOLO SPE Jânio Quadros · BA</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--purple);background:rgba(180,122,255,.2)"></div><div><div class="tlperiod">Fev – Mar 2025</div><div class="tlname">ATIVA Mineração (Ti e V) — Inventário Florestal · PE</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--blue);background:rgba(79,172,254,.2)"></div><div><div class="tlperiod">Jan – Dez 2025</div><div class="tlname">Auditoria Ambiental e Compliance — Ativos Estratégicos</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--rose);background:rgba(255,126,179,.2)"></div><div><div class="tlperiod">Jan 2024 – Dez 2025</div><div class="tlname">Projeto AgroHaus — Agricultura em Edificação</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--blue);background:rgba(79,172,254,.2)"></div><div><div class="tlperiod">Mar 2024 – Mar 2025</div><div class="tlname">Projeto AMBIENTAX — ESG · Klabin S.A.</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Jan 2024 – Jan 2025</div><div class="tlname">Compensação Ambiental UFV Apolo Porangatu I · 3 ha</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--blue);background:rgba(79,172,254,.2)"></div><div><div class="tlperiod">Jan – Dez 2024</div><div class="tlname">Perícia Ambiental Estratégica — Infraestrutura e Energia</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--cyan);background:rgba(0,229,204,.2)"></div><div><div class="tlperiod">Jan 2023 – Dez 2024</div><div class="tlname">Série Crédito de Carbono — Projetos I · II · III</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--cyan);background:rgba(0,229,204,.2)"></div><div><div class="tlperiod">Out 2022 – Dez 2023</div><div class="tlname">Inventário de Emissões GEE e Projetos de Redução</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--amber);background:rgba(255,179,71,.2)"></div><div><div class="tlperiod">Jun 2022 – Dez 2023</div><div class="tlname">Usina Solar FV Utility Scale — Licenciamento</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--blue);background:rgba(79,172,254,.2)"></div><div><div class="tlperiod">Jan – Fev 2023</div><div class="tlname">Programa Integrado de Segurança de Barragens</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--purple);background:rgba(180,122,255,.2)"></div><div><div class="tlperiod">Ago 2020 – Dez 2023</div><div class="tlname">Plano de Segurança e Gestão Ambiental — Mineração PME</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--amber);background:rgba(255,179,71,.2)"></div><div><div class="tlperiod">2020 – 2023</div><div class="tlname">EVTEA Parques Fotovoltaicos — Série I · II · III</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Mar – Dez 2021</div><div class="tlname">Recuperação Ambiental — Infraestrutura Linear</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--amber);background:rgba(255,179,71,.2)"></div><div><div class="tlperiod">Fev – Dez 2020</div><div class="tlname">Plano de Monitoramento Ambiental — FV e Eólicas</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--coral);background:rgba(255,107,107,.2)"></div><div><div class="tlperiod">Jan – Jun 2020</div><div class="tlname">Geotecnia Aplicada — Sistema Móvel em Container</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--neon);background:rgba(57,255,122,.2)"></div><div><div class="tlperiod">Nov 2019 – Dez 2020</div><div class="tlname">PIGPA — Gestão de Passivos Ambientais</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+        <div class="tlitem"><div class="tldot" style="border-color:var(--coral);background:rgba(255,107,107,.2)"></div><div><div class="tlperiod">Dez 2019 – Mar 2020</div><div class="tlname">Estudo de Expansão Urbana — Cabedelo/PB</div><div class="tlco">KRAEFEGG Multi Office</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w" style="position:relative;z-index:2"><div class="pfooter">
+    <span class="fb">KRAEFEGG Multi Office · Engenharia Ambiental</span>
+    <span style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--text3)">Cabedelo–PB · Brasil · 2019–2026</span>
+  </div></div>
+
+  <div class="m-overlay" id="moverlay">
+    <div class="modal"><button class="mclose" id="mclose">×</button><div id="mcontent"></div></div>
+  </div>
+</div>
+
+<!-- PAGE 3: DESTAQUE -->
+<div id="page-destaque" class="page">
+  <div class="proj-cover">
+    <div class="proj-cover-inner">
+      <div class="proj-badge">⬡ Project Development Report · 2025–2026</div>
+      <h1 class="proj-h1">Complexo Agrovoltaico Integrado<br>no Semiárido Nordestino</h1>
+      <p class="proj-subtitle">Energia solar + agricultura irrigada + créditos de carbono — três receitas em um único ativo de infraestrutura verde</p>
+      <div class="proj-meta-row">
+        <div class="proj-meta-item"><strong>Localização</strong>Piauí / Ceará</div>
+        <div class="proj-meta-item"><strong>Capacidade</strong>10 MWp FV</div>
+        <div class="proj-meta-item"><strong>Área</strong>~30 hectares</div>
+        <div class="proj-meta-item"><strong>Horizonte</strong>25 anos</div>
+        <div class="proj-meta-item"><strong>Estrutura</strong>SPE · Project Finance</div>
+      </div>
+    </div>
+  </div>
+  <div class="w" style="padding-top:2rem;padding-bottom:4rem;position:relative;z-index:2">
+    <div class="kpi-grid reveal">
+      <div class="kpi"><div class="kpi-label">CAPEX Total</div><div class="kpi-value" style="color:var(--amber)">R$ 42 M</div><div class="kpi-sub">Solar + irrigação + infra</div></div>
+      <div class="kpi"><div class="kpi-label">Receita Anual</div><div class="kpi-value" style="color:var(--neon)">R$ 13,8 M</div><div class="kpi-sub">Energia + agro + carbono</div></div>
+      <div class="kpi"><div class="kpi-label">TIR Alavancada</div><div class="kpi-value" style="color:var(--cyan)">19,4%</div><div class="kpi-sub">70% BNDES/BNB</div></div>
+      <div class="kpi"><div class="kpi-label">VPL (TMA 10%)</div><div class="kpi-value" style="color:var(--blue)">R$ 38 M</div><div class="kpi-sub">25 anos</div></div>
+      <div class="kpi"><div class="kpi-label">Payback</div><div class="kpi-value" style="color:var(--purple)">6,2 anos</div></div>
+      <div class="kpi"><div class="kpi-label">Valor RTB</div><div class="kpi-value" style="color:var(--coral)">R$22–28M</div><div class="kpi-sub">5–6× EBITDA</div></div>
+    </div>
+    <div class="psec reveal"><div class="psec-hdr"><div class="psec-num">01</div><h2>Resumo Executivo</h2></div>
+      <div class="pcard2"><p>O <strong style="color:var(--cyan)">Complexo Agrovoltaico</strong> sobrepõe uma usina solar de <strong>10 MWp</strong> com agricultura irrigada (18 ha) sob os painéis no Semiárido. Três fluxos de receita simultâneos: venda de energia no ACL, produção de melão exportação e créditos de carbono via SBCE/Verra. Modelo pioneiro no Brasil — menos de 5 projetos similares em operação comercial.</p></div>
+    </div>
+    <div class="psec reveal"><div class="psec-hdr"><div class="psec-num">02</div><h2>Oportunidade de Mercado</h2></div>
+      <div class="two-col">
+        <div class="pcard2" style="border-left:2px solid var(--neon)"><h3 style="color:var(--neon)">Energia (ACL)</h3><ul><li>7.000+ empresas migraram ao ACL desde 2023</li><li>PPA solar NE: R$ 190–240/MWh vs. custo ~R$ 110/MWh</li></ul></div>
+        <div class="pcard2" style="border-left:2px solid var(--cyan)"><h3 style="color:var(--cyan)">Agricultura</h3><ul><li>Potencial agrícola bloqueado pelo custo de bombeamento</li><li>Sombreamento reduz evapotranspiração em até 30%</li></ul></div>
+        <div class="pcard2" style="border-left:2px solid var(--amber)"><h3 style="color:var(--amber)">Carbono</h3><ul><li>Lei 15.042/2024 criou o SBCE — demanda regulada</li><li>Preço convergindo para USD 15–30/tCO₂</li></ul></div>
+        <div class="pcard2" style="border-left:2px solid var(--blue)"><h3 style="color:var(--blue)">Vantagem NE</h3><ul><li>Irradiação 6,0–6,5 kWh/m²/dia · SUDENE 75% IRPJ</li><li>Terreno: R$ 800–2.500/ha vs. R$ 15.000+ no SE</li></ul></div>
+      </div>
+    </div>
+    <div class="psec reveal"><div class="psec-hdr"><div class="psec-num">03</div><h2>Viabilidade Econômica</h2></div>
+      <div class="rev-bar">
+        <div class="rev-seg" style="flex:55;background:rgba(255,179,71,.15);color:var(--amber)">Energia 55%</div>
+        <div class="rev-seg" style="flex:33;background:rgba(57,255,122,.12);color:var(--neon)">Agro 33%</div>
+        <div class="rev-seg" style="flex:12;background:rgba(0,229,204,.1);color:var(--cyan)">Carbono 12%</div>
+      </div>
+      <table><thead><tr><th>Fonte de Receita</th><th>Base de Cálculo</th><th>R$/ano</th></tr></thead><tbody>
+        <tr><td>Energia PPA (ACL 15 anos)</td><td>15.600 MWh × R$ 215/MWh</td><td style="color:var(--amber);font-weight:600">R$ 7,6 M</td></tr>
+        <tr><td>Produção agrícola (melão exportação)</td><td>18 ha × 45 t/ha × R$ 3.200/t</td><td style="color:var(--neon);font-weight:600">R$ 4,5 M</td></tr>
+        <tr><td>Créditos de carbono Verra/SBCE</td><td>9.800 tCO₂e × USD 14</td><td style="color:var(--cyan);font-weight:600">R$ 1,7 M</td></tr>
+        <tr style="border-top:1px solid var(--border2)"><td style="color:var(--text);font-weight:600">EBITDA (margem 90%)</td><td></td><td style="color:var(--cyan);font-weight:600;font-family:'Rajdhani',sans-serif;font-size:1.1rem">R$ 12,47 M</td></tr>
+      </tbody></table>
+    </div>
+    <div class="psec reveal"><div class="psec-hdr"><div class="psec-num">04</div><h2>Estratégia RTB — Retorno do Developer</h2></div>
+      <div class="pcard2"><div class="tl2" style="margin-top:.75rem">
+        <div class="tl2-item"><div class="tl2-dot" style="border-color:var(--amber)"></div><div class="tl2-title">Fase 01 — Desenvolvimento (Meses 1–18)</div><div class="tl2-desc">Fundiária, carta-consulta ANEEL, estudos ambientais. Custo: R$ 800k – R$ 1,2 M</div></div>
+        <div class="tl2-item"><div class="tl2-dot" style="border-color:var(--amber)"></div><div class="tl2-title">Fase 02 — Licenciamento e PPA (Meses 18–30)</div><div class="tl2-desc">LP ambiental, Acordo de Conexão ANEEL, PPA assinado. Custo adicional: R$ 600k</div></div>
+        <div class="tl2-item"><div class="tl2-dot" style="border-color:var(--neon);box-shadow:0 0 10px rgba(57,255,122,.5)"></div><div class="tl2-title">Fase 03 — Venda RTB (Meses 30–36)</div><div class="tl2-desc"><strong style="color:var(--neon)">Venda por R$ 22–28 M</strong> com investimento de R$ 1,8–2 M. Retorno de 10–13× no capital do developer.</div></div>
+      </div></div>
+    </div>
+    <div class="psec reveal"><div class="psec-hdr"><div class="psec-num">05</div><h2>Riscos e Mitigação</h2></div>
+      <div class="pcard2">
+        <div class="risk-row"><span class="rbadge r-hi">ALTO</span><div><div class="risk-name">Atraso no Acordo de Conexão ANEEL</div><div class="risk-mit">Mapeamento de subestações; engajamento antecipado com distribuidora; assessoria regulatória especializada</div></div></div>
+        <div class="risk-row"><span class="rbadge r-mid">MÉDIO</span><div><div class="risk-name">Variação de preço do PPA / offtaker</div><div class="risk-mit">Indexação ao IPCA; offtaker com rating mínimo BB-; garantia bancária</div></div></div>
+        <div class="risk-row"><span class="rbadge r-mid">MÉDIO</span><div><div class="risk-name">Risco climático — seca severa</div><div class="risk-mit">Reservatório 90 dias; culturas tolerantes; seguro agrícola ProAgro</div></div></div>
+        <div class="risk-row"><span class="rbadge r-low">BAIXO</span><div><div class="risk-name">Risco de execução EPC</div><div class="risk-mit">Contrato turnkey; garantias de performance P90; seguro CAR</div></div></div>
+        <div class="risk-row"><span class="rbadge r-low">BAIXO</span><div><div class="risk-name">Risco regulatório de carbono</div><div class="risk-mit">Certificação dupla Verra + SBCE; forward carbon com preço-piso</div></div></div>
+      </div>
+    </div>
+    <div class="psec reveal"><div class="psec-hdr"><div class="psec-num">06</div><h2>Conclusão Estratégica</h2></div>
+      <div class="conclusion-box">
+        <h3>⬡ Janela de Oportunidade 2025–2026</h3>
+        <p>A confluência do SBCE, a consolidação do ACL e a crise hídrica no Nordeste cria uma janela que não existia há 3 anos. Para o developer: investimento de <strong style="color:var(--cyan)">R$ 1,8–2,0 M</strong> → ativo vendível por <strong style="color:var(--neon)">R$ 22–28 M</strong> em 36 meses (retorno 10–13×). Para o investidor operacional: TIR alavancada de <strong style="color:var(--cyan)">19,4%</strong> com DSCR 2,1× — infraestrutura verde com caixa recorrente.</p>
+      </div>
+    </div>
+    <div style="margin-top:2rem;display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:2">
+      <a href="mailto:kraefegg.mos3@gmail.com?subject=Interesse: Projeto Agrovoltaico">Solicitar IM completo →</a>
+      <button class="btns" onclick="goto('portfolio')">← Ver todos os projetos</button>
+    </div>
+    <div style="border-top:1px solid var(--border);padding:1.5rem 0;margin-top:2rem;font-size:11px;color:var(--text3);text-align:center;font-family:'Chakra Petch',monospace;letter-spacing:.05em">KRAEFEGG Multi Office · Dados e projeções baseados em benchmarks setoriais 2024–2025 · Não constitui oferta de investimento</div>
+  </div>
+</div>
+
+<!-- PAGE 4: PERFIL -->
+<div id="page-perfil" class="page">
+  <div class="profile-hero">
+    <div class="profile-card">
+      <div class="profile-avatar">R</div>
+      <div>
+        <div class="profile-name">Railson N. de Arruda</div>
+        <div class="profile-title">// Engenheiro Ambiental · Diretor Técnico · KRAEFEGG Multi Office</div>
+        <div class="profile-head">Tech. Director | Env. Engineer | Spec.: Mineralogy &amp; Safety Eng. | Env. Forensics &amp; Auditing | Mining, Energy &amp; Infra Projects | Geospatial Intelligence &amp; Data-Driven Modeling | MBA Civil Works &amp; Renewable Energy</div>
+        <div class="profile-contacts">
+          <a href="mailto:kraefegg.mos3@gmail.com" class="contact-chip">📧 kraefegg.mos3@gmail.com</a>
+          <a href="mailto:executive.director@kraefegg.xyz" class="contact-chip">📧 executive.director@kraefegg.xyz</a>
+          <a href="mailto:corporate.business@kraefegg.xyz" class="contact-chip">📧 corporate.business@kraefegg.xyz</a>
+          
+          
+          
+          <a href="tel:+5561998850946" class="contact-chip">📱 (61) 99885-0946</a>
+          <a href="tel:+5583999194789" class="contact-chip">📱 (83) 99919-4789</a>
+          <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" class="contact-chip">🔗 LinkedIn — Railson N. de Arruda ↗</a>
+          <span class="contact-chip">📍 Cabedelo – PB · Brasil</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-hdr reveal"><h2 class="sec-title">Formação Acadêmica</h2><span class="sec-meta">2011 – 2026</span></div>
+    <div class="edu-grid reveal">
+      <div class="edu-card" style="border-color:var(--amber)"><div class="edu-deg">Técnico em Meio Ambiente</div><div class="edu-inst">IFPB — Instituto Federal da Paraíba</div><div class="edu-period">Fev 2011 – Dez 2015</div><div class="edu-desc">Gestão ambiental, monitoramento, controle de poluição, recuperação de áreas degradadas e serviços ambientais.</div><div class="edu-grade">Nota 9,5</div></div>
+      <div class="edu-card" style="border-color:var(--neon)"><div class="edu-deg">Bacharelado em Engenharia Ambiental</div><div class="edu-inst">FPB — Faculdades Paraíba</div><div class="edu-period">Jun 2014 – Ago 2019</div><div class="edu-desc">Licenciamento ambiental, engenharia ambiental, consultoria, remediação e serviços ambientais.</div><div class="edu-grade">Nota 9,0</div></div>
+      <div class="edu-card" style="border-color:var(--blue)"><div class="edu-deg">Especialização — Perícia e Auditoria Ambiental</div><div class="edu-inst">Faculdade Bookplay</div><div class="edu-period">Mar 2024 – Mar 2025 · 560h</div><div class="edu-desc">Perícia ambiental, análise forense, auditoria interna/externa e laudos técnicos.</div></div>
+      <div class="edu-card" style="border-color:var(--purple)"><div class="edu-deg">Especialização — Engenharia de Segurança do Trabalho</div><div class="edu-inst">Faculdade Bookplay</div><div class="edu-period">Mar 2025 – Out 2025</div><div class="edu-desc">SSMA, consultoria em segurança, gestão de riscos ambientais, operacionais e regulatórios.</div></div>
+      <div class="edu-card" style="border-color:var(--cyan)"><div class="edu-deg">Especialização — Mineralogia</div><div class="edu-inst">Faculdade Bookplay</div><div class="edu-period">Mar 2025 – Ago 2025</div><div class="edu-desc">Engenharia de projetos minerários, gestão de riscos ambientais e licenciamento.</div></div>
+      <div class="edu-card" style="border-color:var(--neon)"><div class="edu-deg">Especialização — Engenharia Florestal</div><div class="edu-inst">Faculdade Bookplay</div><div class="edu-period">Ago 2025 – Jan 2026</div><div class="edu-desc">Engenharia florestal aplicada a projetos ambientais, recuperação e licenciamento.</div></div>
+      <div class="edu-card" style="border-color:var(--amber)"><div class="edu-deg">MBA em Energias Renováveis</div><div class="edu-inst">FACUVALE — PÓS-GRADUAÇÃO EaD</div><div class="edu-period">Fev 2026 – Jun 2026</div><div class="edu-desc">Solar, eólica, hidrelétrica, biocombustíveis, viabilidade econômica, regulamentação e distribuição de energia.</div></div>
+      <div class="edu-card" style="border-color:var(--coral)"><div class="edu-deg">MBA em Gestão de Obras — Construção Civil</div><div class="edu-inst">FACUVALE — PÓS-GRADUAÇÃO EaD</div><div class="edu-period">Fev 2026 – Jun 2026</div><div class="edu-desc">PMBOK, Lean Construction, gestão de contratos, custos e riscos em projetos, normas NBR/ABNT.</div></div>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:2.5rem"><h2 class="sec-title">Certificações e Capacitações</h2><span class="sec-meta">IMO · FGV · ANEEL · UNIDO · Schneider Electric</span></div>
+    <div class="cert-grid reveal">
+      <div class="cert-card"><div class="cert-name">Alternative Power Generation Technologies</div><div class="cert-inst">Schneider Electric University</div><div class="cert-date">Mai 2025</div><span class="cert-tag" style="background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)">Energia</span></div>
+      <div class="cert-card"><div class="cert-name">Análise de Impacto Regulatório (AIR) — Setor de Energia</div><div class="cert-inst">ANEEL</div><div class="cert-date">Mai 2025</div><span class="cert-tag" style="background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)">Regulação</span></div>
+      <div class="cert-card"><div class="cert-name">Análise Financeira de Projetos I</div><div class="cert-inst">Schneider Electric University</div><div class="cert-date">Mai 2025</div><span class="cert-tag" style="background:rgba(57,255,122,.08);color:var(--neon);border:1px solid rgba(57,255,122,.2)">Financeiro</span></div>
+      <div class="cert-card"><div class="cert-name">MARPOL Annex V — Prevenção de Poluição por Navios</div><div class="cert-inst">International Maritime Organization (IMO)</div><div class="cert-date">Jun 2025</div><span class="cert-tag" style="background:rgba(0,229,204,.08);color:var(--cyan);border:1px solid rgba(0,229,204,.2)">Ambiental</span></div>
+      <div class="cert-card"><div class="cert-name">OPRC — Oil Pollution Preparedness Response &amp; Co-operation</div><div class="cert-inst">International Maritime Organization (IMO)</div><div class="cert-date">Jul 2025</div><span class="cert-tag" style="background:rgba(0,229,204,.08);color:var(--cyan);border:1px solid rgba(0,229,204,.2)">Ambiental</span></div>
+      <div class="cert-card"><div class="cert-name">Geologia Ambiental</div><div class="cert-inst">IFRS — Instituto Federal do Rio Grande do Sul</div><div class="cert-date">Jan 2026</div><span class="cert-tag" style="background:rgba(180,122,255,.08);color:var(--purple);border:1px solid rgba(180,122,255,.2)">Geologia</span></div>
+      <div class="cert-card"><div class="cert-name">Energias Renováveis: Termodinâmica e Tipos</div><div class="cert-inst">IFRS</div><div class="cert-date">Jan 2026</div><span class="cert-tag" style="background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)">Energia</span></div>
+      <div class="cert-card"><div class="cert-name">Ferramentas de Mensuração — Fontes Renováveis de Energia</div><div class="cert-inst">Fundação Getulio Vargas (FGV)</div><div class="cert-date">Mai 2024</div><span class="cert-tag" style="background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)">Energia</span></div>
+      <div class="cert-card"><div class="cert-name">Fundamentos do Setor Elétrico</div><div class="cert-inst">ANEEL</div><div class="cert-date">Jun 2024</div><span class="cert-tag" style="background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)">Regulação</span></div>
+      <div class="cert-card"><div class="cert-name">Capacitação em Energia Solar Fotovoltaica</div><div class="cert-inst">UNIDO</div><div class="cert-date">Nov 2016</div><span class="cert-tag" style="background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)">Solar</span></div>
+      <div class="cert-card"><div class="cert-name">Capacitação em Energia Solar Térmica</div><div class="cert-inst">UNIDO</div><div class="cert-date">Jul 2015</div><span class="cert-tag" style="background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)">Solar</span></div>
+      <div class="cert-card"><div class="cert-name">Licenciamento Ambiental Federal — Infraestrutura de Transportes</div><div class="cert-inst">Enap</div><div class="cert-date">Jan 2024</div><span class="cert-tag" style="background:rgba(57,255,122,.08);color:var(--neon);border:1px solid rgba(57,255,122,.2)">Licenciamento</span></div>
+      <div class="cert-card"><div class="cert-name">Plano de Segurança de Barragens: Guia de Instruções</div><div class="cert-inst">Enap</div><div class="cert-date">Jan 2024</div><span class="cert-tag" style="background:rgba(255,107,107,.1);color:var(--coral);border:1px solid rgba(255,107,107,.2)">Barragens</span></div>
+      <div class="cert-card"><div class="cert-name">ISO 14001:2015 — Environmental Management Systems</div><div class="cert-inst">Alison</div><div class="cert-date">Dez 2023</div><span class="cert-tag" style="background:rgba(0,229,204,.08);color:var(--cyan);border:1px solid rgba(0,229,204,.2)">ESG</span></div>
+      <div class="cert-card"><div class="cert-name">Gestão Estratégica de Marcas: Era Digital</div><div class="cert-inst">Universidade de São Paulo (USP)</div><div class="cert-date">Dez 2024</div><span class="cert-tag" style="background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)">Gestão</span></div>
+      <div class="cert-card"><div class="cert-name">Cyber Security / Segurança Cibernética</div><div class="cert-inst">FEBRABAN CyberLab</div><div class="cert-date">Out 2024</div><span class="cert-tag" style="background:rgba(180,122,255,.08);color:var(--purple);border:1px solid rgba(180,122,255,.2)">Cyber</span></div>
+      <div class="cert-card"><div class="cert-name">Perícia Criminal, Grafoscopia e Documentoscopia</div><div class="cert-inst">Faculdade Bookplay</div><div class="cert-date">Jan 2026</div><span class="cert-tag" style="background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)">Perícia</span></div>
+      <div class="cert-card"><div class="cert-name">Petróleo e Gás</div><div class="cert-inst">Faculdade Bookplay</div><div class="cert-date">Jan 2026</div><span class="cert-tag" style="background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)">Energia</span></div>
+      <div class="cert-card"><div class="cert-name">BSAFE — Certificate of Achievement</div><div class="cert-inst">UNDSS — United Nations</div><div class="cert-date">Fev 2024</div><span class="cert-tag" style="background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)">UN</span></div>
+      <div class="cert-card"><div class="cert-name">Project Management</div><div class="cert-inst">Great Learning</div><div class="cert-date">Jan 2024</div><span class="cert-tag" style="background:rgba(57,255,122,.08);color:var(--neon);border:1px solid rgba(57,255,122,.2)">Gestão</span></div>
+      <div class="cert-card"><div class="cert-name">Gestão de Riscos: ISO 31000</div><div class="cert-inst">Pensar Cursos</div><div class="cert-date">Dez 2023</div><span class="cert-tag" style="background:rgba(255,107,107,.1);color:var(--coral);border:1px solid rgba(255,107,107,.2)">Riscos</span></div>
+      <div class="cert-card"><div class="cert-name">Créditos de Carbono e MDL</div><div class="cert-inst">Unieducar — Universidade Corporativa</div><div class="cert-date">Abr 2017</div><span class="cert-tag" style="background:rgba(0,229,204,.08);color:var(--cyan);border:1px solid rgba(0,229,204,.2)">Carbono</span></div>
+      <div class="cert-card"><div class="cert-name">Ecossistemas de Inovação no Setor de Energia</div><div class="cert-inst">Instituto Brasileiro de Petróleo e Gás (UNIBP)</div><div class="cert-date">Dez 2023</div><span class="cert-tag" style="background:rgba(255,179,71,.1);color:var(--amber);border:1px solid rgba(255,179,71,.2)">Energia</span></div>
+      <div class="cert-card"><div class="cert-name">Sustentabilidade Aplicada aos Negócios</div><div class="cert-inst">Fundação Getulio Vargas (FGV)</div><div class="cert-date">Jan 2024</div><span class="cert-tag" style="background:rgba(57,255,122,.08);color:var(--neon);border:1px solid rgba(57,255,122,.2)">ESG</span></div>
+      <div class="cert-card"><div class="cert-name">Six Sigma (Seis Sigmas)</div><div class="cert-inst">Pensar Cursos</div><div class="cert-date">Dez 2023</div><span class="cert-tag" style="background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)">Qualidade</span></div>
+      <div class="cert-card"><div class="cert-name">AutoCAD 2021</div><div class="cert-inst">Pensar Cursos</div><div class="cert-date">Jan 2024</div><span class="cert-tag" style="background:rgba(0,229,204,.06);color:var(--text3);border:1px solid var(--border)">CAD</span></div>
+      <div class="cert-card"><div class="cert-name">JavaScript &amp; HTML: Lógica com Animações</div><div class="cert-inst">Alura</div><div class="cert-date">Mai 2022</div><span class="cert-tag" style="background:rgba(180,122,255,.08);color:var(--purple);border:1px solid rgba(180,122,255,.2)">Dev</span></div>
+      <div class="cert-card"><div class="cert-name">Trusted Tester for Web — DHS Section 508</div><div class="cert-inst">U.S. Department of Homeland Security</div><div class="cert-date">Dez 2023</div><span class="cert-tag" style="background:rgba(79,172,254,.08);color:var(--blue);border:1px solid rgba(79,172,254,.2)">Acessibilidade</span></div>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:2.5rem"><h2 class="sec-title">Idiomas</h2><span class="sec-meta">Proficiência certificada</span></div>
+    <div class="lang-grid reveal">
+      <div class="lang-badge"><div class="lang-name">Português</div><div class="lang-level">C2 · Nativo</div></div>
+      <div class="lang-badge"><div class="lang-name">English</div><div class="lang-level">C2 · 72/100</div><div class="lang-cert">EF SET Certificate</div></div>
+      <div class="lang-badge"><div class="lang-name">Deutsch</div><div class="lang-level">B1–C2</div><div class="lang-cert">DeutscheWelle Zertifikat</div></div>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:2.5rem"><h2 class="sec-title">Competências Técnicas</h2><span class="sec-meta">Multidisciplinar</span></div>
+    <div class="skills-list reveal">
+      <span class="skill-pill">Engenharia Ambiental</span><span class="skill-pill">Licenciamento Ambiental</span><span class="skill-pill">PRAD & Recuperação</span><span class="skill-pill">Perícia Ambiental</span><span class="skill-pill">Auditoria Ambiental</span><span class="skill-pill">Engenharia Florestal</span><span class="skill-pill">Mineralogia</span><span class="skill-pill">Eng. Segurança do Trabalho</span><span class="skill-pill">IMO Consultant E-Roster</span><span class="skill-pill">MARPOL · OPRC</span><span class="skill-pill">Project Finance</span><span class="skill-pill">Energia Solar FV</span><span class="skill-pill">Energias Renováveis</span><span class="skill-pill">Crédito de Carbono</span><span class="skill-pill">SBCE · Verra · MDL</span><span class="skill-pill">GEE · ESG</span><span class="skill-pill">Inventário Florestal</span><span class="skill-pill">Geologia Ambiental</span><span class="skill-pill">Barragens · DPA</span><span class="skill-pill">EIA · RCA · ASV</span><span class="skill-pill">BNDES · BNB FNE</span><span class="skill-pill">SIG/QGIS</span><span class="skill-pill">AutoCAD</span><span class="skill-pill">Gestão de Riscos ISO 31000</span><span class="skill-pill">ISO 14001</span><span class="skill-pill">PMBOK · Lean Construction</span><span class="skill-pill">MBA Energias Renováveis</span><span class="skill-pill">MBA Gestão de Obras</span><span class="skill-pill">Petróleo & Gás</span><span class="skill-pill">Análise Financeira</span><span class="skill-pill">Project Developer</span><span class="skill-pill">JavaScript · HTML</span><span class="skill-pill">Segurança Cibernética</span>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:2.5rem"><h2 class="sec-title">Especializações, MBAs & Credenciais</h2><span class="sec-meta">Formação avançada · 2024–2026</span></div>
+    <div class="companies-panel reveal" style="grid-template-columns:repeat(3,1fr)">
+      <div class="company-card"><div class="company-name">KRAEFEGG Multi Office</div><div class="company-role">// Head · Tech. Director · Founder</div><div class="company-desc">Eng. Ambiental, Solar, Carbono, Perícia, Mineração, Project Development, ESG</div></div>
+      <div class="company-card"><div class="company-name">IMO Consultant E-Roster</div><div class="company-role">// Consultor Internacional Credenciado</div><div class="company-desc">MARPOL Annex V, OPRC, poluição marinha, conformidade marítima e ambiental</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Mineralogia</div><div class="company-role">// Faculdade Bookplay · 2025</div><div class="company-desc">Engenharia de projetos minerários, gestão de riscos e licenciamento de mineração</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Eng. Segurança do Trabalho</div><div class="company-role">// Faculdade Bookplay · 2025</div><div class="company-desc">SSMA, riscos operacionais, laudos de insalubridade e periculosidade</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Perícia & Auditoria Ambiental</div><div class="company-role">// Faculdade Bookplay · 2024–2025 · 560h</div><div class="company-desc">Perícia ambiental judicial, análise forense, auditoria interna e externa</div></div>
+      <div class="company-card"><div class="company-name">Especialização — Engenharia Florestal</div><div class="company-role">// Faculdade Bookplay · 2025–2026</div><div class="company-desc">Fitossociologia, manejo florestal, recuperação e compensação ambiental</div></div>
+      <div class="company-card"><div class="company-name">MBA — Energias Renováveis</div><div class="company-role">// FACUVALE · 2026</div><div class="company-desc">Solar, eólica, hidrelétrica, biocombustíveis, viabilidade econômica e regulamentação</div></div>
+      <div class="company-card"><div class="company-name">MBA — Gestão de Obras · Construção Civil</div><div class="company-role">// FACUVALE · 2026</div><div class="company-desc">PMBOK, Lean Construction, gestão de contratos, custos e normas NBR/ABNT</div></div>
+      <div class="company-card"><div class="company-name">Project Developer — Multi-setor</div><div class="company-role">// IPP Independente · 2019–2026</div><div class="company-desc">Energia solar, agrovoltaico, carbono, mineração, biogás — estruturação RTB</div></div>
+    </div>
+
+  </div>
+  <div class="w"><div class="pfooter">
+    <span class="fb">Railson N. de Arruda · KRAEFEGG Multi Office</span>
+    <span style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--text3)">kraefegg.mos3@gmail.com · (61) 99885-0946 · <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" style="color:var(--cyan)">LinkedIn ↗</a></span>
+  </div></div>
+</div>
+
+
+<script>
+(function(){
+// ─── CURSOR ───────────────────────────────────────────────────────
+var cur=document.getElementById('cursor');
+var trail=document.getElementById('cursorTrail');
+var mx=window.innerWidth/2, my=window.innerHeight/2;
+var tx=mx, ty=my;
+if(cur && trail){
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX; my=e.clientY;
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+  });
+  setInterval(function(){
+    tx+=(mx-tx)*0.15; ty+=(my-ty)*0.15;
+    trail.style.left=Math.round(tx)+'px'; trail.style.top=Math.round(ty)+'px';
+  },16);
+  document.addEventListener('mousedown',function(){
+    cur.style.transform='translate(-50%,-50%) scale(2.5)';
+    cur.style.opacity='0.4';
+  });
+  document.addEventListener('mouseup',function(){
+    cur.style.transform='translate(-50%,-50%) scale(1)';
+    cur.style.opacity='1';
+  });
+}
+
+// ─── PARTICLES ────────────────────────────────────────────────────
+var canvas=document.getElementById('particleCanvas');
+if(canvas){
+  var ctx=canvas.getContext('2d');
+  var W=canvas.width=window.innerWidth;
+  var H=canvas.height=window.innerHeight;
+  window.addEventListener('resize',function(){
+    W=canvas.width=window.innerWidth;
+    H=canvas.height=window.innerHeight;
+  });
+  var COLORS=['rgba(0,229,204,','rgba(57,255,122,','rgba(255,179,71,','rgba(79,172,254,'];
+  var particles=[];
+  function makeParticle(){
+    return {
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-0.5)*0.6, vy:(Math.random()-0.5)*0.6,
+      r:Math.random()*2+0.5,
+      color:COLORS[Math.floor(Math.random()*COLORS.length)],
+      alpha:Math.random()*0.5+0.1
+    };
+  }
+  for(var i=0;i<120;i++) particles.push(makeParticle());
+  function animCanvas(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W||p.y<0||p.y>H){
+        particles[i]=makeParticle();
+        continue;
+      }
+      var dx=mx-p.x, dy=my-p.y, dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<150){ p.vx+=dx/dist*0.015; p.vy+=dy/dist*0.015; }
+      p.vx*=0.995; p.vy*=0.995;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.color+p.alpha+')';
+      ctx.fill();
+    }
+    for(var i=0;i<particles.length;i++){
+      for(var j=i+1;j<particles.length;j++){
+        var dx=particles[i].x-particles[j].x;
+        var dy=particles[i].y-particles[j].y;
+        var dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<100){
+          ctx.beginPath();
+          ctx.strokeStyle='rgba(0,229,204,'+(1-dist/100)*0.12+')';
+          ctx.lineWidth=0.5;
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animCanvas);
+  }
+  animCanvas();
+}
+
+// ─── COUNTER ANIMATION ────────────────────────────────────────────
+function animateCount(el,target){
+  var current=0; var step=target/60;
+  var timer=setInterval(function(){
+    current+=step;
+    if(current>=target){ current=target; clearInterval(timer); }
+    el.textContent=Math.floor(current)+(target>=10?'+':'');
+  },25);
+}
+
+// ─── REVEAL ON SCROLL ─────────────────────────────────────────────
+function triggerReveal(){
+  setTimeout(function(){
+    var els=document.querySelectorAll('.reveal:not(.visible)');
+    if('IntersectionObserver' in window){
+      var obs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            e.target.querySelectorAll('[data-count]').forEach(function(el){
+              animateCount(el,+el.dataset.count);
+            });
+            obs.unobserve(e.target);
+          }
+        });
+      },{threshold:0.07});
+      els.forEach(function(el){ obs.observe(el); });
+    } else {
+      els.forEach(function(el){ el.classList.add('visible'); });
+    }
+  },80);
+}
+
+// ─── NAVIGATION ───────────────────────────────────────────────────
+function goto(page,filter){
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.ntab').forEach(function(t){ t.classList.remove('active'); });
+  var pg=document.getElementById('page-'+page);
+  var tb=document.querySelector('[data-page="'+page+'"]');
+  if(pg) pg.classList.add('active');
+  if(tb) tb.classList.add('active');
+  window.scrollTo(0,0);
+  if(filter && page==='portfolio'){
+    setTimeout(function(){
+      document.querySelectorAll('.fbtn').forEach(function(b){
+        b.classList.toggle('active', b.dataset.filter===filter);
+      });
+      document.querySelectorAll('.pcard').forEach(function(c){
+        c.classList.toggle('hidden', !c.classList.contains('cat-'+filter));
+      });
+    },50);
+  }
+  triggerReveal();
+}
+document.querySelectorAll('.ntab').forEach(function(btn){
+  btn.addEventListener('click',function(){ goto(btn.dataset.page); });
+});
+
+// ─── AREA CARDS ───────────────────────────────────────────────────
+document.querySelectorAll('.area-card').forEach(function(card){
+  var fn=card.getAttribute('onclick');
+  if(fn){
+    card.removeAttribute('onclick');
+    card.addEventListener('click',function(){
+      var m=fn.match(/goto\('([^']+)'(?:,'([^']+)')?\)/);
+      if(m) goto(m[1],m[2]);
+    });
+  }
+});
+document.querySelectorAll('.btn-primary,.btn-sec').forEach(function(btn){
+  var fn=btn.getAttribute('onclick');
+  if(fn){
+    btn.removeAttribute('onclick');
+    btn.addEventListener('click',function(){
+      var m=fn.match(/goto\('([^']+)'\)/);
+      if(m) goto(m[1]);
+    });
+  }
+});
+
+// ─── FILTERS ──────────────────────────────────────────────────────
+document.querySelectorAll('.fbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('active'); });
+    b.classList.add('active');
+    var f=b.dataset.filter;
+    document.querySelectorAll('.pcard').forEach(function(c){
+      c.classList.toggle('hidden', f!=='all' && !c.classList.contains('cat-'+f));
+    });
+  });
+});
+
+// ─── MODAL DATA ───────────────────────────────────────────────────
+var D={
+  fps:{tag:'Solar IPP PFS',tc:'ts',title:'Pre-Feasibility Study — Usina FV 5 MWp',period:'Mar 2026 — em andamento',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'5 MWp',l:'capacidade'},{v:'5,80',l:'GHI kWh/m2/dia'},{v:'>14%',l:'TIR a.a.'},{v:'<R$200',l:'LCOE /MWh'},{v:'<10 anos',l:'payback'},{v:'Mono PERC',l:'tecnologia'}],
+    overview:'PFS completo para usina solar de 5 MWp no NE. Atuacao como IPP independente da identificacao da area a estrutura de financiamento, com Teaser Tecnico em PT e EN.',
+    scope:['Dimensionamento tecnico Mono PERC','Arrendamento rural 25 anos','Project Finance BNDES/BNB-FNE Verde','Modelagem CAPEX, OPEX, TIR, VPL, LCOE','Analise de riscos tecnicos e regulatorios'],
+    skills:'Energia renovavel - Project Finance - Engenharia de projetos'},
+  evtea:{tag:'Solar EVTEA Serie',tc:'ts',title:'Serie EVTEA — Parques FV I·II·III',period:'2020 – 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'3',l:'estudos'},{v:'NE Brasil',l:'regiao'}],
+    overview:'Tres EVTEAs para parques FV no Nordeste cobrindo potencial solar, CAPEX/OPEX, licenciamento e investidores.',
+    scope:['Projeto I: potencial solar, topografia, CAPEX/OPEX','Projeto II: riscos tecnico-ambientais, suporte a SPEs','Projeto III: analise territorial, ESG'],
+    skills:'Engenharia de projetos - Desenvolvimento de projetos'},
+  utility:{tag:'Solar Utility Scale',tc:'ts',title:'Usina Solar FV Utility Scale',period:'Jun 2022 – Dez 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Utility',l:'escala'},{v:'Federal',l:'licenca'}],
+    overview:'Planejamento tecnico-ambiental para usinas de medio e grande porte.',
+    scope:['Estudos ambientais e locacionais','Licenciamento federal e estadual','Riscos ambientais e fundiarios','Relatorios para investidores'],
+    skills:'Energia renovavel - Engenharia ambiental'},
+  monitor:{tag:'Monitoramento FV Eolica',tc:'ts',title:'Monitoramento Ambiental — FV e Eolicas',period:'Fev – Dez 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'FV+Eolica',l:'tipos'}],
+    overview:'Programas de monitoramento ambiental para implantacao e operacao de renovaveis.',
+    scope:['Vegetacao e fauna','Controle erosivo','Efluentes e residuos','Relatorios para orgaos ambientais'],
+    skills:'Monitoramento ambiental - Energias renovaveis'},
+  prad_rp:{tag:'PRAD Caatinga',tc:'ta',title:'PRAD — Reposicao Florestal - Apolo Rio do Peixe',period:'Jul 2025 — em andamento',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'2.600',l:'mudas'},{v:'12 meses',l:'monitoramento'},{v:'Caatinga',l:'bioma'}],
+    overview:'PRAD com reposicao florestal para SPE Apolo GD Rio do Peixe em Carauas-PB.',
+    scope:['Diagnostico da area degradada','Especies nativas da Caatinga','Irrigacao por bombeamento solar','Monitoramento 12 meses com indicadores'],
+    skills:'Engenharia ambiental - Engenharia Florestal - Gestao ambiental'},
+  apolo_jq:{tag:'Plantio Compensatorio BA',tc:'ta',title:'Plantio Compensatorio - APOLO SPE Janio Quadros',period:'Fev 2025 — em andamento',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Bahia',l:'estado'}],
+    overview:'Plantio compensatorio para condicionantes de licenciamento ambiental.',
+    scope:['Diagnostico e caracterizacao da area','Especies nativas do bioma','Implantacao, manutencao e monitoramento'],
+    skills:'Engenharia ambiental - Engenharia Florestal - Gestao de projetos'},
+  porangatu:{tag:'Compensacao Ambiental UFV',tc:'ta',title:'Compensacao Ambiental — UFV Apolo Porangatu I',period:'Jan 2024 – Jan 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'3 ha',l:'area compensada'}],
+    overview:'Compensacao ambiental de 3 ha para UFV Apolo Porangatu I.',
+    scope:['Execucao em 3 ha','Conformidade com condicionantes','Recomposicao vegetal nativa'],
+    skills:'Gestao ambiental - Desenvolvimento de projetos'},
+  linear:{tag:'PRAD Infraestrutura Linear',tc:'ta',title:'Recuperacao Ambiental — Infraestrutura Linear',period:'Mar – Dez 2021',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'PRAD',l:'instrumento'}],
+    overview:'Recuperacao de areas degradadas por obras lineares.',
+    scope:['PRAD e plantio compensatorio','Controle de erosao e drenagem','Monitoramento pos-obra','Atendimento a condicionantes'],
+    skills:'Engenharia ambiental'},
+  pigpa:{tag:'Passivos Ambientais PIGPA',tc:'ta',title:'PIGPA — Gestao de Passivos Ambientais',period:'Nov 2019 – Dez 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Regularizacao',l:'objetivo'}],
+    overview:'Plano para identificacao, quantificacao e mitigacao de passivos ambientais.',
+    scope:['Levantamento historico-operacional','Diagnostico ambiental e legal','Avaliacao de riscos','Medidas corretivas'],
+    skills:'Engenharia ambiental - Gestao de riscos'},
+  carbono:{tag:'Credito de Carbono Serie',tc:'tc',title:'Projetos de Credito de Carbono — Serie I·II·III',period:'Jan 2023 – Dez 2024',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'3',l:'projetos'},{v:'Voluntario',l:'mercado'},{v:'ESG',l:'integracao'}],
+    overview:'Serie de tres projetos: alta captura (I), otimizacao voluntaria (II) e modular escalavel (III).',
+    scope:['Projeto I: estoque, adicionalidade, permanencia','Projeto II: uso/cobertura solo, remocoes, salvaguardas','Projeto III: cenarios modulares, certificacoes voluntarias'],
+    skills:'Engenharia ambiental - Carbono - ESG'},
+  gee:{tag:'GEE Inventario ESG',tc:'tc',title:'Inventario GEE e Projetos de Reducao',period:'Out 2022 – Dez 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'GEE',l:'escopo'},{v:'ESG',l:'relatorios'}],
+    overview:'Inventario de emissoes GEE e projetos de reducao e compensacao corporativa.',
+    scope:['Inventario de emissoes GEE','Identificacao de oportunidades','Compensacao florestal','Relatorios ESG e certificacoes'],
+    skills:'Engenharia ambiental - Carbono - ESG'},
+  ativa:{tag:'Mineracao Ti V',tc:'tm',title:'ATIVA Mineracao — Ti e V - Inventario Florestal',period:'Fev – Mar 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Floresta-PE',l:'municipio'},{v:'Ti e V',l:'minerais'}],
+    overview:'Inventario florestal para licenciamento da ATIVA Mineracao (Titanio e Vanadio) em Floresta-PE.',
+    scope:['Delimitacao AID e ADA','Levantamento floristico e fitossociologico','Medicoes dendrometricas: DAP, altura, area basal','Base para EIA, ASV, PRAD e compensacao'],
+    skills:'Engenharia ambiental - Engenharia Florestal - Mineralogia'},
+  min_diag:{tag:'Mineralogico Ambiental EIA',tc:'tm',title:'Diagnostico Mineralogico e Ambiental',period:'Out 2025 – Fev 2026',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Integrado',l:'abordagem'},{v:'EIA/ASV',l:'aplicacao'}],
+    overview:'Analise mineralogica integrada ao diagnostico ambiental para viabilidade de empreendimentos minerarios.',
+    scope:['Caracterizacao mineralogica e litologica','Diagnostico ambiental da area de influencia','Apoio a EIAs e ASVs','Avaliacao de riscos operacionais'],
+    skills:'Especializacao Mineralogia - Gestao de Riscos - Engenharia ambiental'},
+  mine_safety:{tag:'Mineracao PME Seguranca',tc:'tm',title:'Plano de Seguranca e Gestao Ambiental — Mineracao PME',period:'Ago 2020 – Dez 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'PME',l:'porte'},{v:'3+ anos',l:'duracao'}],
+    overview:'Plano integrado de seguranca e gestao ambiental para pequenos e medios mineradores.',
+    scope:['Diagnostico ambiental e operacional','Avaliacao de riscos de seguranca','Planos de controle e mitigacao','Suporte ao licenciamento e auditorias'],
+    skills:'Gestao ambiental - Eng. Seguranca do Trabalho - Gestao de Riscos'},
+  auditoria:{tag:'Auditoria Compliance Due Diligence',tc:'te',title:'Auditoria Ambiental e Compliance — Ativos Estrategicos',period:'Jan – Dez 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Auditoria',l:'tecnica'},{v:'ESG',l:'compliance'}],
+    overview:'Auditorias ambientais tecnicas e periciais focadas em conformidade legal e valorizacao de ativos.',
+    scope:['Auditorias ambientais e regulatorias','Avaliacao de condicionantes','Diagnostico de passivos ambientais','Relatorios para investidores e conselhos','Due diligence ambiental'],
+    skills:'Pericia Ambiental - Auditoria - Gestao de Riscos'},
+  pericia:{tag:'Pericia Laudo Judicial',tc:'te',title:'Pericia Ambiental Estrategica',period:'Jan – Dez 2024',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Judicial',l:'ambito'},{v:'Laudos',l:'entregavel'}],
+    overview:'Pericia ambiental judicial e extrajudicial com laudos tecnicos especializados.',
+    scope:['Pericias ambientais e de engenharia','Laudos tecnicos especializados','Pareceres tecnicos fundamentados','Analise de danos e responsabilidades','Interface tecnica-juridica'],
+    skills:'Pericia e Auditoria Ambiental - Due Diligence'},
+  ambientax:{tag:'ESG Klabin PROSAS',tc:'te',title:'Projeto AMBIENTAX — Klabin S.A.',period:'Mar 2024 – Mar 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Klabin S.A.',l:'cliente'},{v:'PROSAS',l:'programa'}],
+    overview:'Mitigacao de impactos ambientais e desenvolvimento socioeconomico, alinhado as diretrizes ESG da Klabin S.A.',
+    scope:['Diagnostico ambiental das areas de influencia','Identificacao de passivos e oportunidades','Estruturacao de acoes de mitigacao e compensacao','Base tecnica para governanca ESG'],
+    skills:'Desenvolvimento de projetos - Engenharia ambiental - ESG'},
+  barragens:{tag:'Barragens Seguranca Risco',tc:'te',title:'Programa Integrado de Seguranca de Barragens',period:'Jan – Fev 2023',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Classificacao',l:'risco e DPA'}],
+    overview:'Programa de seguranca de barragens alinhado a legislacao, gestao de riscos e controle ambiental.',
+    scope:['Classificacao por risco e DPA','Diagnostico ambiental e geotecnico','Auditorias tecnicas','Planos de seguranca, monitoramento e contingencia'],
+    skills:'Engenharia ambiental - Gestao de Riscos - Geotecnia'},
+  agrohaus:{tag:'Inovacao AgroHaus',tc:'ti',title:'Projeto AgroHaus — Agricultura em Edificacao',period:'Jan 2024 – Dez 2025',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Urbano',l:'aplicacao'},{v:'Inovacao',l:'perfil'}],
+    overview:'Sistema inovador de agricultura em edificacao com ambiente controlado para aplicacao urbana.',
+    scope:['Controle climatico e eficiencia energetica','Gestao hidrica e reaproveitamento','Integracao com renovaveis','Seguranca alimentar e sustentabilidade urbana'],
+    skills:'Engenharia ambiental - Engenharia de projetos - Inovacao'},
+  cabedelo:{tag:'Territorial SIG QGIS',tc:'tt',title:'Expansao Urbana — Uso e Ocupacao do Solo - Cabedelo/PB',period:'Dez 2019 – Mar 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Cabedelo-PB',l:'municipio'},{v:'SIG/QGIS',l:'ferramenta'}],
+    overview:'Estudo tecnico de expansao urbana e uso do solo de Cabedelo/PB com analises espaciais e ambientais.',
+    scope:['Analise da dinamica de expansao urbana','Mapeamento de uso e ocupacao do solo','Identificacao de areas sensiveis','Mapas tematicos georreferenciados (SIG/QGIS)'],
+    skills:'Engenharia ambiental - Geoprocessamento - Planejamento territorial'},
+  geotecnia:{tag:'Geotecnia Container Modular',tc:'tt',title:'Geotecnia Aplicada — Sistema Movel em Container',period:'Jan – Jun 2020',co:'KRAEFEGG Multi Office',
+    kpis:[{v:'Container',l:'sistema'},{v:'Modular',l:'tipo'}],
+    overview:'Projeto de geotecnia para implantacao segura de sistema modular em container.',
+    scope:['Analise geotecnica de solo e capacidade de suporte','Avaliacao de riscos geotecnicos','Desenhos tecnicos para implantacao','Orcamento tecnico detalhado'],
+    skills:'Engenharia ambiental - Geotecnia'}
+};
+
+// ─── BUILD MODAL ──────────────────────────────────────────────────
+function buildModal(id){
+  var p=D[id]; if(!p) return;
+  var kh=p.kpis.map(function(k){
+    return '<div class="mkpi"><div class="mkpiv">'+k.v+'</div><div class="mkpil">'+k.l+'</div></div>';
+  }).join('');
+  var sh=p.scope.map(function(s){ return '<li>'+s+'</li>'; }).join('');
+  document.getElementById('mcontent').innerHTML=
+    '<div class="mkicker"><span class="ctag '+p.tc+'">'+p.tag+'</span></div>'+
+    '<h2 class="mtitle">'+p.title+'</h2>'+
+    '<div class="mmeta"><span>&#128197; '+p.period+'</span><span>&#127970; '+p.co+'</span></div>'+
+    '<div class="mkpis">'+kh+'</div>'+
+    '<div class="msec"><h3>Visao geral</h3><p>'+p.overview+'</p></div>'+
+    '<div class="msec"><h3>Escopo tecnico</h3><ul>'+sh+'</ul></div>'+
+    '<div class="msec"><h3>Competencias</h3><p style="color:var(--text3);font-size:12px;font-family:Chakra Petch,monospace">'+p.skills+'</p></div>'+
+    '<div class="mbottom">'+
+    '<a href="mailto:kraefegg.mos3@gmail.com?subject=Interesse: '+p.title+'" class="btnp">Solicitar informacoes &rarr;</a>'+
+    '<button class="btns" onclick="closeM()">Fechar</button>'+
+    '</div>';
+}
+document.querySelectorAll('.pcard').forEach(function(card){
+  card.addEventListener('click',function(){ buildModal(card.dataset.id); openModal(); });
+});
+function openModal(){
+  var ov=document.getElementById('moverlay');
+  if(ov){ ov.classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function closeM(){
+  var ov=document.getElementById('moverlay');
+  if(ov){ ov.classList.remove('open'); document.body.style.overflow=''; }
+}
+var mc=document.getElementById('mclose');
+if(mc) mc.addEventListener('click',closeM);
+var ov=document.getElementById('moverlay');
+if(ov) ov.addEventListener('click',function(e){ if(e.target===ov) closeM(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeM(); });
+
+// ─── INIT ─────────────────────────────────────────────────────────
+triggerReveal();
+
+})();
+
+// ── CONFIDENCIAL PAGE ──────────────────────────────────────────────
+var CONF_PROJECTS = [{"id": "1", "title": "Inventário de Emissões GEE e Plano de Descarbonização", "category": "sustentabilidade", "sector": "Concessão Rodoviária — Região Sul do Brasil", "confLabel": "Cliente Confidencial — Setor de Concessões", "confDetail": "Empresa concessionária privada de rodovias com corredor de alto fluxo de cargas. Dados protegidos por NDA.", "year": "2023", "duration": "7 meses", "desc": "Levantamento e quantificação de emissões GEE em trechos de concessão rodoviária privada, com modelagem de cenários de redução e elaboração de Plano de Descarbonização alinhado ao Acordo de Paris e aos requisitos ESG de financiadores internacionais.", "full": "O projeto abrangeu mais de 3.800 km de rodovias concedidas, com coleta de dados operacionais, modelagem de emissões por escopo (1, 2 e 3) e metas progressivas de redução. Foram desenvolvidos KPIs ambientais para monitoramento contínuo e relatório executivo para captação de recursos junto a banco multilateral.", "icon": "🌿", "tags": [], "deliverables": ["Inventário GEE conforme ISO 14064", "Modelagem de cenários de redução por escopo", "Plano de Descarbonização com metas progressivas", "Dashboard de monitoramento de emissões", "Relatório ESG para reporte a stakeholders e financiadores"]}, {"id": "2", "title": "Plataforma Digital de Monitoramento de Indicadores de Sustentabilidade", "category": "sistemas", "sector": "Holding Privada — Infraestrutura Ferroviária", "confLabel": "Cliente Confidencial — Grupo de Infraestrutura", "confDetail": "Holding privada com operações ferroviárias e logísticas de longa distância. Informações sob contrato de sigilo.", "year": "2022", "duration": "10 meses", "desc": "Desenvolvimento de plataforma integrada para coleta, processamento e visualização de indicadores operacionais, ambientais e de segurança, com módulo BI, banco de dados rastreável e painel executivo de desempenho por corredor.", "full": "A solução centraliza dados de múltiplas unidades operacionais, integrando APIs de sistemas legados, gestão documental com rastreabilidade completa e painel executivo com ranking de desempenho. O sistema foi homologado pela equipe de TI interna do cliente e está em produção desde a entrega.", "icon": "💻", "tags": [], "deliverables": ["Levantamento e especificação de requisitos (UX/casos de uso)", "Arquitetura de banco de dados relacional", "Desenvolvimento de dashboards BI interativos", "Módulo de ranking e premiação por unidade operacional", "Transferência de código-fonte e documentação técnica", "Treinamento de usuários internos"]}, {"id": "3", "title": "Estruturação de Programa Interno de Sustentabilidade para Infraestrutura", "category": "regulacao", "sector": "Concessionária Privada — Corredor Logístico Centro-Oeste", "confLabel": "Cliente Confidencial — Concessão Rodoviária", "confDetail": "Empresa concessionária privada com contrato de longo prazo em corredor estratégico. Identidade preservada por cláusula contratual.", "year": "2024", "duration": "6 meses", "desc": "Apoio à empresa na criação de programa interno de sustentabilidade para infraestrutura, com definição de Parâmetros de Desempenho Sustentável, cálculo de Índice de Desenvolvimento Sustentável e modelo de fiscalização e reconhecimento interno.", "full": "O projeto modelou metodologia de cálculo do IDS adaptada à realidade operacional do cliente, definiu requisitos de evidências por nível de maturidade, desenvolveu fluxo de análise interna e elaborou programa de reconhecimento de boas práticas entre equipes. Os resultados foram integrados ao relatório de sustentabilidade corporativo.", "icon": "🚛", "tags": [], "deliverables": ["Metodologia de cálculo do IDS personalizada", "Matriz de Parâmetros de Desempenho Sustentável (PDS)", "Modelo de fiscalização e verificação interna", "Programa de reconhecimento de equipes por iniciativa", "Relatório de sustentabilidade corporativo (GRI)"]}, {"id": "4", "title": "Assessoria Jurídica em Ambiente Regulatório Experimental — Logística Sustentável", "category": "juridico", "sector": "Operador Logístico Multimodal — Região Sul/Sudeste", "confLabel": "Cliente Confidencial — Operador Privado", "confDetail": "Empresa privada com ativos rodoviários e portuários participante de processo regulatório experimental. Dados sob NDA.", "year": "2024", "duration": "8 meses", "desc": "Suporte técnico e jurídico na preparação, submissão e acompanhamento de proposta em ambiente regulatório experimental para corredor logístico sustentável multimodal, com análise de conformidade e estruturação de entregas contratuais trimestrais.", "full": "O escopo incluiu análise do arcabouço legal aplicável, elaboração da proposta técnica para o sandbox regulatório, verificação de conformidade das exigências editalícias e contratuais, e acompanhamento das entregas ao órgão regulador. A equipe atuou como interlocutora técnica e jurídica do cliente durante todo o ciclo.", "icon": "⚖️", "tags": [], "deliverables": ["Análise do arcabouço regulatório aplicável", "Proposta técnica completa para o sandbox", "Verificação de conformidade legal e editalícia", "Relatórios trimestrais de acompanhamento regulatório", "Pareceres jurídicos sobre entregas contratuais"]}, {"id": "5", "title": "Plano de Resiliência Climática para Infraestrutura Logística", "category": "sustentabilidade", "sector": "Terminal Portuário Privado — Litoral Paranaense", "confLabel": "Cliente Confidencial — Setor Portuário", "confDetail": "Terminal privado com operações de granéis sólidos e líquidos em porto de relevância estratégica. Informações sob acordo de confidencialidade.", "year": "2023", "duration": "5 meses", "desc": "Mapeamento de vulnerabilidades climáticas, classificação de risco por categoria e elaboração de Plano de Adaptação e Resiliência para infraestrutura de terminal portuário privado, com KPIs de acompanhamento e relatório para captação junto a financiadores.", "full": "O projeto envolveu análise de dados históricos climáticos, modelagem de cenários de risco, priorização georreferenciada de pontos críticos e Plano de Adaptação com cronograma e estimativa de investimentos. O relatório foi utilizado diretamente no processo de captação de recursos junto a banco de fomento internacional.", "icon": "🌱", "tags": [], "deliverables": ["Mapeamento de vulnerabilidades (SIG georreferenciado)", "Classificação de risco por categoria climática", "Plano de Adaptação e Resiliência com cronograma", "KPIs de acompanhamento climático por ativo", "Relatório executivo para financiadores internacionais"]}, {"id": "6", "title": "Modelagem de KPIs para Corredor Logístico Sustentável Multimodal", "category": "sistemas", "sector": "Concessionária Privada com Acesso Portuário — Paraná", "confLabel": "Cliente Confidencial — Corredor Estratégico", "confDetail": "Empresa privada com concessão de corredor logístico de alto valor estratégico conectando rodovia e porto. Identidade protegida por NDA.", "year": "2024", "duration": "4 meses", "desc": "Desenvolvimento de modelo de métricas e KPIs para corredor logístico sustentável multimodal privado, com banco de dados estruturado, painel BI de acompanhamento evolutivo, metas progressivas por dimensão e alertas de desvio.", "full": "Foram estruturados 42 KPIs em 5 dimensões (eficiência logística, emissões, segurança viária, qualidade de serviço e sustentabilidade social). Desenvolveu-se sistema de banco de dados integrado com alimentação automática via APIs e dashboard de acompanhamento histórico com alertas de desvio de metas.", "icon": "📊", "tags": [], "deliverables": ["Modelo de requisitos e métricas do corredor", "Dicionário de 42 KPIs com parâmetros e metas", "Banco de dados estruturado (PostgreSQL)", "Dashboard BI com evolução histórica e alertas", "Manual de governança e atualização dos dados"]}, {"id": "7", "title": "Programa de Fiscalização e Verificação de Obrigações Contratuais", "category": "regulacao", "sector": "Concessionária de Rodovias — Região Sudeste", "confLabel": "Cliente Confidencial — Múltiplas Concessões", "confDetail": "Empresa privada com portfólio de múltiplos contratos de concessão rodoviária. Informações comerciais preservadas por contrato.", "year": "2022", "duration": "6 meses", "desc": "Estruturação de programa interno de fiscalização e verificação do cumprimento de obrigações contratuais de concessões rodoviárias, com padronização de documentos comprobatórios, roteiros de auditoria e modelo de relatório consolidado.", "full": "O projeto revisou o arcabouço de controle interno vigente, propôs padronização de evidências por categoria de obrigação, desenvolveu fichas de verificação in loco e definiu critérios técnicos para requisitos complexos como resiliência climática e gestão ambiental. O cliente passou por auditoria externa com resultado positivo após a implementação.", "icon": "🛤️", "tags": [], "deliverables": ["Metodologia de fiscalização interna", "Fichas de verificação padronizadas por categoria", "Manual de verificadores independentes", "Modelo de relatório anual de conformidade", "Treinamento de equipes de auditoria interna"]}, {"id": "8", "title": "Revisão e Atualização de Contratos de Concessão com Cláusulas ESG", "category": "juridico", "sector": "Grupo Privado — Infraestrutura Ferroviária Nacional", "confLabel": "Cliente Confidencial — Holding Ferroviária", "confDetail": "Grupo privado com operações ferroviárias de longa distância e múltiplos contratos de concessão. Dados sob acordo de não divulgação.", "year": "2021", "duration": "9 meses", "desc": "Análise, atualização e adequação de contratos de concessão ferroviária privada, com inserção de cláusulas de sustentabilidade, obrigações ESG e requisitos ambientais decorrentes do novo marco regulatório e dos compromissos climáticos do Brasil.", "full": "O trabalho abrangeu revisão de 6 contratos de concessão ferroviária, mapeamento de cláusulas com impacto ESG, proposição de linguagem contratual para novos requisitos de sustentabilidade e elaboração de pareceres de conformidade. A equipe assessorou diretamente a diretoria jurídica do cliente nas negociações com o órgão regulador.", "icon": "📋", "tags": [], "deliverables": ["Mapeamento de cláusulas ESG nos contratos vigentes", "Minutas de termos aditivos com linguagem ESG", "Pareceres jurídicos de conformidade regulatória", "Nota técnica interna ao conselho e à diretoria", "Workshop com equipes jurídicas e operacionais"]}, {"id": "9", "title": "Plano de Gerenciamento de Resíduos Sólidos — Rede Operacional Rodoviária", "category": "sustentabilidade", "sector": "Operadora Privada de Infraestrutura — Região Sul", "confLabel": "Cliente Confidencial — Operação Rodoviária", "confDetail": "Empresa privada com rede de praças de pedágio e pátios de manutenção em região de alto fluxo. Identidade sob NDA.", "year": "2022", "duration": "5 meses", "desc": "Estruturação de Plano de Gerenciamento de Resíduos Sólidos para rede operacional rodoviária privada, em conformidade com a PNRS e requisitos de licenciamento, com sistema de rastreabilidade e indicadores de desempenho ambiental.", "full": "O escopo cobriu diagnóstico da geração de resíduos em 14 unidades operacionais, definição de rotas de destinação por categoria, implantação de sistema de controle com manifesto eletrônico e elaboração de indicadores para reporte ao órgão licenciador e ao conselho de sustentabilidade interno.", "icon": "🏭", "tags": [], "deliverables": ["Diagnóstico de geração de resíduos por unidade", "PGRS completo por ponto operacional", "Sistema de rastreabilidade com manifesto eletrônico", "Indicadores de desempenho ambiental para reporte", "Treinamento de equipes operacionais e gestores"]}];
+
+function openConfModal(id){
+  var p = CONF_PROJECTS.find(function(x){return x.id==id||x.id==String(id);});
+  if(!p) return;
+  var tags = p.tags.map(function(t){
+    var cls = t[1]==='tag-green'?'ctg-green':t[1]==='tag-blue'?'ctg-blue':t[1]==='tag-gold'?'ctg-gold':'ctg-purple';
+    return '<span class="conf-tag '+cls+'">'+t[0]+'</span>';
+  }).join('');
+  var delivs = p.deliverables.map(function(d){return '<li>'+d+'</li>';}).join('');
+  document.getElementById('confModalBody').innerHTML =
+    '<div style="margin-bottom:1rem">'+tags+'</div>'+
+    '<h2 class="mtitle" style="font-size:1.6rem;margin-bottom:.5rem">'+p.title+'</h2>'+
+    '<div class="mmeta"><span>&#128197; '+p.year+' · '+p.duration+'</span><span>&#127970; '+p.sector+'</span></div>'+
+    '<div class="conf-alert">🔒 '+p.confLabel+'<br><small style="opacity:.7">'+p.confDetail+'</small></div>'+
+    '<div class="msec"><h3>Visão geral</h3><p>'+p.full+'</p></div>'+
+    '<div class="msec"><h3>Principais Entregas</h3><ul class="conf-deliv">'+delivs+'</ul></div>'+
+    '<div class="mbottom">'+
+    '<a href="mailto:kraefegg.mos3@gmail.com?subject=Solicita%C3%A7%C3%A3o NDA - '+p.title+'" class="btnp">Solicitar NDA →</a>'+
+    '<button class="btns" onclick="closeConfModal()">Fechar</button>'+
+    '</div>';
+  document.getElementById('confModalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeConfModal(){
+  document.getElementById('confModalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.conf-fbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.conf-fbtn').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    var f = b.dataset.cfilter;
+    document.querySelectorAll('.conf-card').forEach(function(card){
+      card.style.display = (f==='all'||card.dataset.ccat===f)?'':'none';
+    });
+  });
+});
+
+</script>
+
+<!-- PAGE 5: CONFIDENCIAL -->
+<div id="page-confidencial" class="page">
+  <div class="conf-hero">
+
+    <div class="sec-hdr reveal">
+      <h2 class="sec-title">Portfólio Privado — Setor Corporativo</h2>
+      <span class="sec-meta">09 projetos · Sob NDA · 2019–2025</span>
+    </div>
+
+    <div class="conf-banner reveal">
+      🔒 &nbsp; Todos os dados de clientes são tratados com sigilo absoluto. Informações comerciais divulgadas apenas sob NDA firmado. &nbsp;·&nbsp; Preparado para BID Seleção RG-T4712-P001 · 2026
+    </div>
+
+    <div class="conf-stats reveal">
+      <div class="conf-stat"><div class="conf-stat-val">18+</div><div class="conf-stat-lbl">Projetos Concluídos</div></div>
+      <div class="conf-stat"><div class="conf-stat-val">100%</div><div class="conf-stat-lbl">Setor Privado</div></div>
+      <div class="conf-stat"><div class="conf-stat-val">USD 4.2M</div><div class="conf-stat-lbl">Volume Contratado</div></div>
+      <div class="conf-stat"><div class="conf-stat-val">6 Anos</div><div class="conf-stat-lbl">de Atuação</div></div>
+    </div>
+
+    <div class="conf-filters reveal">
+      <button class="conf-fbtn active" data-cfilter="all">// Todos</button>
+      <button class="conf-fbtn" data-cfilter="sustentabilidade">Sustentabilidade</button>
+      <button class="conf-fbtn" data-cfilter="sistemas">Sistemas / TI</button>
+      <button class="conf-fbtn" data-cfilter="regulacao">Regulação</button>
+      <button class="conf-fbtn" data-cfilter="juridico">Jurídico</button>
+    </div>
+
+    <div class="conf-grid reveal" id="conf-grid">
+<div class="conf-card cc-sus" data-ccat="sustentabilidade" data-cid="1" onclick="openConfModal(1)">
+  <div class="conf-card-icon">🌿</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessão Rodoviária</div>
+  <h3 class="conf-title">Inventário de Emissões GEE e Plano de Descarbonização</h3>
+  <p class="conf-desc">Levantamento e quantificação de emissões GEE em trechos de concessão rodoviária privada, com modelagem de cenários de redução e elaboração de Plano de Descarbon...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2023</span></div>
+    <div class="conf-meta-item">Duração<span>7 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sustentabilidade/ESG</span></div>
+  </div>
+</div><div class="conf-card cc-sis" data-ccat="sistemas" data-cid="2" onclick="openConfModal(2)">
+  <div class="conf-card-icon">💻</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Holding Privada</div>
+  <h3 class="conf-title">Plataforma Digital de Monitoramento de Indicadores de Sustentabilidade</h3>
+  <p class="conf-desc">Desenvolvimento de plataforma integrada para coleta, processamento e visualização de indicadores operacionais, ambientais e de segurança, com módulo BI, banco d...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2022</span></div>
+    <div class="conf-meta-item">Duração<span>10 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sistemas/TI</span></div>
+  </div>
+</div><div class="conf-card cc-reg" data-ccat="regulacao" data-cid="3" onclick="openConfModal(3)">
+  <div class="conf-card-icon">🚛</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessionária Privada</div>
+  <h3 class="conf-title">Estruturação de Programa Interno de Sustentabilidade para Infraestrutura</h3>
+  <p class="conf-desc">Apoio à empresa na criação de programa interno de sustentabilidade para infraestrutura, com definição de Parâmetros de Desempenho Sustentável, cálculo de Índice...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2024</span></div>
+    <div class="conf-meta-item">Duração<span>6 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Regulação</span></div>
+  </div>
+</div><div class="conf-card cc-jur" data-ccat="juridico" data-cid="4" onclick="openConfModal(4)">
+  <div class="conf-card-icon">⚖️</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Operador Logístico Multimodal</div>
+  <h3 class="conf-title">Assessoria Jurídica em Ambiente Regulatório Experimental — Logística Sustentável</h3>
+  <p class="conf-desc">Suporte técnico e jurídico na preparação, submissão e acompanhamento de proposta em ambiente regulatório experimental para corredor logístico sustentável multim...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2024</span></div>
+    <div class="conf-meta-item">Duração<span>8 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Jurídico</span></div>
+  </div>
+</div><div class="conf-card cc-sus" data-ccat="sustentabilidade" data-cid="5" onclick="openConfModal(5)">
+  <div class="conf-card-icon">🌱</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Terminal Portuário Privado</div>
+  <h3 class="conf-title">Plano de Resiliência Climática para Infraestrutura Logística</h3>
+  <p class="conf-desc">Mapeamento de vulnerabilidades climáticas, classificação de risco por categoria e elaboração de Plano de Adaptação e Resiliência para infraestrutura de terminal...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2023</span></div>
+    <div class="conf-meta-item">Duração<span>5 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sustentabilidade/ESG</span></div>
+  </div>
+</div><div class="conf-card cc-sis" data-ccat="sistemas" data-cid="6" onclick="openConfModal(6)">
+  <div class="conf-card-icon">📊</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessionária Privada com Acesso Portuário</div>
+  <h3 class="conf-title">Modelagem de KPIs para Corredor Logístico Sustentável Multimodal</h3>
+  <p class="conf-desc">Desenvolvimento de modelo de métricas e KPIs para corredor logístico sustentável multimodal privado, com banco de dados estruturado, painel BI de acompanhamento...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2024</span></div>
+    <div class="conf-meta-item">Duração<span>4 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sistemas/TI</span></div>
+  </div>
+</div><div class="conf-card cc-reg" data-ccat="regulacao" data-cid="7" onclick="openConfModal(7)">
+  <div class="conf-card-icon">🛤️</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Concessionária de Rodovias</div>
+  <h3 class="conf-title">Programa de Fiscalização e Verificação de Obrigações Contratuais</h3>
+  <p class="conf-desc">Estruturação de programa interno de fiscalização e verificação do cumprimento de obrigações contratuais de concessões rodoviárias, com padronização de documento...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2022</span></div>
+    <div class="conf-meta-item">Duração<span>6 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Regulação</span></div>
+  </div>
+</div><div class="conf-card cc-jur" data-ccat="juridico" data-cid="8" onclick="openConfModal(8)">
+  <div class="conf-card-icon">📋</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Grupo Privado</div>
+  <h3 class="conf-title">Revisão e Atualização de Contratos de Concessão com Cláusulas ESG</h3>
+  <p class="conf-desc">Análise, atualização e adequação de contratos de concessão ferroviária privada, com inserção de cláusulas de sustentabilidade, obrigações ESG e requisitos ambie...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2021</span></div>
+    <div class="conf-meta-item">Duração<span>9 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Jurídico</span></div>
+  </div>
+</div><div class="conf-card cc-sus" data-ccat="sustentabilidade" data-cid="9" onclick="openConfModal(9)">
+  <div class="conf-card-icon">🏭</div>
+  <div class="conf-card-tags"></div>
+  <div class="conf-lock">🔒 Cliente Confidencial · NDA</div>
+  <div class="conf-sector">Operadora Privada de Infraestrutura</div>
+  <h3 class="conf-title">Plano de Gerenciamento de Resíduos Sólidos — Rede Operacional Rodoviária</h3>
+  <p class="conf-desc">Estruturação de Plano de Gerenciamento de Resíduos Sólidos para rede operacional rodoviária privada, em conformidade com a PNRS e requisitos de licenciamento, c...</p>
+  <div class="conf-meta">
+    <div class="conf-meta-item">Ano<span>2022</span></div>
+    <div class="conf-meta-item">Duração<span>5 meses</span></div>
+    <div class="conf-meta-item">Setor<span>Sustentabilidade/ESG</span></div>
+  </div>
+</div>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:3rem">
+      <h2 class="sec-title">Project Developer — Áreas de Desenvolvimento</h2>
+      <span class="sec-meta">Multi-setor · IPP Independente</span>
+    </div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:1.25rem;line-height:1.7;font-weight:300;max-width:720px" class="reveal">
+      Atuação como <strong style="color:var(--cyan)">Project Developer independente</strong> em múltiplos setores — estruturando projetos do zero até o estágio RTB (Ready-to-Build) ou operacional, com modelagem financeira, licenciamento ambiental e captação de investidores.
+    </div>
+    <div class="dev-grid reveal">
+<div class="dev-card" style="border-top-color:var(--amber)">
+  <div class="dev-card-icon">☀️</div>
+  <div class="dev-card-title" style="color:var(--amber)">Energia Solar</div>
+  <div class="dev-card-desc">Pre-feasibility studies, utility scale FV, project finance BNDES/BNB, IPP independente no mercado livre ACL.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--amber);color:var(--amber)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--neon)">
+  <div class="dev-card-icon">🌱</div>
+  <div class="dev-card-title" style="color:var(--neon)">Agrovoltaico</div>
+  <div class="dev-card-desc">Integração solar + agricultura + créditos de carbono. Modelo triple revenue para o Semiárido Nordestino.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--neon);color:var(--neon)">Destaque</span>
+</div><div class="dev-card" style="border-top-color:var(--cyan)">
+  <div class="dev-card-icon">🌡</div>
+  <div class="dev-card-title" style="color:var(--cyan)">Crédito de Carbono</div>
+  <div class="dev-card-desc">Estruturação de projetos para mercados voluntários (Verra) e regulado (SBCE). Adicionalidade e MRV.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--cyan);color:var(--cyan)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--purple)">
+  <div class="dev-card-icon">⛏</div>
+  <div class="dev-card-title" style="color:var(--purple)">Mineração Verde</div>
+  <div class="dev-card-desc">Diagnóstico mineralógico, inventário florestal e estruturação ESG para empreendimentos minerários.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--purple);color:var(--purple)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--blue)">
+  <div class="dev-card-icon">🏗️</div>
+  <div class="dev-card-title" style="color:var(--blue)">Infraestrutura & Logística</div>
+  <div class="dev-card-desc">KPIs sustentáveis, programas ESG, resiliência climática e sistemas de monitoramento para concessionárias.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--blue);color:var(--blue)">Ativo</span>
+</div><div class="dev-card" style="border-top-color:var(--teal)">
+  <div class="dev-card-icon">🌊</div>
+  <div class="dev-card-title" style="color:var(--teal)">Marítimo & Offshore</div>
+  <div class="dev-card-desc">Consultoria IMO E-Roster: MARPOL, OPRC, prevenção à poluição e conformidade ambiental em operações portuárias.</div>
+  <span class="dev-card-status" style="background:rgba(0,0,0,.3);border:1px solid var(--teal);color:var(--teal)">IMO E-Roster</span>
+</div>
+    </div>
+
+    <div class="sec-hdr reveal" style="margin-top:3rem">
+      <h2 class="sec-title">Capacidades Técnicas</h2>
+      <span class="sec-meta">08 competências multidisciplinares</span>
+    </div>
+    <div class="comp-grid reveal">
+<div class="comp-item">
+  <div class="comp-icon">🌿</div>
+  <div class="comp-name">Sustentabilidade & ESG</div>
+  <div class="comp-desc">Inventários GEE, programas de sustentabilidade para infraestrutura, planos de resiliência climática e conformidade com critérios ESG e Acordo de Paris.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">💻</div>
+  <div class="comp-name">Desenvolvimento de Sistemas</div>
+  <div class="comp-desc">Plataformas de monitoramento, bancos de dados, Business Intelligence, dashboards e sistemas de ranqueamento para o setor privado de infraestrutura.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🚛</div>
+  <div class="comp-name">Regulação de Transportes</div>
+  <div class="comp-desc">Assessoria em concessões rodoviárias e ferroviárias, programas de fiscalização, KPIs e métricas para conformidade regulatória e boas práticas setoriais.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">⚖️</div>
+  <div class="comp-name">Jurídico Regulatório</div>
+  <div class="comp-desc">Análise de contratos de concessão, cláusulas ESG, conformidade com o arcabouço regulatório e apoio em ambientes regulatórios experimentais (sandbox).</div>
+</div><div class="comp-item">
+  <div class="comp-icon">📊</div>
+  <div class="comp-name">Modelagem de KPIs</div>
+  <div class="comp-desc">Modelos de métricas e indicadores de desempenho para corredores logísticos multimodais, com metas progressivas, painéis evolutivos e alertas de desvio.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🔬</div>
+  <div class="comp-name">Gestão Ambiental</div>
+  <div class="comp-desc">PGRS, planos de adaptação climática, mapeamento de vulnerabilidades, licenciamento ambiental e programas de reconhecimento de boas práticas.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🤝</div>
+  <div class="comp-name">Projetos com Financiamento Internacional</div>
+  <div class="comp-desc">Experiência em projetos financiados por BID, Banco Mundial e organismos multilaterais, com relatórios de conformidade e prestação de contas em padrão internacional.</div>
+</div><div class="comp-item">
+  <div class="comp-icon">🛤️</div>
+  <div class="comp-name">Logística Sustentável</div>
+  <div class="comp-desc">Corredores logísticos sustentáveis, modelos de avaliação multimodal, estratégias de eletromobilidade e descarbonização da cadeia de transporte.</div>
+</div>
+    </div>
+
+    <div style="margin:2.5rem 0;padding:1.5rem;background:rgba(57,255,122,.04);border:1px solid rgba(57,255,122,.2);border-radius:4px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;overflow:hidden" class="reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--neon),var(--cyan))"></div>
+      <div>
+        <div style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--neon);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.375rem">// Portfólio Ampliado</div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em">Referências detalhadas disponíveis sob NDA</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:.25rem;font-family:'Chakra Petch',monospace">Disponibilizamos portfólio ampliado e documentação completa mediante assinatura de acordo de confidencialidade</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="mailto:kraefegg.mos3@gmail.com?subject=Solicitacao de NDA - Portfolio" class="btnp">Solicitar NDA →</a>
+        <a href="https://www.linkedin.com/in/railson-de-arruda-a34279145/" target="_blank" class="btns">LinkedIn ↗</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="w"><div class="pfooter">
+    <span class="fb">KRAEFEGG Multi Office · Portfólio Privado · Sob Confidencialidade</span>
+    <span style="font-family:'Chakra Petch',monospace;font-size:10px;color:var(--text3)">BID RG-T4712-P001 · 2026</span>
+  </div></div>
+
+  <!-- CONF MODAL -->
+  <div class="conf-modal-overlay" id="confModalOverlay" onclick="if(event.target===this)closeConfModal()">
+    <div class="conf-modal">
+      <button class="conf-mclose" onclick="closeConfModal()">×</button>
+      <div id="confModalBody"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
